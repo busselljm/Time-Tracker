@@ -3,9 +3,13 @@ package com.techelevator.dao;
 import com.techelevator.model.Project;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Component
 public class JdbcProjectDAO implements ProjectDAO{
 
     private JdbcTemplate jdbcTemplate;
@@ -15,15 +19,31 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
-    public Project createProject(long projectID, String projectName, String projectDescription, String projectStatus, String projectImg, LocalDate startDate){
-
+    public void createProject(Project newProject){
+        String sql = "INSERT INTO project (project_name, project_desc, project_status, project_img, start_date, end_date) VALUES (?,?,?,?,?,?) RETURNING project_id";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newProject.getProjectName(), newProject.getProjectDescription(), newProject.getProjectStatus(), newProject.getProjectImg(),
+                newProject.getStartDate(), newProject.getEndDate());
+            if(rowSet.next()){
+                newProject.setProjectID(rowSet.getLong("project_id"));
+            }
     }
 
+    @Override
+    public List<Project> allProjects(){
+        List<Project> result = new ArrayList<>();
+        String sql = "SELECT project_id, project_name, project_desc, project_status, project_img, start_date, end_date FROM projects";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        while(rowSet.next()){
+            Project project = mapRowToProject(rowSet);
+            result.add(project);
+        }
+        return result;
+    }
 
     @Override
     public void updateProject(Project project) {
-        String sql = "UPDATE project SET (project_name = ?, project_desc = ?, project_status = ?, project_img = ?, start_date = ?) AS () WHERE projectID = ?";
-        jdbcTemplate.update(sql, project.getProjectName(),project.getProjectDescription(),project.getProjectImg(),project.getStartDate());
+        String sql = "UPDATE project SET (project_name = ?, project_desc = ?, project_status = ?, project_img = ?, start_date = ?) WHERE project_id = ?";
+        jdbcTemplate.update(sql, project.getProjectName(),project.getProjectDescription(),project.getProjectImg(),project.getStartDate(), project.getProjectID());
     }
 
     @Override
@@ -47,4 +67,6 @@ public class JdbcProjectDAO implements ProjectDAO{
         result.setEndDate(rowSet.getDate("end_date").toLocalDate());
         return result;
     }
+
+
 }

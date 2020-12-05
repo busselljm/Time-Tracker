@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class Timesheet {
 
-    private long timeID;
-    private long projectID;
-    private long userID;
+    private Long timeID;
+    private Long projectID;
+    private Long userID;
     private String description;
     private LocalDateTime beginningTime;
     private LocalDateTime endingTime;

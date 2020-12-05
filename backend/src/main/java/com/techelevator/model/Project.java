@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Project {
 
-    private long projectID;
+    private Long projectID;
     @Valid
     private String projectName;
     private String projectDescription;
@@ -16,8 +16,7 @@ public class Project {
 
     public Project() {}
 
-    public Project(long projectID, String projectName, String projectDescription, String projectStatus, String projectImg, LocalDate startDate) {
-        this.projectID = projectID;
+    public Project(String projectName, String projectDescription, String projectStatus, String projectImg, LocalDate startDate) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.projectStatus = projectStatus;
@@ -25,7 +24,7 @@ public class Project {
         this.startDate = startDate;
     }
 
-    public long getProjectID() {
+    public Long getProjectID() {
         return projectID;
     }
 
