@@ -15,6 +15,12 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private String firstName;
+   private String lastName;
+   private String role;
+   private String email;
+   private String avatarPic;
+   private long managerID;
 
    public User() { }
 
@@ -23,6 +29,54 @@ public class User {
       this.username = username;
       this.password = password;
       this.activated = true;
+   }
+
+   public String getFirstName() {
+      return firstName;
+   }
+
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
+
+   public String getLastName() {
+      return lastName;
+   }
+
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getAvatarPic() {
+      return avatarPic;
+   }
+
+   public void setAvatarPic(String avatarPic) {
+      this.avatarPic = avatarPic;
+   }
+
+   public long getManagerID() {
+      return managerID;
+   }
+
+   public void setManagerID(long managerID) {
+      this.managerID = managerID;
    }
 
    public Long getId() {
