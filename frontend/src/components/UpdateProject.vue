@@ -11,16 +11,18 @@
     <div>
         <label for="img">Project Image</label>
         <input type="text" v-model="projectImg"/>
+        <font-awesome-icon icon="edit"/>       
+        
     </div>
     <div>
         <label for="end-date">Project End Date</label>
         <input type="date" v-model="endDate"/>
     </div>
     <div>
-    <button type="submit" v-on:click="updateProject()">Update Project</button>
+    <button type="submit" v-on:click="updateProject()"><font-awesome-icon icon="check"/></button>
     </div>
     <div>
-    <button type="submit" v-on:click="deleteProject()">Delete Project</button>
+    <button type="submit" v-on:click="cancelUpdate()"><font-awesome-icon icon="window-close"/></button>
     </div>
     </form>
 </template>
@@ -64,20 +66,23 @@ export default {
                 }
             })
         },
-        deleteProject() {
-            projectService.deleteProject(this.projectID).then(response => {
-                if (response.status === 200) {
-                    this.$router.push('/projects');
-                }
-            }).catch(error => {
-                if (error.response) {
-                    return 'Failed to update project. Response was: ' + error.response.data.message;
-                } else if (error.request) {
-                    return 'Failed to connect to server.'
-                } else {
-                    return 'Something went really wrong.'
-                }
-            }) 
+        // deleteProject() {
+        //     projectService.deleteProject(this.projectID).then(response => {
+        //         if (response.status === 200) {
+        //             this.$router.push('/projects');
+        //         }
+        //     }).catch(error => {
+        //         if (error.response) {
+        //             return 'Failed to update project. Response was: ' + error.response.data.message;
+        //         } else if (error.request) {
+        //             return 'Failed to connect to server.'
+        //         } else {
+        //             return 'Something went really wrong.'
+        //         }
+        //     }) 
+        // },
+        cancelUpdate() {
+            this.$router.push('/projects');
         }
         
     }
