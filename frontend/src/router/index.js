@@ -7,8 +7,8 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import UpdateProject from '../components/UpdateProject.vue'
-import ProjectList from '../components/ProjectList.vue'
+import EditProject from '../views/EditProject.vue'
+import Project from '../views/Project.vue'
 
 
 Vue.use(Router)
@@ -60,16 +60,16 @@ const router = new Router({
     },
     {
       path: '/projects/:id',
-      name: 'update',
-      component: UpdateProject,
+      name: 'editProject',
+      component: EditProject,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/projects/',
-      name: 'ProjectList',
-      component: ProjectList,
+      path: '/projects',
+      name: 'Project',
+      component: Project,
       meta: {
         requiresAuth: true
       }

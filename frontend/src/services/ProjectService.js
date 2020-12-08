@@ -7,7 +7,7 @@ const http = axios.create({baseURL: 'http://localhost:3000'});
 export default {
 
   updateProject(project) {
-    return http.put(`/projects/${project.id}`, project);
+    return http.put(`/projects/${project.projectID}`, project);
   },
 
   deleteProject(projectID) {
