@@ -12,6 +12,18 @@ export default {
 
   deleteProject(projectID) {
     return http.delete(`/projects/${projectID}`);
+  },
+
+  createProject(project){
+    return http.post('/projects', project);
+  },
+
+  getAllProjects() {
+    return http.get('/projects');
+  },
+
+  getProjectByID(projectID) {
+    return http.get(`/projects/${projectID}`);
   }
 
 }

@@ -42,7 +42,8 @@ public class ProjectController {
         principal.getName();
         return projectDAO.allProjects(principal.getName());
     }
-    @PostMapping("/create-project")
+
+    @PostMapping("/projects")
     @ResponseStatus(HttpStatus.CREATED)
     public void createProject(@RequestBody Project project){
         projectDAO.createProject(project);

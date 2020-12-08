@@ -8,13 +8,13 @@
         <label for="description">Project Description</label>
         <input type="text" v-model="projectDescription"/>
     </div>
-    <div class="dropdown is-active">
-        <label for="status">Project Status</label>
-        <select name="status" v-model="projectStatus">
-            <option value="proposed">Proposed</option>
-            <option value=""></option>
-            <option value="ongoing">Ongoing</option>
-            <option value="completed">Completed</option>
+    <div>
+        <label for="img"></label>
+        <input type="text" v-model="projectImg"/>
+    </div>
+    <div>
+        <label for="end-date">Project End Date</label>
+        <input type="date" v-model="endDate"/>
     </div>
     </form>
 </template>
@@ -28,12 +28,17 @@ export default {
         return {
             projectName: "",
             projectDescription: "",
-            projectStatus: "",
             projectImg: "",
-            startDate: "",
             endDate: ""
         };
     },
+    methods: {
+        updateProject() {
+            const project = {
+                
+            }
+        }
+    }
 
 }
 </script>
