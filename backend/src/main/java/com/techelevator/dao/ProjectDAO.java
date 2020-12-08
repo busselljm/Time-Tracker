@@ -11,7 +11,7 @@ public interface ProjectDAO {
 
     List<Project>allProjects(String username);
 
-   void updateProject(Project project);
+   void updateProject(Project project, Long id);
 
    void deleteProjectById(Long projectID);
 

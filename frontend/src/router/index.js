@@ -7,6 +7,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import UpdateProject from '../components/UpdateProject.vue'
+import ProjectList from '../components/ProjectList.vue'
+
 
 Vue.use(Router)
 
@@ -53,6 +56,22 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/projects/:id',
+      name: 'update',
+      component: UpdateProject,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/projects/',
+      name: 'ProjectList',
+      component: ProjectList,
+      meta: {
+        requiresAuth: true
       }
     },
   ]

@@ -9,19 +9,15 @@ public class Project {
     @Valid
     private String projectName;
     private String projectDescription;
-    private String projectStatus;
     private String projectImg;
-    private LocalDate startDate;
     private LocalDate endDate;
 
     public Project() {}
 
-    public Project(String projectName, String projectDescription, String projectStatus, String projectImg, LocalDate startDate) {
+    public Project(String projectName, String projectDescription, String projectImg) {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
-        this.projectStatus = projectStatus;
         this.projectImg = projectImg;
-        this.startDate = startDate;
     }
 
     public Long getProjectID() {
@@ -48,28 +44,12 @@ public class Project {
         this.projectDescription = projectDescription;
     }
 
-    public String getProjectStatus() {
-        return projectStatus;
-    }
-
-    public void setProjectStatus(String projectStatus) {
-        this.projectStatus = projectStatus;
-    }
-
     public String getProjectImg() {
         return projectImg;
     }
 
     public void setProjectImg(String projectImg) {
         this.projectImg = projectImg;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {

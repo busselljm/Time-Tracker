@@ -20,9 +20,9 @@ public class JdbcProjectDAO implements ProjectDAO{
 
     @Override
     public void createProject(Project newProject){
-        String sql = "INSERT INTO project (project_name, project_desc, project_status, project_img, start_date, end_date) VALUES (?,?,?,?,?,?) RETURNING project_id";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newProject.getProjectName(), newProject.getProjectDescription(), newProject.getProjectStatus(), newProject.getProjectImg(),
-                newProject.getStartDate(), newProject.getEndDate());
+        String sql = "INSERT INTO project (project_name, project_desc, project_img, end_date) VALUES (?,?,?,?) RETURNING project_id";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newProject.getProjectName(), newProject.getProjectDescription(), newProject.getProjectImg(),
+                 newProject.getEndDate());
             if(rowSet.next()){
                 newProject.setProjectID(rowSet.getLong("project_id"));
             }
@@ -31,12 +31,13 @@ public class JdbcProjectDAO implements ProjectDAO{
     @Override
     public List<Project> allProjects(String username){
         List<Project> result = new ArrayList<>();
-        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_status, projects.project_img, projects.start_date, projects.end_date\n" +
+        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date\n" +
                 "FROM projects\n" +
                 "JOIN user_project ON user_project.project_id = projects.project_id\n" +
                 "JOIN users ON user_project.user_id = users.user_id\n" +
                 "WHERE username = ?";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
+
         while(rowSet.next()){
             Project project = mapRowToProject(rowSet);
             result.add(project);
@@ -45,18 +46,18 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
-    public void updateProject(Project project) {
-        String sql = "UPDATE project SET (project_name = ?, project_desc = ?, project_status = ?, project_img = ?, start_date = ?) WHERE project_id = ?";
-        jdbcTemplate.update(sql, project.getProjectName(),project.getProjectDescription(),project.getProjectImg(),project.getStartDate(), project.getProjectID());
+    public void updateProject(Project project, Long id) {
+        String sql = "UPDATE projects SET project_name = ?, project_desc = ?, project_img = ?, end_date = ? WHERE project_id = ?;";
+        jdbcTemplate.update(sql, project.getProjectName(), project.getProjectDescription(), project.getProjectImg(),project.getEndDate(), id);
     }
 
     @Override
     public void deleteProjectById(Long projectID){
-        String sql = "DELETE FROM user_project WHERE project_id = ?";
+        String sql = "DELETE FROM user_project WHERE project_id = ?;";
         jdbcTemplate.update(sql, projectID);
-        sql = "DELETE FROM timesheet WHERE project_id = ?";
+        sql = "DELETE FROM timesheet WHERE project_id = ?;";
         jdbcTemplate.update(sql, projectID);
-        sql = "DELETE FROM project WHERE project_id = ?";
+        sql = "DELETE FROM projects WHERE project_id = ?;";
         jdbcTemplate.update(sql, projectID);
     }
 
@@ -65,9 +66,7 @@ public class JdbcProjectDAO implements ProjectDAO{
         result.setProjectID(rowSet.getLong("project_id"));
         result.setProjectName(rowSet.getString("project_name"));
         result.setProjectDescription(rowSet.getString("project_desc"));
-        result.setProjectStatus(rowSet.getString("project_status"));
         result.setProjectImg(rowSet.getString("project_img"));
-        result.setStartDate(rowSet.getDate("start_date").toLocalDate());
         result.setEndDate(rowSet.getDate("end_date").toLocalDate());
         return result;
     }
