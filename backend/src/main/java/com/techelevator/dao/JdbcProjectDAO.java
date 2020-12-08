@@ -20,7 +20,7 @@ public class JdbcProjectDAO implements ProjectDAO{
 
     @Override
     public void createProject(Project newProject){
-        String sql = "INSERT INTO project (project_name, project_desc, project_img, end_date) VALUES (?,?,?,?) RETURNING project_id";
+        String sql = "INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES (?,?,?,?) RETURNING project_id";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newProject.getProjectName(), newProject.getProjectDescription(), newProject.getProjectImg(),
                  newProject.getEndDate());
             if(rowSet.next()){
