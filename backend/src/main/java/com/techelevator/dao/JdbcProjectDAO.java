@@ -47,13 +47,13 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
-    public void deleteProject(Project project){
+    public void deleteProjectById(Long projectID){
         String sql = "DELETE FROM user_project WHERE project_id = ?";
-        jdbcTemplate.update(sql, project.getProjectID());
+        jdbcTemplate.update(sql, projectID);
         sql = "DELETE FROM timesheet WHERE project_id = ?";
-        jdbcTemplate.update(sql, project.getProjectID());
+        jdbcTemplate.update(sql, projectID);
         sql = "DELETE FROM project WHERE project_id = ?";
-        jdbcTemplate.update(sql, project.getProjectID());
+        jdbcTemplate.update(sql, projectID);
     }
 
     private Project mapRowToProject(SqlRowSet rowSet) {

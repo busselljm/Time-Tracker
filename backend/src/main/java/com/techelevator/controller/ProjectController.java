@@ -1,9 +1,30 @@
 package com.techelevator.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.techelevator.dao.ProjectDAO;
+import com.techelevator.model.Project;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 public class ProjectController {
+
+    private final ProjectDAO projectDAO;
+
+    public ProjectController(ProjectDAO projectDAO) {
+        this.projectDAO = projectDAO;
+    }
+
+    @PutMapping(path = "/projects/update-project/id")
+    public void updateProject(@Valid @RequestBody Project updatedProject) {
+        projectDAO.updateProject(updatedProject);
+    }
+
+    @DeleteMapping(path = "/projects/delete-project/{id}")
+    public void deleteProject(@PathVariable Long id) {
+        projectDAO.deleteProjectById(id);
+    }
+
 
 
 

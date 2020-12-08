@@ -13,6 +13,6 @@ public interface ProjectDAO {
 
    void updateProject(Project project);
 
-   void deleteProject(Project project);
+   void deleteProjectById(Long projectID);
 
 }
