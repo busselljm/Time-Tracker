@@ -29,10 +29,14 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
-    public List<Project> allProjects(){
+    public List<Project> allProjects(String username){
         List<Project> result = new ArrayList<>();
-        String sql = "SELECT project_id, project_name, project_desc, project_status, project_img, start_date, end_date FROM projects";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_status, projects.project_img, projects.start_date, projects.end_date\n" +
+                "FROM projects\n" +
+                "JOIN user_project ON user_project.project_id = projects.project_id\n" +
+                "JOIN users ON user_project.user_id = users.user_id\n" +
+                "WHERE username = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         while(rowSet.next()){
             Project project = mapRowToProject(rowSet);
             result.add(project);

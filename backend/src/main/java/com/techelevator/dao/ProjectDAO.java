@@ -9,7 +9,7 @@ public interface ProjectDAO {
 
     void createProject(Project newProject);
 
-    List<Project>allProjects();
+    List<Project>allProjects(String username);
 
    void updateProject(Project project);
 
