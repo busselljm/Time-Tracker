@@ -4,8 +4,8 @@
       <thead>
         <tr>
           <th scope="col">Image</th>
-          <th scope="col">Project</th>
-          <th scope="col">Description</th>
+          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">Project Name</th>
+          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">End Date</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
         </tr>
@@ -19,7 +19,7 @@
            <span>{{project.projectName}}</span>
           </td>
           <td >
-           <span>{{project.projectDescription}}</span>
+           <span>{{project.endDate}}</span>
           </td>
           <td>
             <router-link :to="{ name: 'editProject', params: { id: project.projectID } }"
@@ -57,12 +57,16 @@ export default {
         this.$store.commit("SET_PROJECTS", response.data);
       });
     },
+    sortByName(){
+      this.projects.sort();
+    },
  deleteProject(projectID) {
             projectService.deleteProject(projectID).then(response => {
+              if(confirm('Are you sure you want to delete this card? This action cannot be undone.')){
                 if (response.status === 200) {
                   this.getProjects();
                 }
-            }).catch(error => {
+            }}).catch(error => {
                 if (error.response) {
                     return 'Failed to update project. Response was: ' + error.response.data.message;
                 } else if (error.request) {

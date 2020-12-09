@@ -34,6 +34,28 @@ export default new Vuex.Store({
     SET_PROJECTS(state, data) {
       state.projects = data;
     },
+    SORT_PROJECTS_BY_NAME(state){
+      state.projects.sort((project1, project2) => {
+        if(project1.projectName < project2.projectName) {
+          return -1;
+        } else if(project1.projectName > project2.projectName){
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    },
+    SORT_PROJECTS_BY_DATE(state){
+      state.projects.sort((project1, project2) => {
+        if(project1.endDate < project2.endDate) {
+          return -1;
+        } else if(project1.endDate > project2.endDate){
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    },
     SET_ACTIVE_PROJECT(state, data) {
       state.activeProject = data;
     },

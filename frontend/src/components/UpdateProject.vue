@@ -82,20 +82,6 @@ export default {
         cancelUpdate() {
             this.$router.push('/projects');
         }
-        
-    },
-    created() {
-        projectService.getProjectByID(this.projectID).then(response => {
-            this.$store.commit("SET_ACTIVE_PROJECT", response.data);
-            this.projectName = response.data.projectName;
-            this.projectDescription = response.data.projectDescription;
-            this.projectImg = response.data.projectImg;
-            this.endDate = response.data.endDate;
-        }).catch(error => {
-        if (error.response.status == 404) {
-          this.$router.push("/not-found");
-        }
-      });
     }
 
 }
