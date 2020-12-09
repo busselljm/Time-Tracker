@@ -6,7 +6,6 @@
 export default {
   created() {
     this.$store.commit('LOGOUT');
-    this.$store.commit('SET_PROJECTS', []);
     this.$router.push('/login');
   }
 };
