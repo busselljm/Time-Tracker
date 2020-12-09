@@ -90,4 +90,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+ #register {
+    margin: auto;
+    padding: 10vw 30vw 0vw 30vw;
+  }
+
+  label {
+    display: flex;
+    padding: 20px;
+  }
+
+  .button{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+  }
+  </style>
