@@ -76,6 +76,7 @@ export default {
     this.getProjects();
   },
 };
+    //adding to push
 </script>
 
 

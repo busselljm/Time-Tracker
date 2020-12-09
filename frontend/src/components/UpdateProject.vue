@@ -88,8 +88,10 @@ export default {
     }
 
 }
+//adding to push
 </script>
 
 <style>
     
 </style>
+    
