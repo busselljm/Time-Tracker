@@ -10,7 +10,7 @@ public class Project {
     private String projectName;
     private String projectDescription;
     private String projectImg;
-    private LocalDate endDate;
+    private String endDate;
 
     public Project() {}
 
@@ -52,11 +52,11 @@ public class Project {
         this.projectImg = projectImg;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

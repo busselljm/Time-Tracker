@@ -74,7 +74,11 @@ public class JdbcProjectDAO implements ProjectDAO{
         result.setProjectName(rowSet.getString("project_name"));
         result.setProjectDescription(rowSet.getString("project_desc"));
         result.setProjectImg(rowSet.getString("project_img"));
-        result.setEndDate(rowSet.getDate("end_date").toLocalDate());
+        if(rowSet.getString("end_date") != null) {
+            result.setEndDate(rowSet.getString("end_date"));
+        } else {
+            result.setEndDate("Ongoing");
+        }
         return result;
     }
 

@@ -1,25 +1,33 @@
 <template>
   <div class="project-list">
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Project</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th scope="col">Image</th>
+          <th scope="col">Project</th>
+          <th scope="col">Description</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="project in projects" v-bind:key="project.id">
-          <td width="80%">
-           <span>{{project.projectName}} {{project.projectDescription}}</span>
+            <td>
+           <span><font-awesome-icon icon="dumpster-fire"/></span>
+          </td>
+          <td >
+           <span>{{project.projectName}}</span>
+          </td>
+          <td >
+           <span>{{project.projectDescription}}</span>
           </td>
           <td>
             <router-link :to="{ name: 'editProject', params: { id: project.projectID } }"
-              >Edit</router-link
+              ><font-awesome-icon icon="edit"/></router-link
             >
           </td>
           <td>
-            <a href="#" v-on:click="deleteProject(project.projectID)">Delete</a>
+            <a href="#" v-on:click="deleteProject(project.projectID)"><font-awesome-icon icon="trash"/></a>
           </td>
         </tr>
       </tbody>
@@ -45,6 +53,7 @@ export default {
     getProjects() {
       projectService.getAllProjects().then((response) => {
         this.projects = response.data;
+        console.log(this.projects);
       });
     },
  deleteProject(projectID) {

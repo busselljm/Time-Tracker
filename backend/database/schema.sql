@@ -10,11 +10,11 @@ CREATE TABLE users (
    username varchar(50) NOT NULL,
    password_hash varchar(200) NOT NULL,
    role varchar(50) NOT NULL,
-  first_name varchar,
-  last_name varchar,
-  email varchar,
-  avatar varchar,
-  manager int,
+   first_name varchar,
+   last_name varchar,
+   email varchar,
+   avatar varchar,
+   manager int,
   CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE projects (
   project_name varchar,
   project_desc varchar,
   project_img varchar,
-  end_date date,
+  end_date varchar,
   CONSTRAINT pk_project PRIMARY KEY (project_id)
 );
 

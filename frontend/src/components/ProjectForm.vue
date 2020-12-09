@@ -29,7 +29,7 @@
       />
     </div>
     <div class="form-group">
-   <button type="submit"></button>
+   <button class="btn btn-outline-primary btn-md" type="submit">Submit</button>
     </div>
   </form>
 </template>
