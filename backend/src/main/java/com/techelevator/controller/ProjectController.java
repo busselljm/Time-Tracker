@@ -43,8 +43,12 @@ public class ProjectController {
 
     @GetMapping(value = "/projects")
     public List<Project> getProjectsList(Principal principal){
-        principal.getName();
         return projectDAO.allProjects(principal.getName());
+    }
+
+    @GetMapping(value = "/projects/{id}")
+    public Project getProjectsById(@PathVariable Long id){
+        return projectDAO.getProjectByID(id);
     }
 
     @PostMapping("/projects")

@@ -1,22 +1,20 @@
 <template>
   <form v-on:submit.prevent>
     <div>
-        <label for="name">Project Name</label>
-        <input type="text" v-model="projectName"/>
+        <label for="projectName">Project Name</label>
+        <input name="projectName" type="text" v-model="projectName"/>
     </div>
     <div>
-        <label for="description">Project Description</label>
-        <input type="text" v-model="projectDescription"/>
+        <label for="projectDescription">Project Description</label>
+        <input name="projectDescription" type="text" v-model="projectDescription"/>
     </div>
     <div>
-        <label for="img">Project Image</label>
-        <input type="text" v-model="projectImg"/>
-        <font-awesome-icon icon="edit"/>       
-        
+        <label for="projectImg">Project Image</label>
+        <input name="projectImg" type="text" v-model="projectImg"/>
     </div>
     <div>
-        <label for="end-date">Project End Date</label>
-        <input type="date" v-model="endDate"/>
+        <label for="endDate">Project End Date</label>
+        <input name="endDate" type="date" v-model="endDate"/>
     </div>
     <div>
     <button type="submit" v-on:click="updateProject()"><font-awesome-icon icon="check"/></button>
@@ -85,6 +83,19 @@ export default {
             this.$router.push('/projects');
         }
         
+    },
+    created() {
+        projectService.getProjectByID(this.projectID).then(response => {
+            this.$store.commit("SET_ACTIVE_PROJECT", response.data);
+            this.projectName = response.data.projectName;
+            this.projectDescription = response.data.projectDescription;
+            this.projectImg = response.data.projectImg;
+            this.endDate = response.data.endDate;
+        }).catch(error => {
+        if (error.response.status == 404) {
+          this.$router.push("/not-found");
+        }
+      });
     }
 
 }

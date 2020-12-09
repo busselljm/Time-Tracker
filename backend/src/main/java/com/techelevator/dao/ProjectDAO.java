@@ -13,6 +13,8 @@ public interface ProjectDAO {
 
     List<Project>allProjects(String username);
 
+    Project getProjectByID(Long id);
+
    void updateProject(Project project, Long id);
 
    void deleteProjectById(Long projectID);

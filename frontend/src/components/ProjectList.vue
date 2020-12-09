@@ -54,6 +54,7 @@ export default {
       projectService.getAllProjects().then((response) => {
         this.projects = response.data;
         console.log(this.projects);
+        this.$store.commit("SET_PROJECTS", response.data);
       });
     },
  deleteProject(projectID) {

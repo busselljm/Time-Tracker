@@ -53,6 +53,20 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
+    public Project getProjectByID(Long id){
+        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date\n" +
+                "FROM projects\n" +
+                "JOIN user_project ON user_project.project_id = projects.project_id\n" +
+                "JOIN users ON user_project.user_id = users.user_id\n" +
+                "WHERE projects.project_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
+        if(rowSet.next()){
+            return mapRowToProject(rowSet);
+        }
+        return null;
+    }
+
+    @Override
     public void updateProject(Project project, Long id) {
         String sql = "UPDATE projects SET project_name = ?, project_desc = ?, project_img = ?, end_date = ? WHERE project_id = ?;";
         jdbcTemplate.update(sql, project.getProjectName(), project.getProjectDescription(), project.getProjectImg(),project.getEndDate(), id);

@@ -18,11 +18,25 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    projects: [],
+    activeProject: {
+      projectID: 0,
+      projectName: '',
+      projectDescription: '',
+      projectImg: '',
+      endDate: ''
+    },
     token: currentToken || '',
     user: currentUser || {}
 
   },
   mutations: {
+    SET_PROJECTS(state, data) {
+      state.projects = data;
+    },
+    SET_ACTIVE_PROJECT(state, data) {
+      state.activeProject = data;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
