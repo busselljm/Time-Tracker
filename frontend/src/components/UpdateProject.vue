@@ -1,28 +1,36 @@
 <template>
   <form v-on:submit.prevent>
     <div>
-        <label for="projectName">Project Name</label>
-        <input name="projectName" type="text" v-model="projectName"/>
+      <label for="projectName">Project Name</label>
+      <input name="projectName" type="text" v-model="projectName" />
     </div>
     <div>
-        <label for="projectDescription">Project Description</label>
-        <input name="projectDescription" type="text" v-model="projectDescription"/>
+      <label for="projectDescription">Project Description</label>
+      <input
+        name="projectDescription"
+        type="text"
+        v-model="projectDescription"
+      />
     </div>
     <div>
-        <label for="projectImg">Project Image</label>
-        <input name="projectImg" type="text" v-model="projectImg"/>
+      <label for="projectImg">Project Image</label>
+      <input name="projectImg" type="text" v-model="projectImg" />
     </div>
     <div>
-        <label for="endDate">Project End Date</label>
-        <input name="endDate" type="date" v-model="endDate"/>
+      <label for="endDate">Project End Date</label>
+      <input name="endDate" type="date" v-model="endDate" />
     </div>
     <div>
-    <button type="submit" v-on:click="updateProject()"><font-awesome-icon icon="check"/></button>
+      <button type="submit" v-on:click="updateProject()">
+        <font-awesome-icon icon="check" />
+      </button>
     </div>
     <div>
-    <button type="submit" v-on:click="cancelUpdate()"><font-awesome-icon icon="window-close"/></button>
+      <button type="submit" v-on:click="cancelUpdate()">
+        <font-awesome-icon icon="window-close" />
+      </button>
     </div>
-    </form>
+  </form>
 </template>
 
 <script>
@@ -82,13 +90,24 @@ export default {
         cancelUpdate() {
             this.$router.push('/projects');
         }
-    }
+    },
+   created() {
+        projectService.getProjectByID(this.projectID).then(response => {
+            this.$store.commit("SET_ACTIVE_PROJECT", response.data);
+            this.projectName = response.data.projectName;
+            this.projectDescription = response.data.projectDescription;
+            this.projectImg = response.data.projectImg;
+            this.endDate = response.data.endDate;
+        }).catch(error => {
+        if (error.response.status == 404) {
+          this.$router.push("/not-found");
+        }
+      });
 
+}
 }
 //adding to push
 </script>
 
 <style>
-    
 </style>
-    
