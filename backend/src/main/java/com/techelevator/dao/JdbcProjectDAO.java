@@ -19,13 +19,20 @@ public class JdbcProjectDAO implements ProjectDAO{
     }
 
     @Override
-    public void createProject(Project newProject){
+    public Long createProject(Project newProject){
         String sql = "INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES (?,?,?,?) RETURNING project_id";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newProject.getProjectName(), newProject.getProjectDescription(), newProject.getProjectImg(),
                  newProject.getEndDate());
             if(rowSet.next()){
                 newProject.setProjectID(rowSet.getLong("project_id"));
             }
+            return newProject.getProjectID();
+    }
+
+    @Override
+    public void createProjectUser(Long projectID, Long userID){
+        String sql = "INSERT INTO user_project(project_id, user_id) VALUES (?,?)";
+        jdbcTemplate.update(sql, projectID, userID);
     }
 
     @Override

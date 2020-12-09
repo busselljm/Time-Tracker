@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="submitForm" class="projectForm">
+  <form v-on:submit="submitForm" class="projectForm">
     <div class="form-group">
       <label for="name">name:</label>
       <input
@@ -52,19 +52,15 @@ export default {
   methods: {
     submitForm(){
       projectService.createProject(this.project).then(response => {
-              console.log(response)
-
        if(response.status === 201){
-        
-         
           alert('New project was created successfully');
         }
       }).catch(error => {
         {
           if(error.response){
-            this.errorMsg = 'Failed to create board. Response was: ' + error.response.data;
+            this.errorMsg = 'Failed to create project. Response was: ' + error.response.data;
           } else if (error.request){
-            this.errorMsg = 'Server did not respond. Could not create board.';
+            this.errorMsg = 'Server did not respond. Could not create project.';
           } else{
             this.errorMsg = 'Something went wrong. Could not send request.';
           }

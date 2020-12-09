@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.ProjectDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Project;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +19,13 @@ import java.util.List;
 @CrossOrigin
 public class ProjectController {
     private final ProjectDAO projectDAO;
+    private final UserDAO userDAO;
 
 
 
-    public ProjectController(ProjectDAO projectDAO) {
+    public ProjectController(ProjectDAO projectDAO, UserDAO userDAO) {
         this.projectDAO = projectDAO;
+        this.userDAO = userDAO;
     }
 
     @PutMapping(path = "/projects/{id}")
@@ -46,7 +49,10 @@ public class ProjectController {
 
     @PostMapping("/projects")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProject(@RequestBody Project project){
-        projectDAO.createProject(project);
+    public void createProject(@RequestBody Project project, Principal principal){
+       Long projectID = projectDAO.createProject(project);
+       Long userID = userDAO.findByUsername(principal.getName()).getId();
+       projectDAO.createProjectUser(projectID, userID);
+
     }
 }

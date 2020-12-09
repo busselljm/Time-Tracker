@@ -54,7 +54,7 @@ export default {
 
             projectService.updateProject(project).then(response => {
                 if (response.status === 200) {
-                    this.$router.push(`/projects/${project.projectID}`);
+                    this.$router.push('/projects');
                 }
             }).catch(error => {
                 if (error.response) {
@@ -66,21 +66,21 @@ export default {
                 }
             })
         },
-        // deleteProject() {
-        //     projectService.deleteProject(this.projectID).then(response => {
-        //         if (response.status === 200) {
-        //             this.$router.push('/projects');
-        //         }
-        //     }).catch(error => {
-        //         if (error.response) {
-        //             return 'Failed to update project. Response was: ' + error.response.data.message;
-        //         } else if (error.request) {
-        //             return 'Failed to connect to server.'
-        //         } else {
-        //             return 'Something went really wrong.'
-        //         }
-        //     }) 
-        // },
+        deleteProject() {
+            projectService.deleteProject(this.projectID).then(response => {
+                if (response.status === 200) {
+                    this.$router.push('/projects');
+                }
+            }).catch(error => {
+                if (error.response) {
+                    return 'Failed to update project. Response was: ' + error.response.data.message;
+                } else if (error.request) {
+                    return 'Failed to connect to server.'
+                } else {
+                    return 'Something went really wrong.'
+                }
+            }) 
+        },
         cancelUpdate() {
             this.$router.push('/projects');
         }

@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ProjectDAO {
 
-    void createProject(Project newProject);
+    Long createProject(Project newProject);
+
+    void createProjectUser(Long projectID, Long userID);
 
     List<Project>allProjects(String username);
 
