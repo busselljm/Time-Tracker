@@ -6,7 +6,7 @@
         id="name"
         type="text"
         class="form-control"
-        v-model="project.name"
+        v-model="project.projectName"
         autocomplete="off"
       />
     </div>
@@ -15,7 +15,7 @@
       <textarea
         id="description"
         class="form-control"
-        v-model="project.description"
+        v-model="project.projectDescription"
       ></textarea>
     </div>
 
@@ -25,7 +25,7 @@
         id="end-date"
         type="date"
         class="form-control"
-        v-model="project.completionDate"
+        v-model="project.endDate"
       />
     </div>
     <div class="form-group">
@@ -41,12 +41,11 @@ export default {
   data() {
     return {
       project: {
-        name: "",
-        description: "",
-        image: "",
+        projectName: "",
+        projectDescription: "",
+        projectImg: "",
         ongoing: false,
-
-        completionDate: null,
+        endDate: null,
       },
     };
   },

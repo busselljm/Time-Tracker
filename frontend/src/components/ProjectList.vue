@@ -11,8 +11,8 @@
       <tbody>
         <tr v-for="project in projects" v-bind:key="project.id">
           <td width="80%">
-           <h1>{{project.name}}</h1>
-           <p>{{project.description}}</p>
+           <h1>{{project.projectName}}</h1>
+           <p>{{project.projectDescription}}</p>
           </td>
           <td>
             <router-link :to="{ name: 'EditProject', params: { id: project.id } }"
@@ -46,7 +46,7 @@ export default {
     getProjects() {
       projectService.getAllProjects().then((response) => {
         this.projects = response.data;
-        console.log(response);
+        console.log(this.projects);
       });
     },
     deleteProject(id) {
