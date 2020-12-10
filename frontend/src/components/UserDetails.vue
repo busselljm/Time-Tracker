@@ -1,5 +1,5 @@
 <template>
-  <h1>HELLO {{ user.firstName }}</h1>
+  <h1>{{ this.user.firstName }}</h1>
 </template>
 
 <script>
