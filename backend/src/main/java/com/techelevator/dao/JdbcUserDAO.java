@@ -26,7 +26,7 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT user_id, username, password_hash, role FROM users WHERE username ILIKE ?;";
+        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar FROM users WHERE username ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         if (rowSet.next()){
             return mapRowToUser(rowSet);
@@ -35,31 +35,28 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public boolean create(String username, String password, String role, String firstName, String lastName, String email, String avatar) {
+    public boolean create(String username, String password, String role, String firstName, String lastName, String email, String avatar) throws UserAlreadyExistsException {
         if (role == null || role.isEmpty()) {
             role = "ROLE_USER"; //default
         } else {
             role = "ROLE_" + role.toUpperCase();
         }
-//        try {
-//            if (findByUsername(username) == null) {
-//
-//            }
-//        } catch (UserAlreadyExistsException e) {
-//            e.getMessage();
-//        }
-        String sql = "INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar) VALUES (?, ?, ?, ?, ?, ?, ?);";
-        String password_hash = new BCryptPasswordEncoder().encode(password);
-        Integer newUserId;
-        try {
-            return jdbcTemplate.update(sql, username, password_hash, role, firstName, lastName, email, avatar) == 1;
-        } catch (DataAccessException e) {
-            return false;
+            String sql = "INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar) VALUES (?, ?, ?, ?, ?, ?, ?);";
+            String password_hash = new BCryptPasswordEncoder().encode(password);
+            Integer newUserId;
+            try {
+                return jdbcTemplate.update(sql, username, password_hash, role, firstName, lastName, email, avatar) == 1;
+            } catch (DataAccessException e) {
+                throw new UserAlreadyExistsException();
+
+            }
         }
+
+
+
 
         // create user
 
-    }
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
@@ -68,6 +65,10 @@ public class JdbcUserDAO implements UserDAO {
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(rs.getString("role"));
         user.setActivated(true);
+        user.setFirstName(rs.getString("first_name"));
+        user.setLastName(rs.getString("last_name"));
+        user.setEmail(rs.getString("email"));
+        user.setAvatar(rs.getString("avatar"));
         return user;
     }
 }

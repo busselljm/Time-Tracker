@@ -1,10 +1,17 @@
 <template>
-    <img src="http://placegoat.com/200" alt="">
-    <!-- this.user.avatar -->
+    <div>
+        <user-details />
+    </div>
 </template>
 
 <script>
+import UserDetails from '../components/UserDetails.vue'
+
 export default {
+    components: {
+        UserDetails
+    }
+   
 
 }
 </script>

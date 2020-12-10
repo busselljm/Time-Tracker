@@ -77,7 +77,7 @@ public class RegisterUserDTO {
         return avatar;
     }
 
-    public void setAvatarPic(String avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

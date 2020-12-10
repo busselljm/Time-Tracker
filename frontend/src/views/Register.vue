@@ -61,7 +61,6 @@
           class="form-control"
           placeholder="Image url"
           v-model="user.avatar"
-          required
           autofocus
         />
       </div>
@@ -292,7 +291,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = "Bad Request: Validation Errors";
+              this.registrationErrorMsg = "Username Already Exists";
             }
           });
       }

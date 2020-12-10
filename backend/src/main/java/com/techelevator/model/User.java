@@ -20,7 +20,7 @@ public class User {
    private String role;
    private String email;
    private String avatar;
-   private long managerID;
+   private Long managerID;
 
    public User() { }
 
@@ -71,11 +71,11 @@ public class User {
       this.avatar = avatar;
    }
 
-   public long getManagerID() {
+   public Long getManagerID() {
       return managerID;
    }
 
-   public void setManagerID(long managerID) {
+   public void setManagerID(Long managerID) {
       this.managerID = managerID;
    }
 
