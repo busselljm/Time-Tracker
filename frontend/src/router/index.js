@@ -9,6 +9,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Project from '../views/Project.vue'
 import EditProject from '../views/EditProject.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(Router)
 
@@ -67,8 +68,16 @@ const router = new Router({
     },
     {
       path: '/projects',
-      name: 'addProject',
+      name: 'project',
       component: Project,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
       meta: {
         requiresAuth: true
       }

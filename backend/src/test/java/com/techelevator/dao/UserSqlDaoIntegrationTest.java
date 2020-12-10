@@ -19,12 +19,12 @@ public class UserSqlDaoIntegrationTest extends DAOIntegrationTest {
         userSqlDAO = new JdbcUserDAO(jdbcTemplate);
     }
 
-    @Test
-    public void createNewUser() {
-        boolean userCreated = userSqlDAO.create("TEST_USER","test_password","user");
-        Assert.assertTrue(userCreated);
-        User user = userSqlDAO.findByUsername("TEST_USER");
-        Assert.assertEquals("TEST_USER", user.getUsername());
-    }
+//    @Test
+//    public void createNewUser() {
+//        boolean userCreated = userSqlDAO.create("TEST_USER","test_password","user");
+//        Assert.assertTrue(userCreated);
+//        User user = userSqlDAO.findByUsername("TEST_USER");
+//        Assert.assertEquals("TEST_USER", user.getUsername());
+//    }
 
 }

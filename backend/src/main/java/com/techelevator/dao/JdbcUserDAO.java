@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.model.UserAlreadyExistsException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -34,22 +35,30 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
+    public boolean create(String username, String password, String role, String firstName, String lastName, String email, String avatar) {
         if (role == null || role.isEmpty()) {
             role = "ROLE_USER"; //default
         } else {
             role = "ROLE_" + role.toUpperCase();
         }
-
-        // create user
-        String sql = "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?);";
+//        try {
+//            if (findByUsername(username) == null) {
+//
+//            }
+//        } catch (UserAlreadyExistsException e) {
+//            e.getMessage();
+//        }
+        String sql = "INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar) VALUES (?, ?, ?, ?, ?, ?, ?);";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         Integer newUserId;
         try {
-            return jdbcTemplate.update(sql, username, password_hash, role) == 1;
+            return jdbcTemplate.update(sql, username, password_hash, role, firstName, lastName, email, avatar) == 1;
         } catch (DataAccessException e) {
             return false;
         }
+
+        // create user
+
     }
 
     private User mapRowToUser(SqlRowSet rs) {

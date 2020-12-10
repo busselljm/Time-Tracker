@@ -19,7 +19,7 @@ public class User {
    private String lastName;
    private String role;
    private String email;
-   private String avatarPic;
+   private String avatar;
    private long managerID;
 
    public User() { }
@@ -63,12 +63,12 @@ public class User {
       this.email = email;
    }
 
-   public String getAvatarPic() {
-      return avatarPic;
+   public String getAvatar() {
+      return avatar;
    }
 
-   public void setAvatarPic(String avatarPic) {
-      this.avatarPic = avatarPic;
+   public void setAvatar(String avatar) {
+      this.avatar = avatar;
    }
 
    public long getManagerID() {

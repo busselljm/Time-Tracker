@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
-    <button><router-link to="/projects">Go to Projects</router-link></button>
+    <button class="btn btn-outline-primary btn-md"><router-link to="/projects">My Projects</router-link></button>
+    <button class="btn btn-outline-primary btn-md"><router-link to="/profile">My Profile</router-link></button>
   </div>
 </template>
 
@@ -11,3 +11,6 @@ export default {
   
 };
 </script>
+<style>
+
+</style>

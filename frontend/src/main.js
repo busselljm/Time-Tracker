@@ -14,9 +14,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faPortrait } from '@fortawesome/free-solid-svg-icons'
+import { faAt } from '@fortawesome/free-solid-svg-icons'
+import { faIdCard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
  
-library.add(faUserSecret, faEdit, faDumpsterFire, faTrash, faCheck, faWindowClose, faLock)
+library.add(faUserSecret, faEdit, faDumpsterFire, faTrash, faCheck, faWindowClose, faLock, faPortrait, faAt, faIdCard)
 
  
 Vue.component('font-awesome-icon', FontAwesomeIcon);
