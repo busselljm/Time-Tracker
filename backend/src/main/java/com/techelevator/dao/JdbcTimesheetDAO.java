@@ -24,7 +24,7 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, newTimesheet.getProjectID(), newTimesheet.getUserID(), newTimesheet.getDescription(),
                 newTimesheet.getBeginningTime(), newTimesheet.getEndingTime());
         if(rowSet.next()){
-            newTimesheet.setProjectID(rowSet.getLong("project_id"));
+            newTimesheet.setProjectID(rowSet.getLong("time_id"));
         }
 
     }
@@ -42,7 +42,7 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
     @Override
     public List<Timesheet> listTimesheets(Long userId) {
         List <Timesheet> result = new ArrayList<>();
-        String sql = "SELECT project_id, user_id, time_id, time_desc, beginning_time, ending_time FROM timesheets WHERE user_id = ?;";
+        String sql = "SELECT project_id, user_id, time_id, time_desc, beginning_time, ending_time FROM timesheet WHERE user_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
 
         while(rowSet.next()){
