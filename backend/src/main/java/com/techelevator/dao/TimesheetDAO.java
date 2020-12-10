@@ -2,12 +2,18 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Timesheet;
 
+import java.util.List;
+
 public interface TimesheetDAO {
 
-    Timesheet createTimesheet();
+    void createTimesheet(Timesheet newTimesheet);
 
-    void updateTimesheet();
+    void updateTimesheet(Long timeId, Timesheet updatedTimesheet);
 
-    void deleteTimesheet();
+    void deleteTimesheet(Long timeId);
+
+    List<Timesheet> listTimesheets(Long userId);
+
+    Timesheet getTimesheet(Long timeID);
 
 }
