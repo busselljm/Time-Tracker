@@ -10,6 +10,7 @@ import store from '../store/index'
 import Project from '../views/Project.vue'
 import EditProject from '../views/EditProject.vue'
 import Profile from '../views/Profile.vue'
+import Timesheet from '../views/Timesheet.vue'
 
 Vue.use(Router)
 
@@ -78,6 +79,14 @@ const router = new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/times',
+      name: 'timesheet',
+      component: Timesheet,
       meta: {
         requiresAuth: true
       }

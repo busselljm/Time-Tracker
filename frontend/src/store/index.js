@@ -26,6 +26,15 @@ export default new Vuex.Store({
       projectImg: '',
       endDate: ''
     },
+    timesheets: [],
+       timesheet:  {
+            timeID: '',
+            projectID: '',
+            userID: '',
+            description: '',
+            beginningTime: '',
+            endingTime: '',
+        },
     token: currentToken || '',
     user: currentUser || {}
 
@@ -33,6 +42,9 @@ export default new Vuex.Store({
   mutations: {
     SET_PROJECTS(state, data) {
       state.projects = data;
+    },
+    SET_TIMESHEETS(state, data) {
+      state.timesheets = data;
     },
     SORT_PROJECTS_BY_NAME(state){
       state.projects.sort((project1, project2) => {
