@@ -49,7 +49,7 @@
 <script>
 import timesheetService from "@/services/TimesheetService.js";
 export default {
-  name: "project-list",
+  name: "time-list",
   data() {
     return {
       timesheets: [],
