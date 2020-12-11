@@ -2,30 +2,30 @@
   <form v-on:submit.prevent>
     <div>
       <label for="firstName"> First Name</label>
-      <input name="firstName" type="text" v-model="firstName" />
+      <input name="firstName" type="text" v-model="user.firstName" />
     </div>
     <div>
       <label for="lastName">Last Name</label>
       <input
         name="lastName"
         type="text"
-        v-model="lastName"
+        v-model="user.lastName"
       />
     </div>
     <div>
       <label for="avatar">Profile Picture</label>
-      <input name="avatar" type="text" v-model="avatar" />
+      <input name="avatar" type="text" v-model="user.avatar" />
     </div>
     <div>
       <label for="email">email</label>
-      <input name="email" type="email" v-model="email" />
+      <input name="email" type="email" v-model="user.email" />
     </div>
     <div class="dropdown">
       <button class= "btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" 
       data-toggle ="dropdown" aria-haspopup="true" aria-expanded="false">Select Manager</button>
-      <div v-for="user in users" v-bind:key="user.username">
-          <input name="manager" type="text" v-model="managerFullName" />
-      </div>
+      <select v-model="selectedManager" v-for="u in users" v-bind:key="u.username">
+          <option class= "dropdown-item" name="manager" type="text" v-bind:value="u.username">{{u.firstName}} {{u.lastName}}</option>
+      </select>
     
     </div>
     <div>
@@ -50,6 +50,7 @@ export default {
     return {
       users: [],
       user: {
+        username: "",
         id: "",
         firstName: "",
         lastName: "",
@@ -58,6 +59,8 @@ export default {
         managerFirstName: "",
         managerLastName: "",
       },
+
+      selectedManager: "",
     };
   },
 
@@ -95,6 +98,8 @@ export default {
 
     getAllUsers() {
       UserServices.getAllUsers(this.user.id).then((response) => {
+          console.log('GET ALL USERS')
+          console.log(response.data)
         this.users = response.data;
       });
     },
@@ -104,7 +109,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
       UserServices.getUser().then(response => {
             this.$store.commit("SET_ACTIVE_USER", response.data);
             this.firstName = response.data.firstName;
@@ -113,7 +118,7 @@ export default {
             this.avatar = response.data.avatar;
             this.managerFirstName = response.data.managerFirstName;
             this.managerLastName = response.data.managerLastName;
-            
+
         }).catch(error => {
         if (error.response.status == 404) {
           this.$router.push("/not-found");
