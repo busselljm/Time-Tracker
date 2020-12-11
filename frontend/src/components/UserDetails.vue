@@ -7,7 +7,7 @@
   <p>{{user.firstName}}</p>
   <p>{{user.lastName}}</p>
   <p>{{user.email}}</p>
-  <p>{{user.manager}}</p>
+  <p>{{user.managerFirstName}} {{user.managerLastName}}</p>
   </div>
   <button> <router-link :to="{ name: 'editProfile'}"
               ><font-awesome-icon icon="edit"/></router-link
@@ -27,6 +27,8 @@ export default {
         avatar: "",
         manager: "",
         email: "",
+        managerFirstName: "",
+        managerLastName: ""
       },
     };
   },
@@ -39,6 +41,8 @@ export default {
         this.user.avatar = response.data.avatar;
         this.user.manager = response.data.manager;
         this.user.email = response.data.email;
+        this.user.managerFirstName = response.data.managerFirstName;
+        this.user.managerLastName = response.data.managerLastName;
       });
     },
   },

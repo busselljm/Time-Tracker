@@ -37,9 +37,19 @@ export default new Vuex.Store({
             endingTime: '',
         },
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    activeUser: {
+      id: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      avatar: "",
+      managerFirstName: "",
+      managerLastName: "",
+    },
 
   },
+
   mutations: {
     SET_PROJECTS(state, data) {
       state.projects = data;
@@ -71,6 +81,10 @@ export default new Vuex.Store({
     },
     SET_ACTIVE_PROJECT(state, data) {
       state.activeProject = data;
+    },
+
+    SET_ACTIVE_USER(state, data) {
+      state.activeUser = data;
     },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;

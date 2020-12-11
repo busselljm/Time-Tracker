@@ -25,9 +25,22 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public void updateUser(User user, String username) {
-        String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager =? WHERE username=?";
-        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), username);
+    public List<User> getAllUsers(Long id) {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT users_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manger_first_name, manager_last_name " +
+                "FROM users WHERE user_id <> ?;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
+        while(rowSet.next()) {
+            User user = mapRowToUser(rowSet);
+            users.add(user);
+        }
+        return users;
+    }
+
+    @Override
+    public void updateUser(User user, String username, Long id) {
+        String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager_id =? WHERE username=? AND user_id = ?;";
+        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), username, id);
 
     }
 
@@ -39,7 +52,7 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar FROM users WHERE username ILIKE ?;";
+        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name FROM users WHERE username ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         if (rowSet.next()){
             return mapRowToUser(rowSet);
@@ -82,6 +95,13 @@ public class JdbcUserDAO implements UserDAO {
         user.setLastName(rs.getString("last_name"));
         user.setEmail(rs.getString("email"));
         user.setAvatar(rs.getString("avatar"));
+        try {
+            user.setManagerID(rs.getLong("manager_id"));
+            user.setManagerFirstName(rs.getString("manager_first_name"));
+            user.setManagerLastName(rs.getString("manager_last_name"));
+        } catch(NullPointerException e) {
+            e.getMessage();
+        }
         return user;
     }
 }

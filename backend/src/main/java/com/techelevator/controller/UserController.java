@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
 @RestController
@@ -24,12 +25,15 @@ public class UserController {
         return userDAO.findByUsername(principal.getName());
     }
 
-    @PutMapping(path= "/profile")
-    public void updateProfile(@Valid @RequestBody User user, Principal principal) {
+    @PutMapping(path= "/profile/{id}")
+    public void updateProfile(@PathVariable Long id, @Valid @RequestBody User user, Principal principal) {
         Long managerID = userDAO.getUserIDByName(user.getManagerFirstName(), user.getManagerLastName());
         user.setManagerID(managerID);
-        userDAO.updateUser(user, principal.getName());
+        userDAO.updateUser(user, principal.getName(),id);
     }
-
+    @GetMapping( path = "/profile/{id}")
+    public List<User> getAllUsers(@PathVariable Long id) {
+        return userDAO.getAllUsers(id);
+    }
 
 }
