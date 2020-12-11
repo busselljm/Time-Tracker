@@ -42,7 +42,11 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
     @Override
     public List<Timesheet> listTimesheets(Long userId) {
         List <Timesheet> result = new ArrayList<>();
-        String sql = "SELECT project_id, user_id, time_id, time_desc, beginning_time, ending_time FROM timesheet WHERE user_id = ?;";
+        String sql = "SELECT projects.project_id, projects.project_name, user_id, time_id, time_desc, beginning_time," +
+                " ending_time \n" +
+                "FROM timesheet \n" +
+                "JOIN projects ON timesheet.project_id = projects.project_id\n" +
+                "WHERE user_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
 
         while(rowSet.next()){
@@ -54,7 +58,11 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
 
     @Override
     public Timesheet getTimesheet(Long timeID) {
-        String sql = "SELECT project_id, user_id, time_id, time_desc, beginning_time, ending_time FROM timesheet WHERE time_id = ?;";
+        String sql = "SELECT projects.project_id, projects.project_name, user_id, time_id, time_desc, beginning_time," +
+                " ending_time \n" +
+                "FROM timesheet \n" +
+                "JOIN projects ON timesheet.project_id = projects.project_id\n" +
+                "WHERE time_id = ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, timeID);
         if(rowSet.next()){
             return mapRowToTimesheet(rowSet);
@@ -64,13 +72,14 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
 
     private Timesheet mapRowToTimesheet(SqlRowSet rowSet) {
         Timesheet result = new Timesheet();
-//        result.setBeginningTime(LocalDateTime.parse(rowSet.getString("beginning_time"), DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss" )));
-        result.setBeginningTime(rowSet.getTimestamp("beginning_time").toLocalDateTime());
-        result.setDescription(rowSet.getString("time_desc"));
-        result.setEndingTime(rowSet.getTimestamp("ending_time").toLocalDateTime());
-        result.setProjectID(rowSet.getLong("project_id"));
-        result.setUserID(rowSet.getLong("user_id"));
+
         result.setTimeID(rowSet.getLong("time_id"));
+        result.setProjectID(rowSet.getLong("project_id"));
+        result.setProjectName(rowSet.getString("project_name"));
+        result.setUserID(rowSet.getLong("user_id"));
+        result.setDescription(rowSet.getString("time_desc"));
+        result.setBeginningTime(rowSet.getTimestamp("beginning_time").toLocalDateTime());
+        result.setEndingTime(rowSet.getTimestamp("ending_time").toLocalDateTime());
 
         return result;
     }

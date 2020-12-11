@@ -6,6 +6,7 @@ public class Timesheet {
 
     private Long timeID;
     private Long projectID;
+    private String projectName;
     private Long userID;
     private String description;
     private LocalDateTime beginningTime;
@@ -34,6 +35,14 @@ public class Timesheet {
 
     public void setProjectID(long projectID) {
         this.projectID = projectID;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public long getUserID() {
