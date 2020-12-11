@@ -32,7 +32,8 @@ public class TimesheetController {
     }
     @PostMapping("/times")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createNewTimesheet(@RequestBody Timesheet newTimesheet){
+    public void createNewTimesheet(@RequestBody Timesheet newTimesheet, Principal principal){
+       newTimesheet.setUserID(userDAO.findByUsername(principal.getName()).getId());
         timesheetDAO.createTimesheet(newTimesheet);
     }
 }

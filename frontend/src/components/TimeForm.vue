@@ -2,8 +2,8 @@
   <form v-on:submit="submitForm" class="timeForm">
     <div class="form-group">
       <label for="project name">Project Name:</label>
-      <select name="projects" id="project name" v-model="timesheet.projectName">
-        <option value="projects" v-for="project in this.$store.state.projects" v-bind:key="project.projectName">{{project.projectName}}</option>
+      <select name="projects" id="project name" v-model="timesheet.projectID">
+        <option v-bind:value="project.projectID" v-for="project in this.$store.state.projects" v-bind:key="project.projectName">{{project.projectName}}</option>
       </select>
     </div>
     <div class="form-group">
