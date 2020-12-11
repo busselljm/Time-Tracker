@@ -3,7 +3,13 @@
     <div class="form-group">
       <label for="project name">Project Name:</label>
       <select name="projects" id="project name" v-model="timesheet.projectID">
-        <option v-bind:value="project.projectID" v-for="project in this.$store.state.projects" v-bind:key="project.projectName">{{project.projectName}}</option>
+        <option
+          v-bind:value="project.projectID"
+          v-for="project in this.$store.state.projects"
+          v-bind:key="project.projectName"
+        >
+          {{ project.projectName }}
+        </option>
       </select>
     </div>
     <div class="form-group">
@@ -59,7 +65,20 @@ export default {
     };
   },
   methods: {
+    getValidationErrorMessage() {
+      if (this.timesheet.projectID === "") {
+        return "Please select a project.";
+      } else if (this.timesheet.description === "") {
+        return "Please provide a description of your activity.";
+      } else if (this.timesheet.beginningTime > this.timesheet.endingTime) {
+        return "Beginning date/time must occur before the end.";
+      }
+    },
     submitForm() {
+      let errorMessage = this.getValidationErrorMessage();
+      if (errorMessage != null) {
+        return alert(errorMessage);
+      } else {
       timesheetService
         .createTimesheet(this.timesheet)
         .then((response) => {
@@ -81,6 +100,7 @@ export default {
             }
           }
         });
+      }
     },
   },
 };

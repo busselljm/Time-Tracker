@@ -1,15 +1,22 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class Timesheet {
 
+    @NotNull
     private Long timeID;
+    @NotNull
     private Long projectID;
+    @NotNull
     private String projectName;
     private Long userID;
+    @NotNull
     private String description;
+    @NotNull
     private LocalDateTime beginningTime;
+    @NotNull
     private LocalDateTime endingTime;
 
     public Timesheet(long timeID, long projectID, long userID, LocalDateTime beginningTime) {
