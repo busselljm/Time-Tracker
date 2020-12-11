@@ -37,4 +37,9 @@ public class TimesheetController {
        newTimesheet.setUserID(userDAO.findByUsername(principal.getName()).getId());
         timesheetDAO.createTimesheet(newTimesheet);
     }
+
+    @DeleteMapping("/times/{id}")
+    public void deleteTimesheet(@PathVariable Long id){
+        timesheetDAO.deleteTimesheet(id);
+    }
 }

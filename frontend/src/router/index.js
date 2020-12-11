@@ -91,6 +91,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/times/:id',
+      name: 'deletetimesheet',
+      component: Timesheet,
+      meta: {
+        requiresAuth: true
+      }
+    },
    
   ]
 })

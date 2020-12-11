@@ -29,13 +29,15 @@
       />
     </div>
     <div class="form-group">
-   <button class="btn btn-outline-primary btn-md" type="submit">Submit</button>
+      <button class="btn btn-outline-primary btn-md" type="submit">
+        Submit
+      </button>
     </div>
   </form>
 </template>
 
 <script>
-import projectService from '../services/ProjectService';
+import projectService from "../services/ProjectService";
 export default {
   name: "project-form",
   data() {
@@ -50,27 +52,42 @@ export default {
     };
   },
   methods: {
-    submitForm(){
-      projectService.createProject(this.project).then(response => {
-       if(response.status === 201){
-          alert('New project was created successfully');
-        }
-      }).catch(error => {
-        {
-          if(error.response){
-            this.errorMsg = 'Failed to create project. Response was: ' + error.response.data;
-          } else if (error.request){
-            this.errorMsg = 'Server did not respond. Could not create project.';
-          } else{
-            this.errorMsg = 'Something went wrong. Could not send request.';
-          }
+    getValidationErrorMessage() {
+      if (this.project.projectName === "") {
+        return "Please create a name for your project.";
+      } else if (this.project.projectDescription === "") {
+        return "Please provide a description of your project.";
       }
-      });
     },
-    
-  }
-  
-  
+    submitForm() {
+      let errorMessage = this.getValidationErrorMessage();
+      if (errorMessage != null) {
+        return alert(errorMessage);
+      } else {
+        projectService
+          .createProject(this.project)
+          .then((response) => {
+            if (response.status === 201) {
+              alert("New project was created successfully");
+            }
+          })
+          .catch((error) => {
+            {
+              if (error.response) {
+                this.errorMsg =
+                  "Failed to create project. Response was: " +
+                  error.response.data;
+              } else if (error.request) {
+                this.errorMsg =
+                  "Server did not respond. Could not create project.";
+              } else {
+                this.errorMsg = "Something went wrong. Could not send request.";
+              }
+            }
+          });
+      }
+    },
+  },
 };
 </script>
 

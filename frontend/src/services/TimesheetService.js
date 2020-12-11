@@ -6,13 +6,10 @@ import http from 'axios';
 
 export default {
 
-//   updateProject(project) {
-//     return http.put(`/projects/${project.projectID}`, project);
-//   },
 
-//   deleteProject(projectID) {
-//     return http.delete(`/projects/${projectID}`);
-//   },
+  deleteTimesheet(timeID) {
+    return http.delete(`/times/${timeID}`);
+  },
 
   createTimesheet(timesheet){
     return http.post('/times', timesheet);

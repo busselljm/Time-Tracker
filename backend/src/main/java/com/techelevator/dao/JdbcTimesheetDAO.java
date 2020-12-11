@@ -36,7 +36,8 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
 
     @Override
     public void deleteTimesheet(Long timeId) {
-
+        String sql = "DELETE FROM timesheet WHERE time_id = ?;";
+        jdbcTemplate.update(sql, timeId);
     }
 
     @Override

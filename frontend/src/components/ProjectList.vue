@@ -62,7 +62,7 @@ export default {
     },
  deleteProject(projectID) {
             projectService.deleteProject(projectID).then(response => {
-              if(confirm('Are you sure you want to delete this card? This action cannot be undone.')){
+              if(confirm('Are you sure you want to delete project card? This action cannot be undone.')){
                 if (response.status === 200) {
                   this.getProjects();
                 }
