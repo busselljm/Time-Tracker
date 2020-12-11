@@ -1,7 +1,9 @@
 package com.techelevator.model;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Project {
 
@@ -11,6 +13,7 @@ public class Project {
     private String projectDescription;
     private String projectImg;
     private String endDate;
+    private Timestamp mostRecent;
 
     public Project() {}
 
@@ -58,5 +61,13 @@ public class Project {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Timestamp getMostRecent() {
+        return mostRecent;
+    }
+
+    public void setMostRecent(Timestamp mostRecent) {
+        this.mostRecent = mostRecent;
     }
 }

@@ -1,11 +1,14 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Project;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +75,7 @@ public class JdbcProjectDAO implements ProjectDAO{
         jdbcTemplate.update(sql, project.getProjectName(), project.getProjectDescription(), project.getProjectImg(),project.getEndDate(), id);
     }
 
+
     @Override
     public void deleteProjectById(Long projectID){
         String sql = "DELETE FROM user_project WHERE project_id = ?;";
@@ -82,12 +86,25 @@ public class JdbcProjectDAO implements ProjectDAO{
         jdbcTemplate.update(sql, projectID);
     }
 
+    @Override
+    public Timestamp getMostRecent(Long projectID) {
+        String sql = "SELECT MAX(ending_time)\n" +
+                "FROM timesheet\n" +
+                "WHERE project_id = 17\n;";
+        try {
+           return jdbcTemplate.queryForObject(sql, Timestamp.class, projectID);
+        } catch (DataAccessException e) {
+            return Timestamp.valueOf("2020-01-04 10:50:56");
+        }
+    }
+
     private Project mapRowToProject(SqlRowSet rowSet) {
         Project result = new Project();
         result.setProjectID(rowSet.getLong("project_id"));
         result.setProjectName(rowSet.getString("project_name"));
         result.setProjectDescription(rowSet.getString("project_desc"));
         result.setProjectImg(rowSet.getString("project_img"));
+        result.setMostRecent(getMostRecent(result.getProjectID()));
         if(rowSet.getString("end_date") != null) {
             result.setEndDate(rowSet.getString("end_date"));
         } else {

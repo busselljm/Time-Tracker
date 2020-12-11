@@ -9,3 +9,4 @@
     <router-view />
   </div>
 </template>
+
