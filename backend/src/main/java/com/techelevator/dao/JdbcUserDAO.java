@@ -26,7 +26,15 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public void updateUser(User user, String username) {
+        String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager =? WHERE username=?";
+        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), username);
 
+    }
+
+    @Override
+    public Long getUserIDByName(String firstName, String lastName) {
+        String sqlManagerID = "SELECT user_id FROM users WHERE first_name = ? AND last_name =?;";
+       return jdbcTemplate.queryForObject(sqlManagerID, Long.class, firstName, lastName);
     }
 
     @Override

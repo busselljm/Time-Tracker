@@ -15,6 +15,9 @@ CREATE TABLE users (
    email varchar,
    avatar varchar,
    manager_id int,
+   manager_first_name varchar,
+   manager_last_name varchar,
+
   CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 

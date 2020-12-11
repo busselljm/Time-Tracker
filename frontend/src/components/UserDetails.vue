@@ -1,9 +1,18 @@
 <template>
 <div>
-  <h1>{{ user.firstName }}</h1>
+  <h1>My Profile</h1>
   <img v-bind:src="user.avatar" alt="">
+  <div class= "personal-information">
+  <h2>User Information</h2>
+  <p>{{user.firstName}}</p>
+  <p>{{user.lastName}}</p>
+  <p>{{user.email}}</p>
+  <p>{{user.manager}}</p>
   </div>
-
+  <button> <router-link :to="{ name: 'editProfile'}"
+              ><font-awesome-icon icon="edit"/></router-link
+            ></button>
+  </div>
 </template>
 
 <script>
