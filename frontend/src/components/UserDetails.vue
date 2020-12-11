@@ -1,5 +1,9 @@
 <template>
-  <h1>{{ this.user.firstName }}</h1>
+<div>
+  <h1>{{ user.firstName }}</h1>
+  <img v-bind:src="user.avatar" alt="">
+  </div>
+
 </template>
 
 <script>

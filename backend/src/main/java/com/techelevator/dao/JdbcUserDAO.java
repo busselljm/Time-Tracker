@@ -25,6 +25,11 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
+    public void updateUser(User user, String username) {
+
+    }
+
+    @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
         String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar FROM users WHERE username ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);

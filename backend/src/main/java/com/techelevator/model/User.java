@@ -123,7 +123,7 @@ public class User {
       String[] roles = authorities.split(",");
       for(String role : roles) {
          String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
-         this.authorities.add(new Authority(authority));
+         this.authorities.add(new Authority(authority)); //pushing to try and fix winnies error
       }
    }
 

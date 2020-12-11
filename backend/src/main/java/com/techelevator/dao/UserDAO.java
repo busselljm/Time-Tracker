@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UserDAO {
 
+    void updateUser(User user, String username);
+
     User findByUsername(String username);
 
     boolean create(String username, String password, String role, String firstName, String lastName, String email, String avatar);
