@@ -1,43 +1,33 @@
 <template>
   <form v-on:submit="submitForm" class="timeForm">
     <div class="form-group">
-      <label for="project ID">projectId:</label>
-      <input
-        id="project ID"
-        type="text"
-        class="form-control"
-        v-model="timesheet.projectID"
-        autocomplete="off"
-      />
-    </div>
-    <div class="form-group">
-      <label for="user id">user id:</label>
-      <textarea
-        id="userid"
-        class="form-control"
-        v-model="timesheet.userID"
-      ></textarea>
+      <label for="project name">Project Name:</label>
+      <select name="projects" id="project name" v-model="timesheet.projectName">
+        <option value="projects" v-for="project in this.$store.state.projects" v-bind:key="project.projectName">{{project.projectName}}</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="description">Description:</label>
-      <textarea
+      <input
+        type="text"
+        maxlength="50"
         id="description"
         class="form-control"
         v-model="timesheet.description"
-      ></textarea>
+      />
     </div>
-      <div class="form-group">
-      <label for="beginning time">beginning time:</label>
-      <input 
+    <div class="form-group">
+      <label for="beginning time">Beginning Date/Time:</label>
+      <input
         id="beginning time"
         class="form-control"
         type="datetime-local"
         v-model="timesheet.beginningTime"
       />
     </div>
-      <div class="form-group">
-      <label for="description">ending time:</label>
-      <input 
+    <div class="form-group">
+      <label for="description">Ending Date/Time:</label>
+      <input
         id="ending time"
         class="form-control"
         type="datetime-local"

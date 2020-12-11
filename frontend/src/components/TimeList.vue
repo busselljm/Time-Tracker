@@ -3,26 +3,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Time ID</th>
-          <th scope="col">Project ID</th>
-          <th scope="col">user id</th>
-          <th scope="col">description</th>
-          <th scope="col">beginning time</th>
-          <th scope="col">ending time</th>
+          <th scope="col">Project Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Beginning Time</th>
+          <th scope="col">Ending Time</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="timesheet in timesheets" v-bind:key="timesheet.id">
-            <td>
-           <span>{{timesheet.timeID}}</span>
-          </td>
           <td >
-           <span>{{timesheet.projectID}}</span>
-          </td>
-          <td >
-           <span>{{timesheet.userID}}</span>
+           <span>{{timesheet.projectName}}</span>
           </td>
           <td >
            <span>{{timesheet.description}}</span>
@@ -54,12 +46,13 @@ export default {
     return {
       timesheets: [],
        timesheet:  {
-            timeID: "",
-            projectID: "",
-            userID: "",
-            description: "",
-            beginningTime: "",
-            endingTime: "",
+            timeID: '',
+            projectID: '',
+            projectName: '',
+            userID: '',
+            description: '',
+            beginningTime: '',
+            endingTime: '',
         },
     }
   },

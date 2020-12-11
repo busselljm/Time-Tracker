@@ -30,6 +30,7 @@ export default new Vuex.Store({
        timesheet:  {
             timeID: '',
             projectID: '',
+            projectName: '',
             userID: '',
             description: '',
             beginningTime: '',
