@@ -3,6 +3,7 @@
     <navigation-bar :items="navigationItems" />
     <div class="container">
       <router-view />
+      <stop-watch/>
     </div>
   </div>
 </template>

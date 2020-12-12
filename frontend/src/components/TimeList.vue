@@ -54,7 +54,6 @@ export default {
     getTimesheet() {
       timesheetService.getAllTimesheets().then((response) => {
         this.timesheets = response.data;
-        console.log(this.timesheets);
         this.$store.commit("SET_TIMESHEETS", response.data);
       });
     },

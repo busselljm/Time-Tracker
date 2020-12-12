@@ -47,7 +47,6 @@ export default new Vuex.Store({
       managerFirstName: "",
       managerLastName: "",
     },
-
   },
 
   mutations: {
