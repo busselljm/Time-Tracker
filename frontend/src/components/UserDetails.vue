@@ -1,18 +1,126 @@
 <template>
-  <div>
-    <h1>My Profile</h1>
-    <img v-bind:src="$store.state.user.avatar" :alt="`Profile Photo of ${$store.state.user.firstName} ${$store.state.user.lastName}`" />
-    <div class="personal-information">
-      <h2>User Information</h2>
-      <p>{{ $store.state.user.firstName }}</p>
-      <p>{{ $store.state.user.lastName }}</p>
-      <p>{{ $store.state.user.email }}</p>
-      <p>{{ $store.state.user.managerFirstName }} {{ $store.state.user.managerLastName }}</p>
+  <div class="user-profile">
+    <div class="row">
+      <div class="col-md-3">
+        <img v-bind:src="loggedInUser.avatar" :alt="`Profile Photo of ${loggedInUserFullName}`" />
+      </div>
+      <div class="col-md-9">
+        <form>
+          <div class="form-group">
+            <label>First Name</label><br>
+            <input v-if="isEditable" :value="loggedInUser.firstName" class="form-control">
+            <p v-else class="form-control">{{ loggedInUser.firstName }}</p>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label><br>
+            <input v-if="isEditable" :value="loggedInUser.lastName" class="form-control">
+            <p v-else class="form-control">{{ loggedInUser.lastName }}</p>
+          </div>
+          <div class="form-group">
+            <label>Email</label><br>
+            <input v-if="isEditable" :value="loggedInUser.email" class="form-control">
+            <p v-else class="form-control">{{ loggedInUser.email }}</p>
+          </div>
+          <div v-if="isEditable">
+            <label>Select Manager</label><br>
+            <select v-model="selectedManagerUserId" class="form-control">
+              <option v-for="user in allOtherUsers" :key="user.id" :value="user.id">
+                {{ user.firstName }} {{ user.lastName }}
+              </option>
+            </select>
+          </div>
+        </form>
+
+        <div class="row">
+          <div class="col-6">
+            <button v-if="isEditable" class="btn btn-primary btn-block" @click="updateProfile()">
+              <font-awesome-icon icon="check" /> Save
+            </button>
+            <button v-else class="btn btn-primary btn-block" @click="isEditable = true">
+              <font-awesome-icon icon="edit" /> Edit
+            </button>
+          </div>
+          <div class="col-6">
+            <button v-if="isEditable" class="btn btn-secondary btn-block" @click="isEditable = false">
+              <font-awesome-icon icon="window-close" /> Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <button>
-      <router-link :to="{ name: 'editProfile' }">
-        <font-awesome-icon icon="edit"/>
-      </router-link>
-    </button>
   </div>
 </template>
+
+<script>
+import UserServices from "../services/UserServices.js";
+import { handleServiceError } from '@/js/utility.methods.js';
+
+export default {
+  data() {
+    return {
+      isEditable: false,
+      users: [],
+      loggedInUser: this.$store.state.user, // Logged in user data already stored in state. Assigning to local variable to modify
+      selectedManagerUserId: undefined,
+    }
+  },
+  methods: {
+    updateProfile() {
+      // Don't need to make a copy of it. User is already stored in local component data.
+      // this.user is automatically binded when user types in form
+
+      this.loggedInUser.managerID = this.selectedManagerUserId // Assigning manager to user by unique ID
+      this.loggedInUser.role = 'user'
+
+      UserServices.updateProfile(this.loggedInUser)
+      .then((response) => {
+        if (response.status === 200) {
+          this.$router.push("/profile");
+          this.isEditable = false
+          alert('great success')
+        }
+      })
+      .catch((error) => { handleServiceError(error) });
+    },
+  },
+  computed: {
+    allOtherUsers() {
+      // Get all users EXCEPT logged in user
+      return this.users.filter((user) => {
+        return user.id != this.$store.state.user.id // single '=' bc comparing to string
+      })
+    },
+    loggedInUserFullName() {
+      return `${this.loggedInUser.firstName} ${this.loggedInUser.lastName}`
+    }
+  },
+  mounted() {
+    // Get all users on component
+    UserServices.getAllUsers().then((response) => {
+      this.users = response.data;
+    });
+  },
+}
+</script>
+
+<style scoped>
+  .user-profile {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  form {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    padding: 0;
+    font-weight: bold;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+</style>

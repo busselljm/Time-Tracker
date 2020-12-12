@@ -1,4 +1,9 @@
 <template>
+
+
+  <!-- Stephanie: This component is not needed. I combined this view with the user profile view. When you click "edit", fields appear -->
+
+
   <form v-on:submit.prevent>
     <h1>Update Profile</h1>
     <div>

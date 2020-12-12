@@ -1,12 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'profile' }">Profile</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'project' }">Projects</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    <navigation-bar :items="navigationItems" />
+    <div class="container">
+      <router-view />
     </div>
-    <router-view />
   </div>
 </template>
 
+<script>
+import NavigationBar from '@/components/Navigation.vue'
+
+export default {
+  components: {
+    NavigationBar
+  },
+  data() {
+    return {
+      navigationItems: [
+        { text: 'Home', component: 'home' },
+        { text: 'Profile', component: 'profile' },
+        { text: 'Projects', component: 'projects' },
+        { text: 'Logout', component: 'logout' }
+      ]
+    }
+  }
+}
+</script>
