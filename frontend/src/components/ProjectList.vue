@@ -3,7 +3,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Image</th>
+          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">Sort Recent</th>
           <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">Project Name</th>
           <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">End Date</th>
           <th scope="col">Edit</th>
