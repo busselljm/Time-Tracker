@@ -29,11 +29,10 @@
       </b-tbody>
       <b-tfoot>
         <tr>
-          <th scope="col">Project Name</th>
-        
-          <th scope="col">Beginning Time</th>
-          <th scope="col">Ending Time</th>
-          <th scope="col">Time</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </b-tfoot>
     </table>
@@ -53,14 +52,17 @@ export default {
         userID: "",
         description: "",
         beginningTime: "",
-        endingTime: "",
+        endingTime: ""
+        
       },
+      timeArray: []
     };
   },
   methods: {
     getDifferenceInTimes(beg, end){
         let dateBeg = new Date(beg);
         let dateEnd = new Date(end);
+         
         return (dateEnd.getTime() - dateBeg.getTime())/1000;
     },
     secondsToHms(d) {
@@ -69,8 +71,8 @@ export default {
     var m = Math.floor(d % 3600 / 60);
     var s = Math.floor(d % 3600 % 60);
 
-    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute " : " minutes ") : "";
     var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
     return hDisplay + mDisplay + sDisplay; 
 },
