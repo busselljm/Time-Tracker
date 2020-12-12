@@ -1,22 +1,14 @@
 import http from 'axios';
 
-
-
-
 export default {
-
-  updateUser(user) {
-    return http.put('/profile/' + user.id , user);
+  updateProfile(user) {
+    console.log('user put', user)
+    return http.put(`/users/profile/${user.id}` , user);
   },
-
-  getUser() {
-      return http.get('/profile');
+  getUser(user) {
+    return http.get('/users/profile/', user);
   },
-
-  getAllUsers(id) {
-    return http.get('/profile/' + id);
+  getAllUsers() {
+    return http.get(`/users`);
   }
-
-
-
 }

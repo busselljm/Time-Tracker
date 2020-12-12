@@ -20,20 +20,22 @@ public class UserController {
         this.userDAO = userDAO;
     }
 
-    @GetMapping(path = "/profile")
+    // GET - Fetch Logged In User Data
+    @GetMapping(path = "/users/profile")
     public User getUserForProfile(Principal principal) {
         return userDAO.findByUsername(principal.getName());
     }
 
-    @PutMapping(path= "/profile/{id}")
+    // PUT - Update User Data By ID
+    @PutMapping(path= "/users/profile/{id}")
     public void updateProfile(@PathVariable Long id, @Valid @RequestBody User user, Principal principal) {
-        Long managerID = userDAO.getUserIDByName(user.getManagerFirstName(), user.getManagerLastName());
-        user.setManagerID(managerID);
         userDAO.updateUser(user, principal.getName(),id);
     }
-    @GetMapping( path = "/profile/{id}")
-    public List<User> getAllUsers(@PathVariable Long id) {
-        return userDAO.getAllUsers(id);
+
+    // GET - All User Data
+    @GetMapping( path = "/users")
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 
 }

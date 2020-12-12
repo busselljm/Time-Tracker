@@ -1,56 +1,18 @@
 <template>
-<div>
-  <h1>My Profile</h1>
-  <img v-bind:src="user.avatar" alt="">
-  <div class= "personal-information">
-  <h2>User Information</h2>
-  <p>{{user.firstName}}</p>
-  <p>{{user.lastName}}</p>
-  <p>{{user.email}}</p>
-  <p>{{user.managerFirstName}} {{user.managerLastName}}</p>
-  </div>
-  <button> <router-link :to="{ name: 'editProfile'}"
-              ><font-awesome-icon icon="edit"/></router-link
-            ></button>
+  <div>
+    <h1>My Profile</h1>
+    <img v-bind:src="$store.state.user.avatar" :alt="`Profile Photo of ${$store.state.user.firstName} ${$store.state.user.lastName}`" />
+    <div class="personal-information">
+      <h2>User Information</h2>
+      <p>{{ $store.state.user.firstName }}</p>
+      <p>{{ $store.state.user.lastName }}</p>
+      <p>{{ $store.state.user.email }}</p>
+      <p>{{ $store.state.user.managerFirstName }} {{ $store.state.user.managerLastName }}</p>
+    </div>
+    <button>
+      <router-link :to="{ name: 'editProfile' }">
+        <font-awesome-icon icon="edit"/>
+      </router-link>
+    </button>
   </div>
 </template>
-
-<script>
-import userService from "../services/UserServices.js";
-export default {
-  data() {
-    return {
-      user: {
-        username: "",
-        firstName: "",
-        lastName: "",
-        avatar: "",
-        manager: "",
-        email: "",
-        managerFirstName: "",
-        managerLastName: ""
-      },
-    };
-  },
-  methods: {
-    getUser() {
-      userService.getUser().then((response) => {
-        this.user.username = response.data.username;
-        this.user.firstName = response.data.firstName;
-        this.user.lastName = response.data.lastName;
-        this.user.avatar = response.data.avatar;
-        this.user.manager = response.data.manager;
-        this.user.email = response.data.email;
-        this.user.managerFirstName = response.data.managerFirstName;
-        this.user.managerLastName = response.data.managerLastName;
-      });
-    },
-  },
-  created() {
-    this.getUser();
-  },
-};
-</script>
-
-<style>
-</style>

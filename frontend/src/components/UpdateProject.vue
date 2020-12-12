@@ -24,8 +24,7 @@
       <button type="submit" v-on:click="updateProject()">
         <font-awesome-icon icon="check" />
       </button>
-    </div>
-    <div>
+      
       <button type="submit" v-on:click="cancelUpdate()">
         <font-awesome-icon icon="window-close" />
       </button>

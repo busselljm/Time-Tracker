@@ -85,7 +85,7 @@ const router = new Router({
       }
     },
     {
-      path: '/profile/:id',
+      path: '/profile',
       name: 'editProfile',
       component: UpdateProfile,
       meta: {

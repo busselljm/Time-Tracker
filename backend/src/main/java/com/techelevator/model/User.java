@@ -21,24 +21,7 @@ public class User {
    private String email;
    private String avatar;
    private Long managerID;
-   private String managerFirstName;
-   private String managerLastName;
 
-   public String getManagerFirstName() {
-      return managerFirstName;
-   }
-
-   public void setManagerFirstName(String managerFirstName) {
-      this.managerFirstName = managerFirstName;
-   }
-
-   public String getManagerLastName() {
-      return managerLastName;
-   }
-
-   public void setManagerLastName(String managerLastName) {
-      this.managerLastName = managerLastName;
-   }
 
    public User() { }
 

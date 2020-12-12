@@ -1,40 +1,34 @@
 <template>
   <form v-on:submit.prevent>
+    <h1>Update Profile</h1>
     <div>
-      <label for="firstName"> First Name</label>
-      <input name="firstName" type="text" v-model="user.firstName" />
+      <label for="firstName"> First Name:</label>
+      <input name="firstName" type="text" v-model="loggedInUser.firstName" />
     </div>
     <div>
-      <label for="lastName">Last Name</label>
-      <input
-        name="lastName"
-        type="text"
-        v-model="user.lastName"
-      />
+      <label for="lastName">Last Name:</label>
+      <input name="lastName" type="text" v-model="loggedInUser.lastName" />
     </div>
     <div>
-      <label for="avatar">Profile Picture</label>
-      <input name="avatar" type="text" v-model="user.avatar" />
+      <label for="avatar">Profile Picture:</label>
+      <input name="avatar" type="text" v-model="loggedInUser.avatar" />
     </div>
     <div>
-      <label for="email">email</label>
-      <input name="email" type="email" v-model="user.email" />
-    </div>
-    <div class="dropdown">
-      <button class= "btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" 
-      data-toggle ="dropdown" aria-haspopup="true" aria-expanded="false">Select Manager</button>
-      <select v-model="selectedManager" v-for="u in users" v-bind:key="u.username">
-          <option class= "dropdown-item" name="manager" type="text" v-bind:value="u.username">{{u.firstName}} {{u.lastName}}</option>
-      </select>
-    
+      <label for="email">Email:</label>
+      <input name="email" type="email" v-model="loggedInUser.email" />
     </div>
     <div>
+      <select v-model="selectedManagerUserId">
+        <option v-for="user in allOtherUsers" :key="user.id" :value="user.id">
+          {{ user.firstName }} {{ user.lastName }}
+        </option>
+      </select>        
+    </div>
     <div>
       <button type="submit" v-on:click="updateProfile()">
         <font-awesome-icon icon="check" />
       </button>
-    </div>
-    
+
       <button type="submit" v-on:click="cancelUpdate()">
         <font-awesome-icon icon="window-close" />
       </button>
@@ -43,104 +37,51 @@
 </template>
 
 <script>
-import UserServices from '../services/UserServices.js';
+import UserServices from "../services/UserServices.js";
+import { handleServiceError } from '@/js/utility.methods.js';
 
 export default {
   data() {
     return {
       users: [],
-      user: {
-        username: "",
-        id: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        avatar: "",
-        managerFirstName: "",
-        managerLastName: "",
-      },
-
-      selectedManager: "",
+      loggedInUser: this.$store.state.user, // Logged in user data already stored in state. Assigning to local variable to modify
+      selectedManagerUserId: undefined,
     };
   },
-
   methods: {
     updateProfile() {
-      const user = {
-        id: this.$route.params.id,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        avatar: this.avatar,
-        managerFirstName: this.managerFirstName,
-        managerLastName: this.managerLastName,
-      };
+      console.log('hey')
+      // Don't need to make a copy of it. User is already stored in local component data.
+      // this.user is automatically binded when user types in form
 
-      UserServices.updateProfile(user)
-        .then((response) => {
-          if (response.status === 200) {
-            this.$router.push("/profile");
-          }
-        })
-        .catch((error) => {
-          if (error.response) {
-            return (
-              "Failed to update profile. Response was: " +
-              error.response.data.message
-            );
-          } else if (error.request) {
-            return "Failed to connect to server.";
-          } else {
-            return "Something went really wrong.";
-          }
-        });
+      this.loggedInUser.managerID = this.selectedManagerUserId // Assigning manager to user by unique ID
+      this.loggedInUser.role = 'user'
+
+      UserServices.updateProfile(this.loggedInUser)
+      .then((response) => {
+        if (response.status === 200) {
+          this.$router.push("/profile");
+        }
+      })
+      .catch((error) => { handleServiceError(error) });
     },
-
-    getAllUsers() {
-      UserServices.getAllUsers(this.user.id).then((response) => {
-          console.log('GET ALL USERS')
-          console.log(response.data)
-        this.users = response.data;
-      });
-    },
-
     cancelUpdate() {
       this.$router.push("/profile");
     },
   },
-
-  mounted() {
-      UserServices.getUser().then(response => {
-            this.$store.commit("SET_ACTIVE_USER", response.data);
-            this.firstName = response.data.firstName;
-            this.lastName = response.data.lastName;
-            this.email = response.data.email;
-            this.avatar = response.data.avatar;
-            this.managerFirstName = response.data.managerFirstName;
-            this.managerLastName = response.data.managerLastName;
-
-        }).catch(error => {
-        if (error.response.status == 404) {
-          this.$router.push("/not-found");
-        }
-      });
-    this.getAllUsers();
+  computed: {
+    allOtherUsers() {
+      // Get all users EXCEPT logged in user
+      return this.users.filter((user) => {
+        return user.id != this.$store.state.user.id // single '=' bc comparing to string
+      })
+    },
   },
-
-  computed:{
-      managerFullName: {
-          get() {
-              return `${this.managerFirstName} ${this.managerLastName}`;
-          }, set(newValue) {
-              const m= newValue.match(/(\S*)\s+(.*)/);
-              this.managerFirstName= m[1];
-              this.managerLastName= m[2];
-          }
-
-      }
-  }
+  mounted() {
+    // Get all users on component
+    UserServices.getAllUsers().then((response) => {
+      this.users = response.data;
+    });
+  },
 };
 </script>
-
-<style>
-</style>

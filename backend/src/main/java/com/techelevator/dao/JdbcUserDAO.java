@@ -1,13 +1,11 @@
 package com.techelevator.dao;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.techelevator.model.UserAlreadyExistsException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,11 +23,11 @@ public class JdbcUserDAO implements UserDAO {
     }
 
     @Override
-    public List<User> getAllUsers(Long id) {
+    public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT users_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manger_first_name, manager_last_name " +
-                "FROM users WHERE user_id <> ?;";
-        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, id);
+        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name " +
+                "FROM users;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while(rowSet.next()) {
             User user = mapRowToUser(rowSet);
             users.add(user);
@@ -41,7 +39,6 @@ public class JdbcUserDAO implements UserDAO {
     public void updateUser(User user, String username, Long id) {
         String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager_id =? WHERE username=? AND user_id = ?;";
         jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), username, id);
-
     }
 
     @Override
@@ -97,8 +94,6 @@ public class JdbcUserDAO implements UserDAO {
         user.setAvatar(rs.getString("avatar"));
         try {
             user.setManagerID(rs.getLong("manager_id"));
-            user.setManagerFirstName(rs.getString("manager_first_name"));
-            user.setManagerLastName(rs.getString("manager_last_name"));
         } catch(NullPointerException e) {
             e.getMessage();
         }
