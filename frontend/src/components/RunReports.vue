@@ -23,7 +23,7 @@
             <span>{{ timesheet.endingTime }}</span>
           </td>
           <td>
-            <span>{{timesheet.endingTime - timesheet.beginningTime}}</span>
+            <span>{{ secondsToHms(getDifferenceInTimes(timesheet.beginningTime, timesheet.endingTime))}}</span>
           </td>
         </tr>
       </b-tbody>
@@ -58,6 +58,22 @@ export default {
     };
   },
   methods: {
+    getDifferenceInTimes(beg, end){
+        let dateBeg = new Date(beg);
+        let dateEnd = new Date(end);
+        return (dateEnd.getTime() - dateBeg.getTime())/1000;
+    },
+    secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    return hDisplay + mDisplay + sDisplay; 
+},
     getTimesheet() {
       timesheetService.getAllTimesheets().then((response) => {
         this.timesheets = response.data;
