@@ -24,7 +24,8 @@ export default new Vuex.Store({
       projectName: '',
       projectDescription: '',
       projectImg: '',
-      endDate: ''
+      endDate: '',
+      mostRecent: '',
     },
     timesheets: [],
        timesheet:  {
@@ -47,7 +48,6 @@ export default new Vuex.Store({
       managerFirstName: "",
       managerLastName: "",
     },
-
   },
 
   mutations: {
@@ -70,9 +70,20 @@ export default new Vuex.Store({
     },
     SORT_PROJECTS_BY_DATE(state){
       state.projects.sort((project1, project2) => {
-        if(project1.endDate < project2.endDate) {
+        if(project1.endDate > project2.endDate) {
           return -1;
-        } else if(project1.endDate > project2.endDate){
+        } else if(project1.endDate < project2.endDate){
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    },
+    SORT_PROJECTS_BY_RECENT(state){
+      state.projects.sort((project1, project2) => {
+        if(project1.mostRecent > project2.mostRecent) {
+          return -1;
+        } else if(project1.mostRecent < project2.mostRecent){
           return 1;
         } else {
           return 0;

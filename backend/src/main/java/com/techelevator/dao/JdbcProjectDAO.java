@@ -90,12 +90,8 @@ public class JdbcProjectDAO implements ProjectDAO{
     public Timestamp getMostRecent(Long projectID) {
         String sql = "SELECT MAX(ending_time)\n" +
                 "FROM timesheet\n" +
-                "WHERE project_id = 17\n;";
-        try {
+                "WHERE project_id = ?\n;";
            return jdbcTemplate.queryForObject(sql, Timestamp.class, projectID);
-        } catch (DataAccessException e) {
-            return Timestamp.valueOf("2020-01-04 10:50:56");
-        }
     }
 
     private Project mapRowToProject(SqlRowSet rowSet) {
