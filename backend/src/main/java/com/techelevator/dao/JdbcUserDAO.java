@@ -37,8 +37,8 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public void updateUser(User user, String username, Long id) {
-        String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager_id =? WHERE username=? AND user_id = ?;";
-        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), username, id);
+        String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager_id =?, manager_first_name = ?, manager_last_name = ? WHERE username=? AND user_id = ?;";
+        jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), user.getManagerFirstName(), user.getManagerLastName(), username, id);
     }
 
     @Override
@@ -94,6 +94,8 @@ public class JdbcUserDAO implements UserDAO {
         user.setAvatar(rs.getString("avatar"));
         try {
             user.setManagerID(rs.getLong("manager_id"));
+            user.setManagerFirstName(rs.getString("manager_first_name"));
+            user.setManagerLastName(rs.getString("manager_last_name"));
         } catch(NullPointerException e) {
             e.getMessage();
         }

@@ -21,6 +21,14 @@
             <input v-if="isEditable" v-model="loggedInUser.email" class="form-control">
             <p v-else class="form-control">{{ loggedInUser.email }}</p>
           </div>
+          <div v-if="!isEditable">
+            <label>Manager</label><br>
+            <p class="form-control">{{ loggedInUser.managerFirstName }} {{loggedInUser.managerLastName }}</p>
+          </div>
+          <div v-if="isEditable">
+            <label>Change Your Picture</label><br>
+            <input v-if="isEditable" v-model="loggedInUser.avatar" class="form-control">
+          </div>
           <div v-if="isEditable">
             <label>Select Manager</label><br>
             <select v-model="selectedManagerUserId" class="form-control">
@@ -69,6 +77,8 @@ export default {
       // Don't need to make a copy of it. User is already stored in local component data.
       // this.user is automatically binded when user types in form
       this.loggedInUser.managerID = this.selectedManagerUserId // Assigning manager to user by unique ID
+      this.loggedInUser.managerFirstName = this.findFirstNameByID(this.selectedManagerUserId)[0];
+      this.loggedInUser.managerLastName = this.findLastNameByID(this.selectedManagerUserId)[0];
       delete this.loggedInUser.authorities;
       UserServices.updateProfile(this.loggedInUser)
       .then((response) => {
@@ -77,6 +87,12 @@ export default {
         }
       })
       .catch((error) => { handleServiceError(error) });
+    },
+    findFirstNameByID(id) {
+      return this.users.filter(user => user.id === id).map(user => user.firstName);
+    },
+    findLastNameByID(id) {
+      return this.users.filter(user => user.id === id).map(user => user.lastName);
     },
   },
   computed: {
