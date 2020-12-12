@@ -23,7 +23,7 @@ public class User {
    private Long managerID;
 
 
-   public User() { }
+   public User () {}
 
    public User(Long id, String username, String password, String authorities) {
       this.id = id;

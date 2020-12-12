@@ -8,17 +8,17 @@
         <form>
           <div class="form-group">
             <label>First Name</label><br>
-            <input v-if="isEditable" :value="loggedInUser.firstName" class="form-control">
+            <input v-if="isEditable" v-model="loggedInUser.firstName" class="form-control">
             <p v-else class="form-control">{{ loggedInUser.firstName }}</p>
           </div>
           <div class="form-group">
             <label>Last Name</label><br>
-            <input v-if="isEditable" :value="loggedInUser.lastName" class="form-control">
+            <input v-if="isEditable" v-model="loggedInUser.lastName" class="form-control">
             <p v-else class="form-control">{{ loggedInUser.lastName }}</p>
           </div>
           <div class="form-group">
             <label>Email</label><br>
-            <input v-if="isEditable" :value="loggedInUser.email" class="form-control">
+            <input v-if="isEditable" v-model="loggedInUser.email" class="form-control">
             <p v-else class="form-control">{{ loggedInUser.email }}</p>
           </div>
           <div v-if="isEditable">
@@ -68,16 +68,12 @@ export default {
     updateProfile() {
       // Don't need to make a copy of it. User is already stored in local component data.
       // this.user is automatically binded when user types in form
-
       this.loggedInUser.managerID = this.selectedManagerUserId // Assigning manager to user by unique ID
-      this.loggedInUser.role = 'user'
-
+      delete this.loggedInUser.authorities;
       UserServices.updateProfile(this.loggedInUser)
       .then((response) => {
         if (response.status === 200) {
-          this.$router.push("/profile");
           this.isEditable = false
-          alert('great success')
         }
       })
       .catch((error) => { handleServiceError(error) });

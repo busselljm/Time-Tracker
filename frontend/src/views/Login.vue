@@ -90,7 +90,7 @@ export default {
     margin: auto;
     padding: 0px 30vw 10px 30vw;
   }
-
+  
   .button{
     display: flex;
     justify-content: center;
