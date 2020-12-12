@@ -1,21 +1,21 @@
 <template>
-<div>
-  <time-form/>
-  <time-list/>
-
-</div>
-
+  <div>
+    <time-form />
+    <time-list />
+    <run-reports />
+  </div>
 </template>
 
 <script>
-import TimeForm from '../components/TimeForm.vue'
-import TimeList from '../components/TimeList.vue'
+import TimeForm from "../components/TimeForm.vue";
+import TimeList from "../components/TimeList.vue";
 import projectService from "@/services/ProjectService.js";
+import RunReports from "../components/RunReports.vue";
 
 export default {
-  components: { TimeList, TimeForm },
+  components: { TimeList, TimeForm, RunReports },
   methods: {
-        getProjects() {
+    getProjects() {
       projectService.getAllProjects().then((response) => {
         this.projects = response.data;
         console.log(this.projects);
@@ -26,10 +26,8 @@ export default {
   created() {
     this.getProjects();
   },
-}
-
+};
 </script>
 
 <style>
-
 </style>

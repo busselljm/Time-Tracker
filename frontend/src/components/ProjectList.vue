@@ -1,7 +1,7 @@
 <template>
   <div class="project-list">
     <table class="table table-striped">
-      <thead>
+      <b-thead>
         <tr>
           <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">Sort Recent</th>
           <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">Project Name</th>
@@ -9,8 +9,8 @@
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
         </tr>
-      </thead>
-      <tbody>
+      </b-thead>
+      <b-tbody>
         <tr v-for="project in projects" v-bind:key="project.id">
             <td>
            <span><font-awesome-icon icon="dumpster-fire"/></span>
@@ -30,7 +30,8 @@
             <a href="#" v-on:click="deleteProject(project.projectID)"><font-awesome-icon icon="trash"/></a>
           </td>
         </tr>
-      </tbody>
+      </b-tbody>
+     
     </table>
   </div>
 </template>
