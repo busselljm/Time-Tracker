@@ -37,6 +37,7 @@ export default new Vuex.Store({
             beginningTime: '',
             endingTime: ''
         },
+    report: [],
     token: currentToken || '',
     user: currentUser || {},
     activeUser: {
@@ -89,6 +90,9 @@ export default new Vuex.Store({
           return 0;
         }
       });
+    },
+    GENERATE_REPORT (state, data) {
+      state.report = data;
     },
     SET_ACTIVE_PROJECT(state, data) {
       state.activeProject = data;

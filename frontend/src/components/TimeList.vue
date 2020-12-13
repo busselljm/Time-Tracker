@@ -22,7 +22,7 @@
             <span>{{ timesheet.beginningTime }}</span>
           </td>
           <td>
-            <span>{{ timesheet.endingTime }}</span>
+            <span>{{ Date(timesheet.endingTime) }}</span>
           </td>
           <td>
             <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash"/></a>

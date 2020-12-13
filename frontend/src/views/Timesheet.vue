@@ -1,8 +1,10 @@
 <template>
   <div>
-    <time-form />
-    <time-list />
-    <run-reports />
+    <button v-on:click="runReports = false">Create Time</button>
+    <button v-on:click="runReports = true">Run Reports</button>
+    <time-form v-bind:runReports="runReports" v-if="runReports != undefined"/>
+    <time-list v-if="!runReports"/>
+    <run-reports v-if="runReports === true"/>
   </div>
 </template>
 
@@ -14,6 +16,11 @@ import RunReports from "../components/RunReports.vue";
 
 export default {
   components: { TimeList, TimeForm, RunReports },
+  data() {
+    return{
+      runReports: undefined
+    }
+  },
   methods: {
     getProjects() {
       projectService.getAllProjects().then((response) => {
