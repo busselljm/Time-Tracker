@@ -40,10 +40,10 @@ CREATE TABLE user_project (
 
 CREATE TABLE timesheet (
   time_id SERIAL,
-  project_id int,
-  user_id int,
+  project_id int NOT NULL,
+  user_id int NOT NULL,
   time_desc varchar,
-  beginning_time timestamp,
+  beginning_time timestamp NOT NULL DEFAULT now(),
   ending_time timestamp,
   CONSTRAINT pk_time_id PRIMARY KEY (time_id),
   CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id),

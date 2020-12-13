@@ -6,14 +6,17 @@
       <stop-watch/>
     </div>
   </div>
+
 </template>
 
 <script>
 import NavigationBar from '@/components/Navigation.vue'
+import StopWatch from './components/StopWatch'
 
 export default {
   components: {
-    NavigationBar
+    NavigationBar,
+    StopWatch
   },
   data() {
     return {

@@ -12,7 +12,7 @@
         </option>
       </select>
     </div>
-    <div class="form-group">
+    <div v-if="runReport" class="form-group">
       <label for="description">Description:</label>
       <input
         type="text"
@@ -31,7 +31,7 @@
         v-model="timesheet.beginningTime"
       />
     </div>
-    <div class="form-group">
+    <div  class="form-group">
       <label for="description">Ending Date/Time:</label>
       <input
         id="ending time"
@@ -62,6 +62,7 @@ export default {
         beginningTime: "",
         endingTime: "",
       },
+      runReport: true
     };
   },
   methods: {

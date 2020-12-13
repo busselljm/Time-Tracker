@@ -35,7 +35,7 @@ export default new Vuex.Store({
             userID: '',
             description: '',
             beginningTime: '',
-            endingTime: '',
+            endingTime: ''
         },
     token: currentToken || '',
     user: currentUser || {},
@@ -93,7 +93,9 @@ export default new Vuex.Store({
     SET_ACTIVE_PROJECT(state, data) {
       state.activeProject = data;
     },
-
+    SET_ACTIVE_TIMESHEET(state, data) {
+      state.timesheet = data;
+    },
     SET_ACTIVE_USER(state, data) {
       state.activeUser = data;
     },

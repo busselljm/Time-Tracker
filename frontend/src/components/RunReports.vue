@@ -4,7 +4,6 @@
       <b-thead>
         <tr>
           <th scope="col">Project Name</th>
-        
           <th scope="col">Beginning Time</th>
           <th scope="col">Ending Time</th>
           <th scope="col">Time</th>
@@ -15,7 +14,7 @@
           <td>
             <span>{{ timesheet.projectName }}</span>
           </td>
-        
+
           <td>
             <span>{{ timesheet.beginningTime }}</span>
           </td>
@@ -23,7 +22,14 @@
             <span>{{ timesheet.endingTime }}</span>
           </td>
           <td>
-            <span>{{ secondsToHms(getDifferenceInTimes(timesheet.beginningTime, timesheet.endingTime))}}</span>
+            <span>{{
+              secondsToHms(
+                getDifferenceInTimes(
+                  timesheet.beginningTime,
+                  timesheet.endingTime
+                )
+              )
+            }}</span>
           </td>
         </tr>
       </b-tbody>
@@ -32,7 +38,7 @@
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col"></th>
-          <th scope="col"></th>
+          <th scope="col">{{ reduce(this.timesheets) }}</th>
         </tr>
       </b-tfoot>
     </table>
@@ -53,29 +59,35 @@ export default {
         description: "",
         beginningTime: "",
         endingTime: ""
-        
       },
-      timeArray: []
     };
   },
+  computed: {
+  },
   methods: {
-    getDifferenceInTimes(beg, end){
-        let dateBeg = new Date(beg);
-        let dateEnd = new Date(end);
-         
-        return (dateEnd.getTime() - dateBeg.getTime())/1000;
+    getDifferenceInTimes(beg, end) {
+      if(end == null){
+        return 0;
+      }
+      let dateBeg = new Date(beg);
+      let dateEnd = new Date(end);
+      this.$store.commit(
+        "SET_TOTAL_TIME",
+        (dateEnd.getTime() - dateBeg.getTime()) / 1000
+      );
+      return (dateEnd.getTime() - dateBeg.getTime()) / 1000;
     },
     secondsToHms(d) {
-    d = Number(d);
-    var h = Math.floor(d / 3600);
-    var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor(d % 3600 % 60);
+      d = Number(d);
+      var h = Math.floor(d / 3600);
+      var m = Math.floor((d % 3600) / 60);
+      var s = Math.floor((d % 3600) % 60);
 
-    var hDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : "";
-    var mDisplay = m > 0 ? m + (m == 1 ? " minute " : " minutes ") : "";
-    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-    return hDisplay + mDisplay + sDisplay; 
-},
+      var hDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : "";
+      var mDisplay = m > 0 ? m + (m == 1 ? " minute " : " minutes ") : "";
+      var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+      return hDisplay + mDisplay + sDisplay;
+    },
     getTimesheet() {
       timesheetService.getAllTimesheets().then((response) => {
         this.timesheets = response.data;
@@ -111,6 +123,12 @@ export default {
             return "Something went really wrong.";
           }
         });
+    },
+    reduce() {
+      let total = this.timesheets.reduce((a, b) => {
+        return a + this.getDifferenceInTimes(b.beginningTime, b.endingTime);
+      }, 0);
+      return this.secondsToHms(total);
     },
   },
   created() {

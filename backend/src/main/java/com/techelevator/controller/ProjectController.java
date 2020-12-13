@@ -38,9 +38,6 @@ public class ProjectController {
         projectDAO.deleteProjectById(id);
     }
 
-
-
-
     @GetMapping(value = "/projects")
     public List<Project> getProjectsList(Principal principal){
         return projectDAO.allProjects(principal.getName());

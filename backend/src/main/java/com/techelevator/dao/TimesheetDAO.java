@@ -8,12 +8,14 @@ public interface TimesheetDAO {
 
     void createTimesheet(Timesheet newTimesheet);
 
-    void updateTimesheet(Long timeId, Timesheet updatedTimesheet);
+    void completeTimesheet(Long timeId, String description);
 
     void deleteTimesheet(Long timeId);
 
     List<Timesheet> listTimesheets(Long userId);
 
     Timesheet getTimesheet(Long timeID);
+
+    Timesheet getActiveLog(Long userId);
 
 }

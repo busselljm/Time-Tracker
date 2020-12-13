@@ -21,6 +21,17 @@ export default {
 
   getTimesheetByID(timeID) {
     return http.get(`/times/${timeID}`);
-  }
+  },
 
+  createActiveTimesheet(projectID) {
+    return http.post(`/times/${projectID}/start`, null);
+  },
+
+  completeActiveTimesheet(description) {
+    return http.put(`/times/complete`, description);
+  },
+
+  getActiveTimesheet() {
+    return http.get('/times/active');
+  }
 }

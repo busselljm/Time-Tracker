@@ -9,14 +9,12 @@ public class Timesheet {
     private Long timeID;
     @NotNull
     private Long projectID;
-    @NotNull
     private String projectName;
-    private Long userID;
     @NotNull
+    private Long userID;
     private String description;
     @NotNull
     private LocalDateTime beginningTime;
-    @NotNull
     private LocalDateTime endingTime;
 
     public Timesheet(long timeID, long projectID, long userID, LocalDateTime beginningTime) {
