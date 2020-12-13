@@ -86,10 +86,16 @@ export default {
 </script>
 
 <style>
-  .input-group, .flex-nowrap {
-    margin: auto;
-    padding: 0px 30vw 10px 30vw;
-  }
+
+#login {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
   
   .button{
     display: flex;

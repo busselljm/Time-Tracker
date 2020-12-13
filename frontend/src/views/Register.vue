@@ -315,10 +315,6 @@ label {
   justify-content: center;
   padding: 10px 0px;
 }
-.input-group,
-.flex-nowrap {
-  margin: auto;
-  padding: 0px 30vw 10px 30vw;
-}
+
 </style>
 
