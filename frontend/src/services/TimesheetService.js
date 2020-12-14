@@ -28,7 +28,7 @@ export default {
   },
 
   completeActiveTimesheet(description) {
-    return http.put(`/times/complete`, description);
+    return http.put(`/times/complete`, {"description": description});
   },
 
   getActiveTimesheet() {

@@ -18,7 +18,16 @@
         v-model="project.projectDescription"
       ></textarea>
     </div>
-
+<div class="form-group">
+      <label for="image">Image (Optional):</label>
+      <input
+        id="image"
+        type="text"
+        class="form-control"
+        v-model="project.projectImg"
+        autocomplete="off"
+      />
+    </div>
     <div class="form-group">
       <label for="end-date">Completion Date:</label>
       <input
@@ -92,4 +101,12 @@ export default {
 </script>
 
 <style>
+
+img {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
 </style>

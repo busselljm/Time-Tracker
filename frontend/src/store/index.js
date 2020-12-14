@@ -59,14 +59,8 @@ export default new Vuex.Store({
       state.timesheets = data;
     },
     SORT_PROJECTS_BY_NAME(state){
-      state.projects.sort((project1, project2) => {
-        if(project1.projectName < project2.projectName) {
-          return -1;
-        } else if(project1.projectName > project2.projectName){
-          return 1;
-        } else {
-          return 0;
-        }
+      state.projects = state.projects.sort((project1, project2) => {
+        return project1.projectName.toLowerCase().localeCompare(project2.projectName.toLowerCase())
       });
     },
     SORT_PROJECTS_BY_DATE(state){
@@ -81,7 +75,19 @@ export default new Vuex.Store({
       });
     },
     SORT_PROJECTS_BY_RECENT(state){
+      debugger
       state.projects.sort((project1, project2) => {
+        if(project2.mostRecent == null) {
+          if(project1.mostRecent == null) {
+            return 0;
+          } else {
+            return -1;
+          }
+        } else {
+          if(project1.mostRecent == null) {
+            return 1;
+          }
+        }
         if(project1.mostRecent > project2.mostRecent) {
           return -1;
         } else if(project1.mostRecent < project2.mostRecent){

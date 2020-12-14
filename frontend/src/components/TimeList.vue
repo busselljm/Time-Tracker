@@ -1,6 +1,6 @@
 <template>
   <div class="timesheet-list">
-    <table class="table table-striped">
+    <table class="styled-table">
       <thead>
         <tr>
           <th scope="col">Project Name</th>
@@ -25,7 +25,7 @@
             <span>{{ Date(timesheet.endingTime) }}</span>
           </td>
           <td>
-            <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash"/></a>
+            <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash" id="trash"/></a>
           </td>
         </tr>
       </tbody>
@@ -94,3 +94,45 @@ export default {
 };
 </script>
 
+<style scoped>
+.styled-table {
+  border-collapse: collapse;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  margin: 25px 0;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.styled-table thead tr {
+  background-color: #07617d;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 10px 12px;
+    position: center;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #34495e;
+  
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f8f6f6;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 5px solid #f9a828;
+}
+
+
+#trash {
+  color: rgb(207, 25, 25);
+}
+
+</style>

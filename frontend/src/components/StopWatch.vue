@@ -1,13 +1,14 @@
 <template>
   <div
     id="app"
-    style="position: fixed; top: calc(100vh - 80px); left: calc(100vw - 380px)"
-    v-if="!loadingTimesheet"
+    class="footer-container"
+    v-if="$store.state.user.id != null && !loadingTimesheet"
   >
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
-    <div v-if="$store.state.timesheet == null">
+    <div class="footer-row" v-if="$store.state.timesheet == null">
       <select
         name="projects"
+        class="footer-row-elem"
         id="project name"
         v-model="selectedProject"
         v-if="$store.state.timesheet == null"
@@ -21,15 +22,26 @@
         </option>
       </select>
 
-      <button :disabled="selectedProject == null" v-on:click="start">Start Time Log</button>
+      <button
+        class="footer-row-elem"
+        :disabled="selectedProject == null"
+        v-on:click="start"
+      >
+        Start Time Log
+      </button>
     </div>
 
     <!-- ACTIVE TIME LOG EXISTS -->
-    <div v-if="$store.state.timesheet != null">
-      <button v-on:click="stop" v-if="$store.state.timesheet != null">
+    <div class="footer-row" v-if="$store.state.timesheet != null">
+      <input class="footer-row-elem" type="text" v-model="description"/>
+      <button
+        class="footer-row-elem"
+        v-on:click="stop"
+        v-if="$store.state.timesheet != null"
+      >
         Complete Log
       </button>
-      <p>{{ hours }}:{{ minutes }}:{{ seconds }}</p>
+      <span class="footer-timer">{{ formattedElapsedTime }}</span>
     </div>
   </div>
 </template>
@@ -46,6 +58,7 @@ export default {
       timer: undefined,
       selectedProject: null,
       loadingTimesheet: false,
+      description: "",
     };
   },
   computed: {
@@ -78,25 +91,28 @@ export default {
   },
   methods: {
     start() {
+      this.description = "";
       timesheetService.createActiveTimesheet(this.selectedProject).then(
         () => {
-          this.refreshActive()
+          this.refreshActive();
         },
         (error) => {
-          console.log(error);
-          alert("Couldn't create new time log");
+          console.error(error);
         }
       );
     },
     stop() {
-      timesheetService.completeActiveTimesheet("I did it!").then(
+      if (this.description == null || this.description == "") {
+        alert("Description required to log record.");
+        return;
+      }
+      timesheetService.completeActiveTimesheet(this.description).then(
         () => {
           clearInterval(this.timer);
           this.$store.commit("SET_ACTIVE_TIMESHEET", null);
         },
         (error) => {
-          console.log(error);
-          alert("Couldn't complete time log");
+          console.error(error);
         }
       );
     },
@@ -112,7 +128,7 @@ export default {
             this.$store.commit("SET_ACTIVE_TIMESHEET", response.data);
             let startTime = Date.parse(response.data.beginningTime);
             let currentTime = new Date().getTime();
-            
+
             this.elapsedTime = currentTime - startTime;
 
             this.timer = setInterval(() => {
@@ -123,10 +139,8 @@ export default {
           }
         },
         (error) => {
-          this.loadingTimesheet = false;
           // TODO: handle better
-          console.log(error);
-          alert("Couldn't read active time log data");
+          console.error(error);
         }
       );
     },
@@ -141,7 +155,28 @@ export default {
 </script>
 
 <style scoped>
-
+#app {
+  margin: 0;
+  border: 0 none;
+  padding: 10px;
+  z-index: 999999;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 46.5px;
+}
+.footer-row {
+  float: right;
+}
+.footer-row-elem {
+  margin-left: 15px;
+}
+.footer-timer {
+  left: 15px;
+  position: fixed;
+  bottom: 10px;
+}
 </style>
 
      

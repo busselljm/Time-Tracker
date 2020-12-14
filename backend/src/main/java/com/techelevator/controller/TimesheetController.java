@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.TimesheetDAO;
 import com.techelevator.dao.UserDAO;
+import com.techelevator.model.CompleteTimesheetDTO;
 import com.techelevator.model.Timesheet;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -65,13 +66,13 @@ public class TimesheetController {
     }
 
     @PutMapping("/times/complete")
-    public void completeActiveTimesheet(String description, Principal principal){
+    public void completeActiveTimesheet(@RequestBody CompleteTimesheetDTO request, Principal principal){
         Long userId = userDAO.findByUsername(principal.getName()).getId();
 
         Timesheet timeLog = timesheetDAO.getActiveLog(userId);
         if(timeLog == null)  {
             return; // error
         }
-        timesheetDAO.completeTimesheet(timeLog.getTimeID(), description);
+        timesheetDAO.completeTimesheet(timeLog.getTimeID(), request.getDescription());
     }
 }

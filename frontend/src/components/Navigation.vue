@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
   nav {
-    background: rgb(100, 145, 100);
+    background-color: #3498db;
     padding: .5rem;
     margin-bottom: 1rem;
   }

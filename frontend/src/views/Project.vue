@@ -1,6 +1,7 @@
 <template>
   <div>
-    <project-form />
+    <button v-on:click="createProject = !createProject">Create Project</button>
+    <project-form v-if="createProject"/>
     <project-list/>
   </div>
 </template>
@@ -12,6 +13,11 @@ export default {
     components: {
         ProjectForm,
         ProjectList
+    },
+    data () {
+      return {
+        createProject: false
+      }
     }
 };
 </script>

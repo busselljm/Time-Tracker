@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <navigation-bar :items="navigationItems" />
-    <div class="container">
+    <div class="container window-container">
       <router-view />
       <stop-watch/>
     </div>
+    <div class="page-footer"></div>
   </div>
 
 </template>
@@ -31,3 +32,18 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.window-container>div{
+  padding-bottom: 46.5px;
+}
+.page-footer {
+  position: fixed;
+  bottom:0;
+  right:0;
+  width: 100vw;
+  height: 46.5px;
+  background-color:#3498db;
+}
+</style>
