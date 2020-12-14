@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <navigation-bar :items="navigationItems" />
+    <body>    
     <div class="container window-container">
       <router-view />
       <stop-watch/>
     </div>
+    </body>
     <div class="page-footer"></div>
   </div>
 

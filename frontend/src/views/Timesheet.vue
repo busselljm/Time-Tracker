@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button v-on:click="runReports = false">Create Time</button>
-    <button v-on:click="runReports = true">Run Reports</button>
+    <button v-on:click="runReports = false" class="btn btn-primary">Create Time</button>
+    <button v-on:click="runReports = true" class="btn btn-danger">Run Reports</button>
     <time-form v-bind:runReports="runReports" v-if="runReports != undefined"/>
     <time-list v-if="!runReports"/>
     <run-reports v-if="runReports === true"/>

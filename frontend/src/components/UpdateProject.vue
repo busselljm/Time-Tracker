@@ -21,12 +21,12 @@
       <input name="endDate" type="date" v-model="endDate" />
     </div>
     <div>
-      <button type="submit" v-on:click="updateProject()">
-        <font-awesome-icon icon="check" />
+      <button type="submit" v-on:click="updateProject()" class="btn btn-primary">
+        <font-awesome-icon icon="check" /> Save
       </button>
       
-      <button type="submit" v-on:click="cancelUpdate()">
-        <font-awesome-icon icon="window-close" />
+      <button type="submit" v-on:click="cancelUpdate()" class="btn btn-secondary">
+        <font-awesome-icon icon="window-close" /> Cancel
       </button>
     </div>
   </form>

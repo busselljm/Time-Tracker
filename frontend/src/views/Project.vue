@@ -1,8 +1,9 @@
 <template>
   <div>
-    <button v-on:click="createProject = !createProject">Create Project</button>
+    <button v-on:click="createProject = !createProject" class="btn btn-primary">Create Project</button>
     <project-form v-if="createProject"/>
     <project-list/>
+    
   </div>
 </template>
 
