@@ -27,6 +27,7 @@ CREATE TABLE projects (
   project_desc varchar,
   project_img varchar,
   end_date varchar,
+  shared boolean DEFAULT 'false',
   CONSTRAINT pk_project PRIMARY KEY (project_id)
 );
 

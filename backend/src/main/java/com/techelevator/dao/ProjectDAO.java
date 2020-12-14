@@ -13,7 +13,7 @@ public interface ProjectDAO {
 
     void createProjectUser(Long projectID, Long userID);
 
-    List<Project>allProjects(String username);
+    List<Project>allProjects(Long userId);
 
     Project getProjectByID(Long id);
 

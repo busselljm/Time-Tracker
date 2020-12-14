@@ -40,7 +40,8 @@ public class ProjectController {
 
     @GetMapping(value = "/projects")
     public List<Project> getProjectsList(Principal principal){
-        return projectDAO.allProjects(principal.getName());
+        Long userID = userDAO.findByUsername(principal.getName()).getId();
+        return projectDAO.allProjects(userID);
     }
 
     @GetMapping(value = "/projects/{id}")
