@@ -110,16 +110,16 @@ export default {
         () => {
           clearInterval(this.timer);
           this.$store.commit("SET_ACTIVE_TIMESHEET", null);
-          this.refreshProjects();
+          this.getTimesheets();
         },
         (error) => {
           console.error(error);
         }
       );
     },
-    refreshProjects() {
-      this.projectService.getAllProjects().then((response) => {
-        this.$store.commit("SET_PROJECTS", response.data);
+    getTimesheets() {
+      timesheetService.getAllTimesheets().then((response) => {
+        this.$store.commit("SET_TIMESHEETS", response.data);
       });
     },
     refreshActive() {
