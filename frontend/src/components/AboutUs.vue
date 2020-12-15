@@ -5,7 +5,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <div>
-      <h1 class="header">About THYMETrackr</h1>
+      <h1 class="header">About KronoTrakr</h1>
     </div>
 
     <div>
@@ -42,10 +42,11 @@
 
         <div>
           <img src="../../img/Ross.png" alt="Picture of Ross" />
-          <li class="name">Ross Mather<a
-              href="https://www.linkedin.com/in/ross-mather/"
+          <li class="name">
+            Ross Mather<a href="https://www.linkedin.com/in/ross-mather/"
               ><i class="fa fa-linkedin-square"></i
-            ></a></li>
+            ></a>
+          </li>
           <p>
             Before Tech Elevator I was living and working in Saint-Petersburg,
             Russia. I took an introductory programming course while in Russia
@@ -56,32 +57,38 @@
 
         <div>
           <img src="../../img/winnie.jpg" alt="Picture of Winnie" />
-          <li class="name">Winnie Kimani<a
-              href="https://www.linkedin.com/in/winnie-kimani/"
+          <li class="name">
+            Winnie Kimani<a href="https://www.linkedin.com/in/winnie-kimani/"
               ><i class="fa fa-linkedin-square"></i
-            ></a></li>
-          <p>This is where a paragraph about you will go</p>
+            ></a>
+          </li>
+          <p>
+            My passion is to provide quality service led by integrity at all
+            time. With the exposure to data analysis and quality improvement
+            dealing with performance improvement tools. This is what peaked my
+            interest to fully immerse myself in the tech field. My goal is to
+            apply the knowledge and skills I have gained to a company that
+            fosters growth and provides challenging opportunities.
+          </p>
         </div>
 
         <div>
           <img src="../../img/Stephanie.png" alt="Picture of Stephanie" />
-          <li class="name">Stephanie Berning<a
+          <li class="name">
+            Stephanie Berning<a
               href="https://www.linkedin.com/in/stephanieaberning/"
               ><i class="fa fa-linkedin-square"></i
-            ></a></li>
+            ></a>
+          </li>
           <p>
             Hi! I'm a software developer from Cincinnati, OH. I recently
             completed the Java bootcamp at Tech Elevator. My background includes
             customer service and clerical work at the Hamilton County
-            Courthouse. Working at the courthouse helped me gain a wealth of
-            experience with critical thinking and data analysis. Most of my
-            career was working with lawyers, courtroom staff, and defendants;
-            helping them organize their legal troubles. Through the mountains of
-            paperwork, I found myself wishin I was around more modern
-            technology. During my free time, by video lectures, I tried learning
-            how to code on my own; but found I needed something with more
-            structure. I hope to continue to improve my coding skills through
-            group collaboration adn add value to where I work.
+            Courthouse, working with lawyers, courtroom staff, and defendants.
+            Working at the courthouse helped me gain a wealth of experience with
+            critical thinking and data analysis. I hope to continue
+            to improve my coding skills through group collaboration adn add
+            value to where I work.
           </p>
         </div>
       </ul>
@@ -114,7 +121,4 @@ img {
   width: 25%;
   height: auto;
 }
-
-
-
 </style>
