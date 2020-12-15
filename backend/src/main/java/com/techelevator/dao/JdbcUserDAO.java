@@ -25,7 +25,7 @@ public class JdbcUserDAO implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name " +
+        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name, is_manager " +
                 "FROM users;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql);
         while(rowSet.next()) {
@@ -37,11 +37,18 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public void updateUser(User user, String username, Long id) {
+        Long initialManagerId = getInitialManagerId(id);
+
         String sql = "UPDATE users SET first_name=? , last_name =? , email =?, avatar =?, manager_id =?, manager_first_name = ?, manager_last_name = ? WHERE username=? AND user_id = ?;";
         jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAvatar(), user.getManagerID(), user.getManagerFirstName(), user.getManagerLastName(), username, id);
-        
+
         sql = "UPDATE users SET is_manager = 'true' WHERE user_id = ?";
         jdbcTemplate.update(sql, user.getManagerID());
+
+        if (!managerCheck(initialManagerId)) { //checks to see if manager still has employees
+            sql = "UPDATE users SET is_manager = 'false' WHERE user_id = ?";
+            jdbcTemplate.update(sql, initialManagerId);
+        }
     }
 
     @Override
@@ -52,7 +59,7 @@ public class JdbcUserDAO implements UserDAO {
 
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
-        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name FROM users WHERE username ILIKE ?;";
+        String sql = "SELECT user_id, username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name, is_manager FROM users WHERE username ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
         if (rowSet.next()){
             return mapRowToUser(rowSet);
@@ -78,6 +85,22 @@ public class JdbcUserDAO implements UserDAO {
             }
         }
 
+        private Long getInitialManagerId(Long id) {
+        String sql = "SELECT manager_id FROM users WHERE user_id = ?";
+        return jdbcTemplate.queryForObject(sql, Long.class, id);
+        }
+
+        private boolean managerCheck(Long id) {
+        List<User> allUsers = getAllUsers();
+        for (User u : allUsers) {
+            if (u.getManagerID() == id) {
+                return true; //should return true if manager has an employee
+            }
+        }
+
+        return false; //
+        }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
@@ -96,6 +119,7 @@ public class JdbcUserDAO implements UserDAO {
         } catch(NullPointerException e) {
             e.getMessage();
         }
+        user.setManager(rs.getBoolean("is_manager"));
         return user;
     }
 }

@@ -48,8 +48,8 @@ export default new Vuex.Store({
       avatar: "",
       managerFirstName: "",
       managerLastName: "",
-    },
-    isManager: false
+      manager: ""
+    }
   },
 
   mutations: {
@@ -119,9 +119,6 @@ export default new Vuex.Store({
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
     },
-    SET_MANAGER(state, data) {
-      state.isManager = data;
-    },
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -129,7 +126,6 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
       state.projects = [];
-      state.isManager = false;
     },
   }
 })

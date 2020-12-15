@@ -117,11 +117,6 @@ export default {
     // Get all users on component
     UserServices.getAllUsers().then((response) => {
       this.users = response.data;
-      this.users.forEach(element => {
-        if (element.managerID === this.$store.state.user.id) {
-          this.$store.commit('SET_MANAGER', true);
-        }
-      })
     });
   },
 }

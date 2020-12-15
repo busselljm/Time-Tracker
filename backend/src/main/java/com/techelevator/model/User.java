@@ -23,6 +23,7 @@ public class User {
    private Long managerID;
    private String managerFirstName;
    private String managerLastName;
+   private boolean isManager;
 
 
    public User () {}
@@ -120,6 +121,14 @@ public class User {
 
    public void setManagerLastName(String managerLastName) {
       this.managerLastName = managerLastName;
+   }
+
+   public boolean isManager() {
+      return isManager;
+   }
+
+   public void setManager(boolean manager) {
+      this.isManager = manager;
    }
 
    public boolean isActivated() {
