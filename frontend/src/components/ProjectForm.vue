@@ -57,6 +57,7 @@ export default {
         projectImg: "",
         ongoing: false,
         endDate: null,
+        shared: false
       },
     };
   },

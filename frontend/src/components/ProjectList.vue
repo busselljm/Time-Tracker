@@ -41,6 +41,9 @@
               ><font-awesome-icon icon="trash" id="trash"
             /></a>
           </td>
+          <td v-if="isManager === true">
+            <input type="checkbox" v-model="project.shared">
+          </td>
         </tr>
       </b-tbody>
     </table>
@@ -57,7 +60,9 @@ export default {
         projectDescription: "",
         projectImg: "",
         endDate: "",
+        shared: false
       },
+      isManager: {...this.$store.state.isManager}
     };
   },
   methods: {

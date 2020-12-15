@@ -22,7 +22,7 @@
       </select>
 
       <button
-        class="footer-row-elem"
+        class="footer-row-elem btn btn-primary"
         :disabled="selectedProject == null"
         v-on:click="start"
       >
@@ -35,7 +35,7 @@
       <span class="footer-row-elem">Project: {{$store.state.timesheet.projectName}}</span>
       <input class="footer-row-elem" type="text" v-model="description" placeholder="Describe work performed"/>
       <button
-        class="footer-row-elem"
+        class="footer-row-elem btn btn-danger"
         v-on:click="stop"
         v-if="$store.state.timesheet != null"
       >

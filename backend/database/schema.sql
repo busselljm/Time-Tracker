@@ -17,7 +17,7 @@ CREATE TABLE users (
    manager_id int,
    manager_first_name varchar,
    manager_last_name varchar,
-
+   is_manager boolean DEFAULT 'false',
   CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
