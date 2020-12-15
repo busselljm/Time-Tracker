@@ -33,7 +33,7 @@
     <!-- ACTIVE TIME LOG EXISTS -->
     <div class="footer-row" v-if="$store.state.timesheet != null">
       <span class="footer-row-elem">Project: {{$store.state.timesheet.projectName}}</span>
-      <input class="footer-row-elem" type="text" v-model="description" placeholder="Describe work performed"/>
+      <input class="footer-row-elem" maxlength="50" type="text" v-model="description" placeholder="Describe work performed"/>
       <button
         class="footer-row-elem btn btn-danger"
         v-on:click="stop"

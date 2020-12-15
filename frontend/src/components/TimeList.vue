@@ -16,7 +16,7 @@
             <span>{{ timesheet.projectName }}</span>
           </td>
           <td>
-            <span>{{ timesheet.description }}</span>
+            <span >{{ timesheet.description }}</span>
           </td>
           <td>
             <span>{{ timesheet.beginningTime }}</span>
@@ -98,6 +98,7 @@ export default {
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   width: 100%;
+  
 }
 
 .styled-table thead tr {
