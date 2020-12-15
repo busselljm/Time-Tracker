@@ -32,7 +32,8 @@
 
     <!-- ACTIVE TIME LOG EXISTS -->
     <div class="footer-row" v-if="$store.state.timesheet != null">
-      <input class="footer-row-elem" type="text" v-model="description"/>
+      <span class="footer-row-elem">Project: {{$store.state.timesheet.projectName}}</span>
+      <input class="footer-row-elem" type="text" v-model="description" placeholder="Describe work performed"/>
       <button
         class="footer-row-elem"
         v-on:click="stop"
