@@ -8,7 +8,7 @@
 
     </div>
     <footer>
-      <p class="text-white text-center">
+      <p class="copyright text-center">
         Copyright &copy; {{ year }}. All Rights Reserved.
       </p>
     </footer>
@@ -58,6 +58,10 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+.copyright {
+  color: #686868;
 }
 
 
