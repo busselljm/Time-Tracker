@@ -19,10 +19,14 @@
             <span >{{ timesheet.description }}</span>
           </td>
           <td>
-            <span>{{ timesheet.beginningTime }}</span>
+            <span>{{(new Date(timesheet.beginningTime)).toDateString()}}</span> 
+            <br>
+            <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
           </td>
           <td>
-            <span>{{ Date(timesheet.endingTime) }}</span>
+            <span>{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
+            <br>
+             <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
           </td>
           <td>
             <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash" id="trash"/></a>
