@@ -11,6 +11,7 @@
           {{ project.projectName }}
         </option>
       </select>
+         <button v-on:click.prevent="clear()">Clear</button>
     </div>
     <div v-if="!runReports" class="form-group">
       <label for="description">Description:</label>
@@ -136,6 +137,9 @@ export default {
         endingTime: "",
       }
       this.$emit('reset-form', null);
+    },
+    clear() {
+      this.timesheet.projectID = "";
     },
     generateReport() {
       let report = this.$store.state.timesheets;
