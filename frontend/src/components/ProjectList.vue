@@ -21,7 +21,10 @@
           <td>
             <span>
               <img v-if="project.projectImg != ''" :src="project.projectImg" />
-              <img v-if="project.projectImg === ''" src="http://placegoat.com/200/200"/>
+              <img
+                v-if="project.projectImg === ''"
+                src="http://placegoat.com/200/200"
+              />
             </span>
           </td>
           <td>
@@ -42,7 +45,7 @@
             /></a>
           </td>
           <td v-if="isManager === true">
-            <input type="checkbox" v-model="project.shared">
+            <input type="checkbox" v-model="project.shared" />
           </td>
         </tr>
       </b-tbody>
@@ -60,9 +63,9 @@ export default {
         projectDescription: "",
         projectImg: "",
         endDate: "",
-        shared: false
+        shared: false,
       },
-      isManager: {...this.$store.state.isManager}
+      isManager: { ...this.$store.state.isManager },
     };
   },
   methods: {
@@ -72,31 +75,33 @@ export default {
       });
     },
     deleteProject(projectID) {
-      projectService
-        .deleteProject(projectID)
-        .then((response) => {
-          if (
-            confirm(
-              "Are you sure you want to delete project card? This action cannot be undone."
-            )
-          ) {
-            if (response.status === 200) {
-              this.getProjects();
+      if (
+        confirm(
+          "Are you sure you want to delete project card? This action cannot be undone."
+        )
+      ) {
+        projectService
+          .deleteProject(projectID)
+          .then((response) => {
+            {
+              if (response.status === 200) {
+                this.getProjects();
+              }
             }
-          }
-        })
-        .catch((error) => {
-          if (error.response) {
-            return (
-              "Failed to update project. Response was: " +
-              error.response.data.message
-            );
-          } else if (error.request) {
-            return "Failed to connect to server.";
-          } else {
-            return "Something went really wrong.";
-          }
-        });
+          })
+          .catch((error) => {
+            if (error.response) {
+              return (
+                "Failed to update project. Response was: " +
+                error.response.data.message
+              );
+            } else if (error.request) {
+              return "Failed to connect to server.";
+            } else {
+              return "Something went really wrong.";
+            }
+          });
+      }
     },
   },
   created() {
@@ -125,12 +130,11 @@ export default {
 .styled-table th,
 .styled-table td {
   padding: 10px 12px;
-    position: center;
+  position: center;
 }
 
 .styled-table tbody tr {
   border-bottom: 1px solid #34495e;
-  
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -148,7 +152,6 @@ export default {
 #trash {
   color: rgb(207, 25, 25);
 }
-
 </style>
 
 

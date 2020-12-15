@@ -56,14 +56,15 @@ export default {
       });
     },
     deleteTimesheet(timeID) {
-      timesheetService
-        .deleteTimesheet(timeID)
-        .then((response) => {
-          if (
+      if (
             confirm(
               "Are you sure you want to delete this timesheet? This action cannot be undone."
             )
-          ) {
+          )
+      timesheetService
+        .deleteTimesheet(timeID)
+        .then((response) => {
+           {
             if (response.status === 200) {
               this.getTimesheets();
             }
