@@ -2,8 +2,11 @@
   <nav>
     <div class="container">
       <ul class="list-unstyled text-right">
-        <li v-for="(item, i) in items" :key="item.component" class="d-inline">
-            <router-link :to="item.component" :class="i === items.length - 1 ? 'btn btn-primary btn-sm' : ''">{{ item.text}}</router-link>
+        <li v-for="(item) in items" :key="item.component" class="d-inline">
+            <router-link :to="item.component">{{ item.text}}</router-link>
+        </li>
+        <li class="d-inline" v-if="$store.state.token !== ''">
+        <router-link :to="{name: 'logout' }" class="btn btn-primary btn-sm">Logout</router-link>
         </li>
       </ul>
     </div>

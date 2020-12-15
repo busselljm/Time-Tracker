@@ -27,8 +27,8 @@ export default {
         { text: 'Home', component: '/' },
         { text: 'Profile', component: 'profile' },
         { text: 'Projects', component: 'projects' },
-        { text: 'Time Logs', component: 'times' },
-        { text: 'Logout', component: 'logout' }
+        { text: 'Time Logs', component: 'times' }
+        // { text: 'Logout', component: 'logout' }
       ]
     }
   }
