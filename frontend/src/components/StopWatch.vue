@@ -3,7 +3,7 @@
     class="card"
     v-if="!loadingTimesheet"
   >
-  <h3 class="mb-3">Timer</h3>
+  <h3 class="mb-3 header">Timer</h3>
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
     <div v-if="$store.state.timesheet == null">
       <p>Choose project:</p>
@@ -168,12 +168,15 @@ export default {
 h3 {
   margin: 0;
   background-color:  #363636;
+  text-align: center;
+  padding: .5rem;
+  color: #d6d6d6;
   }
 
 .card {
   position: fixed;
   top: 115px;
-  padding: 1.5rem;
+  padding: 1rem;
   left: 2rem;
 }
 
@@ -186,6 +189,29 @@ p {
 label {
   padding: 0;
 }
+
+.btn-success {
+  background-color: #a3e000; 
+  color: #1a2400;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-success:hover {
+    background-color: #c1f531;
+    transition: all .25s ease;
+     color: #1a2400;
+  }
+
+  .btn-danger {
+    background-color: #c74513;
+
+  }
+
+  .btn-danger:hover {
+    background-color: rgb(252, 116, 62);
+    border: none;
+  }
 
 
 </style>

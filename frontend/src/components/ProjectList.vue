@@ -3,17 +3,17 @@
     <table class="styled-table">
       <b-thead>
         <tr>
-          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">
+          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">
             Sort Recent
           </th>
-          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">
+          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">
             Project Name
           </th>
-          <th scope="col" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">
+          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">
             End Date
           </th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </b-thead>
       <b-tbody>
@@ -151,6 +151,10 @@ export default {
 
 #trash {
   color: rgb(207, 25, 25);
+}
+
+.sort {
+  cursor: pointer;
 }
 </style>
 
