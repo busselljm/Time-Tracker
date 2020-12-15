@@ -1,0 +1,17 @@
+html,
+body,
+#app,
+.window-container {
+  min-height: calc(100vh - 171px); /* Subtract height of footer from container height */
+  background: #f3f3f3 !important;
+}
+
+.center-vertically {
+    display: flex;
+    align-items: center;
+}
+
+.center-horizontally {
+    display: flex;
+    justify-content: center;
+}

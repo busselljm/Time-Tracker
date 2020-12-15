@@ -49,7 +49,7 @@
             </button>
           </div>
           <div class="col-6">
-            <button v-if="isEditable" class="btn btn-secondary btn-block" @click="isEditable = false">
+            <button v-if="isEditable" class="btn btn-secondary btn-block" @click="onCancel()">
               <font-awesome-icon icon="window-close" /> Cancel
             </button>
           </div>
@@ -68,7 +68,7 @@ export default {
     return {
       isEditable: false,
       users: [],
-      loggedInUser: this.$store.state.user, // Logged in user data already stored in state. Assigning to local variable to modify
+      loggedInUser: { ...this.$store.state.user }, // Logged in user data already stored in state. Assigning to local variable to modify
       selectedManagerUserId: undefined,
     }
   },
@@ -80,10 +80,13 @@ export default {
       this.loggedInUser.managerFirstName = this.findFirstNameByID(this.selectedManagerUserId)[0];
       this.loggedInUser.managerLastName = this.findLastNameByID(this.selectedManagerUserId)[0];
       delete this.loggedInUser.authorities;
+
       UserServices.updateProfile(this.loggedInUser)
       .then((response) => {
         if (response.status === 200) {
           this.isEditable = false
+          // Commit new loggedin user into Vuex store - prevents from have to make a GET service call to update data
+          this.$store.commit('SET_USER', this.loggedInUser)
         }
       })
       .catch((error) => { handleServiceError(error) });
@@ -94,6 +97,10 @@ export default {
     findLastNameByID(id) {
       return this.users.filter(user => user.id === id).map(user => user.lastName);
     },
+    onCancel() {
+      this.isEditable = false
+      this.loggedInUser = this.$store.state.user
+    }
   },
   computed: {
     allOtherUsers() {

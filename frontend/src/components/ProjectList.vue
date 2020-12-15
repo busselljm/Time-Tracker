@@ -44,7 +44,6 @@
         </tr>
       </b-tbody>
     </table>
-    <img src="https://i.pinimg.com/originals/6c/b2/70/6cb2704a5997b5d5b96fce0dec7c3a1e.gif" alt="">
   </div>
 </template>
 <script>

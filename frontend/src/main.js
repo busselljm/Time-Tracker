@@ -19,6 +19,7 @@ import { faPortrait } from '@fortawesome/free-solid-svg-icons'
 import { faAt } from '@fortawesome/free-solid-svg-icons'
 import { faIdCard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import '../assets/styles.css'
  
 library.add(faUserSecret, faEdit, faDumpsterFire, faTrash, faCheck, faWindowClose, faLock, faPortrait, faAt, faIdCard)
 

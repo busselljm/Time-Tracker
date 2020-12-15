@@ -1,51 +1,62 @@
 <template>
   <div id="app">
-    <navigation-bar :items="navigationItems" />
-    <body>    
-    <div class="container window-container">
+    <navigation-bar v-if="!isLogin" :items="navigationItems" />
+    <div class="container window-container" :class="isLogin ? 'center-vertically center-horizontally' : ''">
       <router-view />
-      <stop-watch v-if="$store.state.user.id != null"/>
-    </div>
-    </body>
-    <div class="page-footer"></div>
-  </div>
 
+      <stop-watch v-if="!isLogin && $store.state.user.id != null" />
+
+    </div>
+    <footer>
+      <p class="text-white text-center">
+        Copyright &copy; {{ year }}. All Rights Reserved.
+      </p>
+    </footer>
+  </div>
 </template>
 
 <script>
-import NavigationBar from '@/components/Navigation.vue'
-import StopWatch from './components/StopWatch'
+import NavigationBar from "@/components/Navigation.vue";
+import StopWatch from "@/components/StopWatch";
 
 export default {
   components: {
     NavigationBar,
-    StopWatch
+    StopWatch,
   },
   data() {
     return {
       navigationItems: [
-        { text: 'Home', component: '/' },
-        { text: 'Profile', component: 'profile' },
-        { text: 'Projects', component: 'projects' },
-        { text: 'Time Logs', component: 'times' }
+        { text: "Home", component: "/" },
+        { text: "Profile", component: "profile" },
+        { text: "Projects", component: "projects" },
+        { text: "Time Logs", component: "times" },
         // { text: 'Logout', component: 'logout' }
-      ]
-    }
-  }
-}
+      ],
+    };
+  },
+  computed: {
+    isLogin() {
+      return this.$route.name === "login";
+    },
+    year() {
+      return new Date().getFullYear();
+    },
+  },
+};
 </script>
 
-<style>
-
-.window-container>div{
-  padding-bottom: 46.5px;
+<style scoped>
+.window-container {
+  margin-top: 115px;
 }
-.page-footer {
-  position: fixed;
-  bottom:0;
-  right:0;
-  width: 100vw;
-  height: 46.5px;
-  background-color:#3498db;
+
+footer {
+  background-color: #363636;
+  padding: 1rem;
+}
+
+footer p {
+  margin: 0;
 }
 </style>
