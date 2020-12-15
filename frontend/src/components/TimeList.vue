@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="timesheet in timesheets" v-bind:key="timesheet.id">
+        <tr v-for="timesheet in $store.state.timesheets" v-bind:key="timesheet.id">
           <td>
             <span>{{ timesheet.projectName }}</span>
           </td>
@@ -38,7 +38,6 @@ export default {
   name: "time-list",
   data() {
     return {
-      timesheets: [],
       timesheet: {
         timeID: "",
         projectID: "",
@@ -51,14 +50,10 @@ export default {
     };
   },
   methods: {
-    getTimesheet() {
+    getTimesheets() {
       timesheetService.getAllTimesheets().then((response) => {
-        this.timesheets = response.data;
         this.$store.commit("SET_TIMESHEETS", response.data);
       });
-    },
-    sortByName() {
-      this.projects.sort();
     },
     deleteTimesheet(timeID) {
       timesheetService
@@ -70,7 +65,7 @@ export default {
             )
           ) {
             if (response.status === 200) {
-              this.getTimesheet();
+              this.getTimesheets();
             }
           }
         })
@@ -89,7 +84,7 @@ export default {
     },
   },
   created() {
-    this.getTimesheet();
+    this.getTimesheets();
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div
     id="app"
     class="footer-container"
-    v-if="$store.state.user.id != null && !loadingTimesheet"
+    v-if="!loadingTimesheet"
   >
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
     <div class="footer-row" v-if="$store.state.timesheet == null">
@@ -110,14 +110,17 @@ export default {
         () => {
           clearInterval(this.timer);
           this.$store.commit("SET_ACTIVE_TIMESHEET", null);
+          this.refreshProjects();
         },
         (error) => {
           console.error(error);
         }
       );
     },
-    reset() {
-      this.elapsedTime = 0;
+    refreshProjects() {
+      this.projectService.getAllProjects().then((response) => {
+        this.$store.commit("SET_PROJECTS", response.data);
+      });
     },
     refreshActive() {
       this.loadingTimesheet = true;
@@ -128,7 +131,6 @@ export default {
             this.$store.commit("SET_ACTIVE_TIMESHEET", response.data);
             let startTime = Date.parse(response.data.beginningTime);
             let currentTime = new Date().getTime();
-
             this.elapsedTime = currentTime - startTime;
 
             this.timer = setInterval(() => {

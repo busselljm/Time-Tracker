@@ -74,7 +74,6 @@ export default {
         beginningTime: "",
         endingTime: "",
       },
-      runReport: true,
     };
   },
   methods: {
@@ -85,6 +84,10 @@ export default {
         return "Please provide a description of your activity.";
       } else if (this.timesheet.beginningTime > this.timesheet.endingTime) {
         return "Beginning date/time must occur before the end.";
+      } else if (this.timesheet.beginningTime === "") {
+        return "Beginning date/time cannot be left blank.";
+      } else if (this.timesheet.endingTime === "") {
+        return "Ending date/time cannot be left blank.";
       }
     },
     submitForm() {
@@ -96,7 +99,9 @@ export default {
           .createTimesheet(this.timesheet)
           .then((response) => {
             if (response.status === 201) {
-              alert("New timesheet was created successfully");
+              alert("New timesheet was created successfully.");
+              this.refreshTimesheets();
+              this.resetForm();
             }
           })
           .catch((error) => {
@@ -114,6 +119,23 @@ export default {
             }
           });
       }
+    },
+   refreshTimesheets() {
+      timesheetService.getAllTimesheets().then((response) => {
+        this.timesheets = response.data;
+        this.$store.commit("SET_TIMESHEETS", response.data);
+      });
+    },
+    resetForm() {
+      this.timesheet =  {
+        timeID: "",
+        projectID: "",
+        userID: "",
+        description: "",
+        beginningTime: "",
+        endingTime: "",
+      }
+      this.$emit('reset-form', null);
     },
     generateReport() {
       let report = this.$store.state.timesheets;

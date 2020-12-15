@@ -4,7 +4,7 @@
     <body>    
     <div class="container window-container">
       <router-view />
-      <stop-watch/>
+      <stop-watch v-if="$store.state.user.id != null"/>
     </div>
     </body>
     <div class="page-footer"></div>
