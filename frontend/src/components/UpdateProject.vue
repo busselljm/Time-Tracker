@@ -20,6 +20,9 @@
       <label for="endDate">Project End Date</label>
       <input name="endDate" type="date" v-model="endDate" />
     </div>
+    <div v-if="isManager">
+      <input type="checkbox" v-model="shared"> Share this project
+    </div>
     <div>
       <button type="submit" v-on:click="updateProject()" class="btn btn-primary">
         <font-awesome-icon icon="check" /> Save
@@ -44,7 +47,9 @@ export default {
             projectName: "",
             projectDescription: "",
             projectImg: "",
-            endDate: ""
+            endDate: "",
+            shared: "",
+            isManager: this.$store.state.user.manager
         };
     },
     methods: {
@@ -54,7 +59,8 @@ export default {
                 projectName: this.projectName,
                 projectDescription: this.projectDescription,
                 projectImg: this.projectImg,
-                endDate: this.endDate
+                endDate: this.endDate,
+                shared: this.shared
             };
 
             projectService.updateProject(project).then(response => {

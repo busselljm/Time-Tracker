@@ -38,4 +38,9 @@ public class UserController {
         return userDAO.getAllUsers();
     }
 
+    // GET - All Employee Data
+    @GetMapping( path = "/employees")
+    public List<User> getAllEmployees(Principal principal) {
+        return userDAO.getEmployees(userDAO.findByUsername(principal.getName()).getId());
+    }
 }

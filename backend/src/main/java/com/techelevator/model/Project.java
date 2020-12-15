@@ -14,6 +14,7 @@ public class Project {
     private String projectImg;
     private String endDate;
     private Timestamp mostRecent;
+    private boolean shared;
 
     public Project() {}
 
@@ -69,5 +70,17 @@ public class Project {
 
     public void setMostRecent(Timestamp mostRecent) {
         this.mostRecent = mostRecent;
+    }
+
+    public void setProjectID(Long projectID) {
+        this.projectID = projectID;
+    }
+
+    public boolean isShared() {
+        return shared;
+    }
+
+    public void setShared(boolean shared) {
+        this.shared = shared;
     }
 }

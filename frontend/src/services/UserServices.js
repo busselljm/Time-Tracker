@@ -10,5 +10,9 @@ export default {
   },
   getAllUsers() {
     return http.get(`/users`);
+  },
+  getEmployees() {
+    return http.get('/employees');
   }
+
 }

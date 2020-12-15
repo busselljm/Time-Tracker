@@ -48,7 +48,8 @@
 </template>
 
 <script>
-import authService from "../services/AuthService";
+import authService from "../services/AuthService.js";
+import userServices from "../services/UserServices.js";
 
 export default {
   name: "login",
@@ -62,7 +63,7 @@ export default {
       invalidCredentials: false,
     };
   },
-  methods: {
+ methods: {
     login() {
       authService
         .login(this.user)
@@ -70,17 +71,22 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
+            this.getMyEmployees();
             this.$router.push("/");
           }
         })
         .catch((error) => {
           const response = error.response;
-
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
     },
+    getMyEmployees() {
+      userServices.getEmployees().then(response => {
+         this.$store.commit("SET_EMPLOYEES", response.data);
+      })
+    }
   },
 };
 </script>

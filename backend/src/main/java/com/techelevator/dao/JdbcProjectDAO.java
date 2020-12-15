@@ -41,7 +41,7 @@ public class JdbcProjectDAO implements ProjectDAO{
     @Override
     public List<Project> allProjects(Long userId) {
         List<Project> result = new ArrayList<>();
-        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date\n" +
+        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date, projects.shared\n" +
                 "FROM projects\n" +
                 "JOIN user_project ON user_project.project_id = projects.project_id\n" +
                 "JOIN users ON user_project.user_id = users.user_id\n" +
@@ -58,7 +58,7 @@ public class JdbcProjectDAO implements ProjectDAO{
 
     @Override
     public Project getProjectByID(Long id){
-        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date\n" +
+        String sql = "SELECT  projects.project_id, projects.project_name, projects.project_desc, projects.project_img, projects.end_date, projects.shared\n" +
                 "FROM projects\n" +
                 "JOIN user_project ON user_project.project_id = projects.project_id\n" +
                 "JOIN users ON user_project.user_id = users.user_id\n" +
@@ -72,8 +72,8 @@ public class JdbcProjectDAO implements ProjectDAO{
 
     @Override
     public void updateProject(Project project, Long id) {
-        String sql = "UPDATE projects SET project_name = ?, project_desc = ?, project_img = ?, end_date = ? WHERE project_id = ?;";
-        jdbcTemplate.update(sql, project.getProjectName(), project.getProjectDescription(), project.getProjectImg(),project.getEndDate(), id);
+        String sql = "UPDATE projects SET project_name = ?, project_desc = ?, project_img = ?, end_date = ?, shared = ? WHERE project_id = ?;";
+        jdbcTemplate.update(sql, project.getProjectName(), project.getProjectDescription(), project.getProjectImg(),project.getEndDate(), project.isShared(), id);
     }
 
 
@@ -107,6 +107,7 @@ public class JdbcProjectDAO implements ProjectDAO{
         } else {
             result.setEndDate("Ongoing");
         }
+        result.setShared(rowSet.getBoolean("shared"));
         return result;
     }
 

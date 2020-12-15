@@ -85,6 +85,24 @@ public class JdbcUserDAO implements UserDAO {
             }
         }
 
+    public List<User> getEmployees(Long userId) {
+        List<User> userList = new ArrayList<>();
+        String sql = "SELECT t2.* FROM users t1\n" +
+                "LEFT JOIN users t2 on t1.user_id = t2.manager_id\n" +
+                "WHERE t1.user_id = ?;";
+        try {
+            SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+            while (rowSet.next()) {
+                User user = mapRowToUser(rowSet);
+                userList.add(user);
+            }
+
+        } catch (NullPointerException e) {
+            e.getMessage();
+        }
+        return userList;
+    }
+
         private Long getInitialManagerId(Long id) {
         String sql = "SELECT manager_id FROM users WHERE user_id = ?";
         return jdbcTemplate.queryForObject(sql, Long.class, id);

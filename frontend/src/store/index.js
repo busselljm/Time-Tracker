@@ -49,10 +49,14 @@ export default new Vuex.Store({
       managerFirstName: "",
       managerLastName: "",
       manager: ""
-    }
+    },
+    employees : []
   },
 
   mutations: {
+    SET_EMPLOYEES(state, data) {
+      state.employees = data;
+    },
     SET_PROJECTS(state, data) {
       state.projects = data;
     },
@@ -126,6 +130,7 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
       state.projects = [];
+      state.employees = [];
     },
   }
 })
