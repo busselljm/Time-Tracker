@@ -1,13 +1,15 @@
 <template>
   <div
-    class="footer-container"
+    class="card"
     v-if="!loadingTimesheet"
   >
+  <h3 class="mb-3">Timer</h3>
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
-    <div class="footer-row" v-if="$store.state.timesheet == null">
+    <div v-if="$store.state.timesheet == null">
+      <p>Choose project:</p>
       <select
+        class="mb-3 form-control"
         name="projects"
-        class="footer-row-elem"
         id="project name"
         v-model="selectedProject"
         v-if="$store.state.timesheet == null"
@@ -20,28 +22,33 @@
           {{ project.projectName }}
         </option>
       </select>
-
+      <div>
       <button
-        class="footer-row-elem btn btn-primary"
+        class="btn btn-success btn-lg btn-block"
         :disabled="selectedProject == null"
         v-on:click="start"
       >
         Start Time Log
       </button>
+      </div>
     </div>
 
     <!-- ACTIVE TIME LOG EXISTS -->
     <div class="footer-row" v-if="$store.state.timesheet != null">
-      <span class="footer-row-elem">Project: {{$store.state.timesheet.projectName}}</span>
-      <input class="footer-row-elem" maxlength="50" type="text" v-model="description" placeholder="Describe work performed"/>
+      <label>Project: {{$store.state.timesheet.projectName}}</label>
+      <div>
+      <input class="form-control mb-3" maxlength="50" type="text" v-model="description" placeholder="Describe work"/>
+      </div>
+      <p>{{ formattedElapsedTime }}</p>
+      <div>
       <button
-        class="footer-row-elem btn btn-danger"
+        class="btn btn-danger btn-lg btn-block"
         v-on:click="stop"
         v-if="$store.state.timesheet != null"
       >
         Complete Log
       </button>
-      <span class="footer-timer">{{ formattedElapsedTime }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -157,28 +164,30 @@ export default {
 </script>
 
 <style scoped>
-#app {
+
+h3 {
   margin: 0;
-  border: 0 none;
-  padding: 10px;
-  z-index: 999999;
+  background-color:  #363636;
+  }
+
+.card {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100vw;
-  height: 46.5px;
+  top: 115px;
+  padding: 1.5rem;
+  left: 2rem;
 }
-.footer-row {
-  float: right;
+
+p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
-.footer-row-elem {
-  margin-left: 15px;
+
+label {
+  padding: 0;
 }
-.footer-timer {
-  left: 15px;
-  position: fixed;
-  bottom: 10px;
-}
+
+
 </style>
 
      
