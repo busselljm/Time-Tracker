@@ -176,7 +176,7 @@ h3 {
 .card {
   position: fixed;
   top: 115px;
-  padding: 1rem;
+  padding: .5rem;
   left: 2rem;
 }
 
@@ -205,14 +205,12 @@ label {
 
   .btn-danger {
     background-color: #c74513;
-
   }
 
   .btn-danger:hover {
     background-color: rgb(252, 116, 62);
     border: none;
   }
-
 
 </style>
 

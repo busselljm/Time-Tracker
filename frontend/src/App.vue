@@ -28,10 +28,10 @@ export default {
     return {
       navigationItems: [
         { text: "Home", component: "/" },
+        { text: "About Us", component: "about-us"},
         { text: "Profile", component: "profile" },
         { text: "Projects", component: "projects" },
-        { text: "Time Logs", component: "times" },
-        // { text: 'Logout', component: 'logout' }
+        { text: "Time Logs", component: "times" }
       ],
     };
   },

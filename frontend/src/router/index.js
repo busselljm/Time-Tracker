@@ -11,7 +11,7 @@ import Project from '../views/Project.vue'
 import EditProject from '../views/EditProject.vue'
 import Profile from '../views/Profile.vue'
 import Timesheet from '../views/Timesheet.vue'
-import UpdateProfile from '../components/UpdateProfile.vue'
+import AboutUs from '../views/AboutUs.vue'
 
 Vue.use(Router)
 
@@ -85,15 +85,6 @@ const router = new Router({
       }
     },
     {
-      path: '/profile',
-      name: 'editProfile',
-      component: UpdateProfile,
-      meta: {
-        requiresAuth: true
-      }
-
-    },
-    {
       path: '/times',
       name: 'timesheet',
       component: Timesheet,
@@ -109,6 +100,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: '/about-us',
+      name: 'aboutus',
+      component: AboutUs,
+      meta: {
+        requiresAuth: false
+      }
+    }
    
   ]
 })

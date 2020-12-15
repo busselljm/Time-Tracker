@@ -77,7 +77,7 @@ export default {
     deleteProject(projectID) {
       if (
         confirm(
-          "Are you sure you want to delete project card? This action cannot be undone."
+          "Are you sure you want to delete project? This action cannot be undone."
         )
       ) {
         projectService
@@ -111,6 +111,11 @@ export default {
 </script>
 
 <style scoped>
+
+.sort {
+  cursor: pointer;
+}
+
 .styled-table {
   border-collapse: collapse;
   font-family: Helvetica, Arial, sans-serif;
@@ -150,12 +155,9 @@ export default {
 }
 
 #trash {
-  color: rgb(207, 25, 25);
+  color: #c74513;
 }
 
-.sort {
-  cursor: pointer;
-}
 </style>
 
 
