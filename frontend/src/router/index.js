@@ -12,6 +12,7 @@ import EditProject from '../views/EditProject.vue'
 import Profile from '../views/Profile.vue'
 import Timesheet from '../views/Timesheet.vue'
 import AboutUs from '../views/AboutUs.vue'
+import SplashPage from '../views/Splash.vue'
 
 Vue.use(Router)
 
@@ -29,7 +30,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -104,6 +105,15 @@ const router = new Router({
       path: '/about-us',
       name: 'aboutus',
       component: AboutUs,
+      meta: {
+        requiresAuth: false
+      }
+    },
+
+    {
+      path:'/',
+      name:'splash',
+      component:SplashPage,
       meta: {
         requiresAuth: false
       }
