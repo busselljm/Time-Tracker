@@ -1,15 +1,17 @@
 <template>
-    <div class="card">
+    <single-card class="card">
         <user-details />
-    </div>
+    </single-card>
 </template>
 
 <script>
 import UserDetails from '../components/UserDetails.vue'
+import SingleCard from '@/components/SingleCard.vue'
 
 export default {
     components: {
-        UserDetails
+        UserDetails,
+        SingleCard
     }
 }
 </script>

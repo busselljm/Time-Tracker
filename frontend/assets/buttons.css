@@ -8,10 +8,10 @@ a:hover {
 /* Default Button Override
 ----------------------------------------- */
 .btn-primary {
-    background-color: #a3e000;
-    font-weight: bold;
-    color: #000;
-    border: none;
+    background: #a3e000 !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    border: none !important;
 }
 
 .btn-primary:hover,

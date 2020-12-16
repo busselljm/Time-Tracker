@@ -1,7 +1,7 @@
 <template>
   <div class="project-list">
     <table class="styled-table">
-      <b-thead>
+      <thead>
         <tr>
           <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">
             Sort Recent
@@ -15,8 +15,8 @@
           <th>Edit</th>
           <th>Delete</th>
         </tr>
-      </b-thead>
-      <b-tbody>
+      </thead>
+      <tbody>
         <tr v-for="project in $store.state.projects" v-bind:key="project.id">
           <td>
             <span>
@@ -45,7 +45,7 @@
             /></a>
           </td>
         </tr>
-      </b-tbody>
+      </tbody>
     </table>
   </div>
 </template>
@@ -153,6 +153,11 @@ export default {
 
 #trash {
   color: #c74513;
+}
+
+img {
+  width: 50px;
+  border-radius: 50%;
 }
 
 </style>

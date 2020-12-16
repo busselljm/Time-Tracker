@@ -2,7 +2,7 @@
 <div>
   <img src="/kronos-logo.svg" alt="Kronos Logo">
   <h1 class="text-center">KronoTrakr</h1>
-    <div id="login" class="text-center card mt-4">
+    <single-card id="login" class="text-center mt-4">
       <form class="form-signin" @submit.prevent="login">
         <h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
         <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
@@ -47,17 +47,20 @@
         <button class="btn btn-primary btn-md btn-block" type="submit">SIGN IN</button>
         </div>
       </form>
-    </div>
+    </single-card>
   </div>
 </template>
 
 <script>
 import authService from "../services/AuthService.js";
 import userServices from "../services/UserServices.js";
+import SingleCard from '@/components/SingleCard.vue'
 
 export default {
   name: "login",
-  components: {},
+  components: {
+    SingleCard
+  },
   data() {
     return {
       user: {
@@ -119,6 +122,6 @@ h1 {
 img {
   display: block;
   margin: 0 auto;
-
+  width: 100px;
 }
 </style>

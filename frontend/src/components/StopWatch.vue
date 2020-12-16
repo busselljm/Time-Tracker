@@ -1,12 +1,9 @@
 <template>
-  <div
-    class="card"
-    v-if="!loadingTimesheet"
-  >
-  <h3 class="mb-3 header">Timer</h3>
+  <single-card v-if="!loadingTimesheet" class="stop-watch">
+  <h3 class="mb-3">Time Tracker</h3>
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
     <div v-if="$store.state.timesheet == null">
-      <p>Choose project:</p>
+      <label>Choose project:</label>
       <select
         class="mb-3 form-control"
         name="projects"
@@ -24,7 +21,7 @@
       </select>
       <div>
       <button
-        class="btn btn-success btn-lg btn-block"
+        class="btn btn-primary btn-lg btn-block"
         :disabled="selectedProject == null"
         v-on:click="start"
       >
@@ -35,9 +32,10 @@
 
     <!-- ACTIVE TIME LOG EXISTS -->
     <div class="footer-row" v-if="$store.state.timesheet != null">
-      <label>Project: {{$store.state.timesheet.projectName}}</label>
+      <p>Project: {{$store.state.timesheet.projectName}}</p>
       <div>
-      <input class="form-control mb-3" maxlength="50" type="text" v-model="description" placeholder="Describe work"/>
+      <label>Description</label>
+      <input class="form-control mb-3" maxlength="50" type="text" v-model="description" placeholder="A brief description of your work"/>
       </div>
       <p>{{ formattedElapsedTime }}</p>
       <div>
@@ -50,15 +48,19 @@
       </button>
       </div>
     </div>
-  </div>
+  </single-card>
 </template>
 
 <script>
 import timesheetService from "@/services/TimesheetService.js";
 import ProjectService from "../services/ProjectService";
+import SingleCard from '@/components/SingleCard.vue'
 
 export default {
   name: "App",
+  components: {
+    SingleCard
+  },
   data() {
     return {
       elapsedTime: 0,
@@ -169,21 +171,31 @@ h3 {
   margin: 0;
   background-color:  #363636;
   text-align: center;
-  padding: .5rem;
+  padding: 1rem;
   color: #d6d6d6;
-  }
+}
 
-.card {
+.stop-watch {
   position: fixed;
   top: 115px;
-  padding: .5rem;
+  padding: 0;
   left: 2rem;
+  width: 325px;
+  box-shadow: 0 0 10px 5px rgb(221, 221, 221);;
+}
+
+.stop-watch > div {
+  padding: .5rem 1.5rem 1.5rem 1.5rem;
 }
 
 p {
   text-align: center;
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+.footer-row p:first-child {
+  font-size: 1.15rem;
 }
 
 label {
