@@ -26,7 +26,7 @@
           <td>
             <span>{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
             <br>
-             <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
+             <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}} </span>
           </td>
           <td>
             <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash" id="trash"/></a>

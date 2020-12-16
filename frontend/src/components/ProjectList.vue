@@ -1,23 +1,31 @@
 <template>
-  <div class="project-list">
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">
-            Sort Recent
-          </th>
-          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">
-            Project Name
-          </th>
-          <th scope="col" class="sort" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">
-            End Date
-          </th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="project in $store.state.projects" v-bind:key="project.id">
+
+<body>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div >
+                        <div id="title">Current Projects</div>
+                        <button class="btn project-name" v-on:click="$store.commit('SORT_PROJECTS_BY_NAME')">Name</button>
+                        <button class="btn project-date" v-on:click="$store.commit('SORT_PROJECTS_BY_DATE')">Date</button> 
+                        <button class="btn project-recent" v-on:click="$store.commit('SORT_PROJECTS_BY_RECENT')">Recent</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Project Name</th>
+                    <th>End Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+     <tr v-for="project in $store.state.projects" v-bind:key="project.id">
           <td>
             <span>
               <img v-if="project.projectImg != ''" :src="project.projectImg" />
@@ -45,10 +53,13 @@
             /></a>
           </td>
         </tr>
-      </tbody>
-    </table>
-  </div>
+            </tbody>
+        </table>
+    </div> 
+    </body>
 </template>
+
+
 <script>
 import projectService from "@/services/ProjectService.js";
 export default {
@@ -109,42 +120,56 @@ export default {
 
 <style scoped>
 
-.sort {
-  cursor: pointer;
+body {
+    color: #566787;
+    background: #d3c6c6;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.table-wrapper {
+    width: 850px;
+    background: #fff;
+    padding: 20px 30px 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
+}
+ .btn-group {
+   display: flexbox;
 }
 
-.styled-table {
-  border-collapse: collapse;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  margin: 25px 0;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
+.table-title .btn {
+    min-width: 50px;
+    border-radius: 1px;
+    border: none;
+    padding: 6px 12px;
+    font-size: 95%;
+    outline: none !important;
+    height: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
 }
-
-.styled-table thead tr {
-  background-color: #07617d;
-  color: #ffffff;
-  text-align: left;
+.table-title {
+    border-bottom: 1px solid #a3e000;
+    padding-bottom: 15px;
+    background-color: #363636;
+    margin: -20px -31px 10px;
+    padding: 15px 30px;
+    color: #fff;
 }
-
-.styled-table th,
-.styled-table td {
-  padding: 10px 12px;
-  position: center;
+.table-title h2 {
+    margin: 2px 0 0;
+    font-size: 24px;
 }
-
-.styled-table tbody tr {
-  border-bottom: 1px solid #34495e;
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: 12px 15px;
+    vertical-align: middle;
 }
-
-.styled-table tbody tr:nth-of-type(even) {
-  background-color: #f8f6f6;
+table.table tr th:first-child {
+    width: 40px;
 }
-
-.styled-table tbody tr:last-of-type {
-  border-bottom: 5px solid #f9a828;
+table.table tr th:last-child {
+    width: 100px;
+}
+table.table-striped tbody tr:nth-last-of-type(odd) {
+    background-color: #fcfcfc;
 }
 
 #edit {
@@ -158,8 +183,41 @@ export default {
 img {
   width: 50px;
   border-radius: 50%;
+} 
+
+.project-name {
+    background: #a3e000;
+    font-weight: bold;
+    color: #000;
+    border: none;
 }
 
+.project-date {
+    background: #e07700;
+    font-weight: bold;
+    color: #000;
+    border: none;
+}
+
+.project-recent {
+    background: #b300e0;
+    font-weight: bold;
+    color: #000;
+    border: none;
+}
+
+.btn {
+  border: none;
+  padding: 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+
+#title {
+  font-size: 25px;
+}
 </style>
 
 

@@ -1,25 +1,25 @@
 <template>
   <div class="timesheet-list" v-if="$store.state.report.length > 0">
     <table class="styled-table">
-      <b-thead>
+      <thead>
         <tr>
           <th scope="col">Project Name</th>
           <th scope="col">Beginning Time</th>
           <th scope="col">Ending Time</th>
           <th scope="col">Time</th>
         </tr>
-      </b-thead>
-      <b-tbody>
+      </thead>
+      <tbody>
         <tr v-for="timesheet in $store.state.report" v-bind:key="timesheet.id">
           <td>
             <span>{{ timesheet.projectName }}</span>
           </td>
 
           <td>
-            <span>{{ timesheet.beginningTime }}</span>
+            <span>{{ (new Date(timesheet.beginningTime)).toDateString() }}</span>
           </td>
           <td>
-            <span>{{ timesheet.endingTime }}</span>
+            <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}}</span>
           </td>
           <td>
             <span>{{
@@ -32,15 +32,15 @@
             }}</span>
           </td>
         </tr>
-      </b-tbody>
-      <b-tfoot>
+      </tbody>
+      <tfoot>
         <tr>
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col">{{ reduce() }}</th>
         </tr>
-      </b-tfoot>
+      </tfoot>
     </table>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <single-card v-if="!loadingTimesheet" class="stop-watch">
-  <h3 class="mb-3">Time Tracker</h3>
+  <single-card v-if="!loadingTimesheet" class="stop-watch" v-bind:class="{minimized}">
+  <h3 id="title-time" v-on:click="minimized = !minimized" class="mb-3">Time Tracker</h3>
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
     <div v-if="$store.state.timesheet == null">
       <label>Choose project:</label>
@@ -68,6 +68,7 @@ export default {
       selectedProject: null,
       loadingTimesheet: false,
       description: "",
+      minimized: true
     };
   },
   computed: {
@@ -177,11 +178,11 @@ h3 {
 
 .stop-watch {
   position: fixed;
-  top: 115px;
+  bottom: 0px;
   padding: 0;
-  left: 2rem;
+  right: 2rem;
   width: 325px;
-  box-shadow: 0 0 10px 5px rgb(221, 221, 221);;
+  box-shadow: 0 0 5px 2px rgb(221, 221, 221);;
 }
 
 .stop-watch > div {
@@ -223,7 +224,13 @@ label {
     background-color: rgb(252, 116, 62);
     border: none;
   }
-
+  .minimized div {
+    display: none;
+    
+  }
+#title-time:hover {
+   background-color:  #6b6767;
+}
 </style>
 
      

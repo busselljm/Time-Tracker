@@ -1,7 +1,15 @@
 <template>
   <div>
-    <h1 class="header">About KronoTrakr</h1>
-    <p>About the app</p>
+    <single-card class="mb-4">
+      <h2>Welcome to KronoTrakr!</h2>
+      This application allows managers and employees to create projects and log
+      time worked on them. This application is for tracking the amount of time
+      spent on a project. Employees indicate when they start and stop working on
+      a project. They can do that "live" or have the option to go back and enter
+      past blocks of time. Employees can view reports for a given time period of
+      how much time they've spent per project, and managers can view overall
+      reports.
+    </single-card>
     <h2 class="header">Meet the Team</h2>
 
     <div class="row mt-4">
@@ -14,7 +22,11 @@
           <img :src="member.image" :alt="`Picture of ${member.name}`" />
           <h3 class="name h4">
             {{ member.name }}
-            <a v-if="member.linkedIn" :href="`https://www.linkedin.com/in/${member.linkedIn}/`"><i class="fa fa-linkedin-square"></i></a>
+            <a
+              v-if="member.linkedIn"
+              :href="`https://www.linkedin.com/in/${member.linkedIn}/`"
+              ><i class="fa fa-linkedin-square"></i
+            ></a>
           </h3>
           <p>{{ member.description }}</p>
         </single-card>
@@ -24,11 +36,11 @@
 </template>
 
 <script>
-import SingleCard from '@/components/SingleCard.vue'
+import SingleCard from "@/components/SingleCard.vue";
 
 export default {
   components: {
-    SingleCard
+    SingleCard,
   },
   props: {
     teamMembers: {

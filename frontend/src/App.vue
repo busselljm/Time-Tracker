@@ -1,11 +1,18 @@
 <template>
   <div id="app">
     <navigation-bar v-if="!isLogin" :items="navigationItems" />
-    <div class="container window-container" :class="isLogin ? 'center-vertically center-horizontally' : ''">
-      <router-view />
+    <div
+      class="container window-container"
+      :class="isLogin ? 'center-vertically center-horizontally' : ''"
+    >
+      <div class="display">
+        <router-view id="view" />
 
-      <stop-watch v-if="!isLogin && $store.state.user.id != null" />
-
+        <stop-watch
+          id="watch"
+          v-if="!isLogin && $store.state.user.id != null"
+        />
+      </div>
     </div>
     <footer v-if="!isLogin">
       <p class="copyright text-center">
@@ -28,10 +35,10 @@ export default {
     return {
       navigationItems: [
         { text: "Home", component: "/" },
-        { text: "About Us", component: "about-us"},
+        { text: "About Us", component: "about-us" },
         { text: "Profile", component: "profile" },
         { text: "Projects", component: "projects" },
-        { text: "Time Logs", component: "times" }
+        { text: "Time Logs", component: "times" },
       ],
     };
   },
@@ -63,7 +70,9 @@ footer p {
 .copyright {
   color: #686868;
 }
-
-
-
+/* .display {
+  display: flex;
+  flex-direction: row;
+  
+} */
 </style>

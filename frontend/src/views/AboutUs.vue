@@ -12,7 +12,12 @@ export default {
       teamMembers: [
         {
           name: "Jared Bussell",
-          description: `This is where a paragraph about you will go`,
+          description: `Hey there, my name is Jared Bussell and I’m currently a Software Engineer 
+          in the Cincinnati Area. During the summer of 2020 I did some free online coding 
+          programs and developed a passion for it ever since so I decided to enroll in Tech Elevator 
+          and take the Java cohort in order to persue a career in Tech. I have always enjoyed logic 
+          based puzzles and working on any type of project from home restoration all the way to 
+          fixing and working with computers.`,
           linkedIn: "jared-bussell",
           image: "/img/jared.jpg",
         },
