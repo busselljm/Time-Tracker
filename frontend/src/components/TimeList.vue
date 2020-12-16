@@ -35,10 +35,12 @@
             <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
           </td>
            <td>
-            <span>{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
+            <span v-if="timesheet.endingTime != null">{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
+            <span v-else>Time is being recorded</span>
             <br>
-             <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}} </span>
+             <span v-if="timesheet.endingTime != null">{{(new Date(timesheet.endingTime)).toLocaleTimeString()}} </span>
           </td>
+          
           <td>
              <a href="#" v-on:click="deleteTimesheet(timesheet.timeID)"><font-awesome-icon icon="trash" id="trash"/></a>
           </td>

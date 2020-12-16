@@ -1,27 +1,44 @@
 <template>
-  <div class="timesheet-list" v-if="$store.state.report.length > 0">
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th scope="col">Project Name</th>
-          <th scope="col">Beginning Time</th>
-          <th scope="col">Ending Time</th>
-          <th scope="col">Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="timesheet in $store.state.report" v-bind:key="timesheet.id">
-          <td>
-            <span>{{ timesheet.projectName }}</span>
+  <body>
+    <div class="table-wrapper " v-if="$store.state.report.length > 0">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <div id="title">Your Report</div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+            <th>Beginning Time</th>
+            <th>Ending Time</th>
+            <th>Time Worked</th>
+          </tr>
+        </thead>
+        <tbody>
+     <tr v-for="timesheet in $store.state.timesheets" v-bind:key="timesheet.id">
+          <td v-if="timesheet.endingTime != null"> 
+            <span>
+              {{ timesheet.projectName }}
+            </span>
           </td>
-          <td>
-            <span>{{ (new Date(timesheet.beginningTime)).toDateString() }}</span>
+          <td v-if="timesheet.endingTime != null">
+            <span>{{ timesheet.description }}</span>
           </td>
-          <td>
-            <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}}</span>
+               <td v-if="timesheet.endingTime != null">
+            <span>{{(new Date(timesheet.beginningTime)).toDateString()}}</span> 
+            <br>
+            <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
           </td>
-          <td>
-            <span>{{
+           <td v-if="timesheet.endingTime != null">
+            <span >{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
+            <br>
+             <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}} </span>
+          </td>
+           <span>{{
               secondsToHms(
                 getDifferenceInTimes(
                   timesheet.beginningTime,
@@ -29,19 +46,21 @@
                 )
               )
             }}</span>
-          </td>
         </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col">{{ reduce() }}</th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+  
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">{{ reduce() }}</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </body>
 </template>
 <script>
 import timesheetService from "@/services/TimesheetService.js";
@@ -80,9 +99,6 @@ export default {
       var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
       return hDisplay + mDisplay + sDisplay;
     },
-    sortByName() {
-      this.projects.sort();
-    },
     reduce() {
       let total = this.$store.state.timesheets.reduce((a, b) => {
         return a + this.getDifferenceInTimes(b.beginningTime, b.endingTime);
@@ -97,33 +113,53 @@ export default {
   },
 };
 </script>
-<style>
-.styled-table {
-  border-collapse: collapse;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  margin: 25px 0;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
+<style scoped>
+.table-wrapper {
+    width: 850px;
+    background: #fff;
+    padding: 20px 30px 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
 }
-.styled-table thead tr {
-  background-color: #07617D;
-  color: #FFFFFF;
-  text-align: left;
+.table-title .btn {
+    min-width: 50px;
+    border-radius: 1px;
+    border: none;
+    padding: 6px 12px;
+    font-size: 95%;
+    outline: none !important;
+    height: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
 }
-.styled-table th,
-.styled-table td {
-  padding: 10px 12px;
-    position: center;
+.table-title {
+    border-bottom: 1px solid #A3E000;
+    padding-bottom: 15px;
+    background-color: #363636;
+    margin: -20px -31px 10px;
+    padding: 15px 30px;
+    color: #fff;
 }
-.styled-table tbody tr {
-  border-bottom: 1px solid #34495E;
+.table-title h2 {
+    margin: 2px 0 0;
+    font-size: 24px;
 }
-.styled-table tbody tr:nth-of-type(even) {
-  background-color: #F8F6F6;
+table.table tr th, table.table tr td {
+    border-color: #E9E9E9;
+    padding: 12px 15px;
+    vertical-align: middle;
 }
-.styled-table tbody tr:last-of-type {
-  border-bottom: 5px solid #F9A828;
+table.table tr th:first-child {
+    width: 40px;
+}
+table.table tr th:last-child {
+    width: 100px;
+}
+table.table-striped tbody tr:nth-last-of-type(odd) {
+    background-color: #FCFCFC;
+}
+#trash {
+  color: #C74513;
+}
+#title {
+  font-size: 25px;
 }
 </style>

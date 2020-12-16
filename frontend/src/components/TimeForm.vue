@@ -51,7 +51,7 @@
       </button>
       <button
         v-on:click.prevent="generateReport()"
-        class="btn btn-outline-primary btn-md"
+        class="btn btn-secondary btn-md"
         v-if="runReports"
       >
         Run Report
