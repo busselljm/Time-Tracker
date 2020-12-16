@@ -3,6 +3,7 @@
   <h1>Welcome to KronoTrakr</h1>
   <img src="https://aboutleaders.com/wp-content/uploads/2018/05/Productivity.jpg" alt="people working"/>
   <div v-if="$store.state.token == '' ">
+  <a href='/about-us'>About Us</a>
  <a href='/login'>Login </a>
  <a href='/register'>Register an account </a>
  </div>

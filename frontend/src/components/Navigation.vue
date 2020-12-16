@@ -14,6 +14,7 @@
         <li class="d-inline">
           <router-link :to="{ name: 'logout' }" class="btn btn-primary btn-md"
             >LOGOUT</router-link
+             
           >
         </li>
       </ul>
