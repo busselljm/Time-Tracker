@@ -63,6 +63,9 @@ INSERT INTO users (username, password_hash, role, first_name, last_name, email, 
 VALUES ('ddraim', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'David', 'Draiman', 'david.draiman@kronotrakr.com', 'https://i.pinimg.com/736x/7a/75/95/7a75954e65ab1be01efe83560785f3c6.jpg');
 INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
 VALUES ('abaraz', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Alina', 'Baraz', 'alina.baraz@kronotrakr.com', 'https://img.discogs.com/rjfM6x-OLtjW4-5uDB4XDddQlVI=/600x740/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-3786675-1587919159-6933.jpeg.jpg');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
+VALUES ('bbern', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'BMO', 'Berning', 'bmo.berning@kronotrakr.com', 'https://i.ibb.co/vJpyQPZ/IMG-1192.jpg');
+
 
 INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
 ('Joy of Painting','Learn to paint with oil paints led by instructor Bob Ross','https://upload.wikimedia.org/wikipedia/en/thumb/8/86/The_Joy_of_Painting_title_screen.jpg/250px-The_Joy_of_Painting_title_screen.jpg', 'Ongoing');

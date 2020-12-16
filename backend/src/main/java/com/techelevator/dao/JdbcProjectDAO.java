@@ -45,7 +45,7 @@ public class JdbcProjectDAO implements ProjectDAO{
                 "FROM projects\n" +
                 "JOIN user_project ON user_project.project_id = projects.project_id\n" +
                 "JOIN users ON user_project.user_id = users.user_id\n" +
-                "WHERE users.user_id = ? OR (users.user_id = (SELECT users.manager_id FROM users WHERE users.user_id = ?) AND shared = 'true');";
+                "WHERE users.user_id = ? OR (users.user_id = (SELECT users.manager_id FROM users WHERE users.user_id = ?) AND shared IS true);";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId, userId);
 
         while(rowSet.next()) {

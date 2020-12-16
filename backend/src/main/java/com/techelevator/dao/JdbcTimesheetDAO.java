@@ -50,7 +50,7 @@ public class JdbcTimesheetDAO implements TimesheetDAO{
                 "FROM timesheet \n" +
                 "JOIN projects ON timesheet.project_id = projects.project_id\n" +
                 "JOIN users ON timesheet.user_id = users.user_id\n" +
-                "WHERE users.user_id = ? OR manager_id = ?;";
+                "WHERE users.user_id = ? OR (manager_id = ? AND shared IS true);";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId, userId);
         while(rowSet.next()){
             Timesheet timesheet = mapRowToTimesheet(rowSet);
