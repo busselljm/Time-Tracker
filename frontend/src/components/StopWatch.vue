@@ -1,9 +1,17 @@
 <template>
+<<<<<<< Updated upstream
   <single-card v-if="!loadingTimesheet" class="stop-watch" v-bind:class="{minimized}">
   <h3 id="title-time" v-on:click="minimized = !minimized" class="mb-3">Time Tracker</h3>
     <!-- ACTIVE TIME LOG DOESN'T EXIST -->
     <div v-if="$store.state.timesheet == null">
       <label>Choose project:</label>
+=======
+  <div class = "card"
+    v-if="!loadingTimesheet"
+  >
+    <!-- ACTIVE TIME LOG DOESN'T EXIST -->
+    <div v-if="$store.state.timesheet == null">
+>>>>>>> Stashed changes
       <select
         class="mb-3 form-control"
         name="projects"
@@ -21,11 +29,15 @@
       </select>
       <div>
       <button
+<<<<<<< Updated upstream
         class="btn btn-primary btn-lg btn-block"
+=======
+        class="btn btn-primary"
+>>>>>>> Stashed changes
         :disabled="selectedProject == null"
         v-on:click="start"
       >
-        Start Time Log
+        Start Timer
       </button>
       </div>
     </div>
@@ -44,7 +56,7 @@
         v-on:click="stop"
         v-if="$store.state.timesheet != null"
       >
-        Complete Log
+        Stop Timer
       </button>
       </div>
     </div>

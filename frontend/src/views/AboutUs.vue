@@ -23,7 +23,12 @@ export default {
         },
         {
           name: "Brittany Blankenship",
-          description: `This is where a paragraph about you will go`,
+          description: `Hi, my name is Brittany and I make art. I really enjoy that 
+          the technology space really allows for individuals to express their 
+          creative side and that’s why I switched to tech after holding several 
+          retail-management positions. After my graduation at Tech Elevator, I look forward 
+          to making apps and websites that add to the user experience with a company that 
+          cultivates creativity and innovation`,
           linkedIn: "brittanyblankenship",
           image: "/img/brittany.jpg",
         },
