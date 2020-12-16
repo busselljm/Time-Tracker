@@ -14,7 +14,6 @@
           <td>
             <span>{{ timesheet.projectName }}</span>
           </td>
-
           <td>
             <span>{{ (new Date(timesheet.beginningTime)).toDateString() }}</span>
           </td>
@@ -76,7 +75,6 @@ export default {
       var h = Math.floor(d / 3600);
       var m = Math.floor((d % 3600) / 60);
       var s = Math.floor((d % 3600) % 60);
-
       var hDisplay = h > 0 ? h + (h == 1 ? " hour " : " hours ") : "";
       var mDisplay = m > 0 ? m + (m == 1 ? " minute " : " minutes ") : "";
       var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
@@ -99,9 +97,7 @@ export default {
   },
 };
 </script>
-
 <style>
-
 .styled-table {
   border-collapse: collapse;
   font-family: Helvetica, Arial, sans-serif;
@@ -112,28 +108,22 @@ export default {
   width: 100%;
 }
 .styled-table thead tr {
-  background-color: #07617d;
-  color: #ffffff;
+  background-color: #07617D;
+  color: #FFFFFF;
   text-align: left;
 }
-
 .styled-table th,
 .styled-table td {
   padding: 10px 12px;
     position: center;
 }
-
 .styled-table tbody tr {
-  border-bottom: 1px solid #34495e;
-  
+  border-bottom: 1px solid #34495E;
 }
-
 .styled-table tbody tr:nth-of-type(even) {
-  background-color: #f8f6f6;
+  background-color: #F8F6F6;
 }
-
 .styled-table tbody tr:last-of-type {
-  border-bottom: 5px solid #f9a828;
+  border-bottom: 5px solid #F9A828;
 }
 </style>
-
