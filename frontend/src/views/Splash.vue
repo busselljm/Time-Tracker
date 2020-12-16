@@ -1,6 +1,7 @@
 <template>
 <div>
   <splash-page/>
+  
   </div>
 </template>
 
