@@ -20,21 +20,21 @@
         </thead>
         <tbody>
      <tr v-for="timesheet in $store.state.timesheets" v-bind:key="timesheet.id">
-          <td>
+          <td v-if="timesheet.endingTime != null"> 
             <span>
               {{ timesheet.projectName }}
             </span>
           </td>
-          <td>
+          <td v-if="timesheet.endingTime != null">
             <span>{{ timesheet.description }}</span>
           </td>
-               <td>
+               <td v-if="timesheet.endingTime != null">
             <span>{{(new Date(timesheet.beginningTime)).toDateString()}}</span> 
             <br>
             <span>{{(new Date(timesheet.beginningTime)).toLocaleTimeString()}} </span>
           </td>
-           <td>
-            <span>{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
+           <td v-if="timesheet.endingTime != null">
+            <span >{{ (new Date(timesheet.endingTime)).toDateString()}}</span>
             <br>
              <span>{{(new Date(timesheet.endingTime)).toLocaleTimeString()}} </span>
           </td>
