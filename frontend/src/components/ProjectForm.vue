@@ -38,7 +38,7 @@
       />
     </div>
     <div class="form-group">
-      <button class="btn btn-outline-primary btn-md" type="submit">
+      <button class="btn btn-secondary" type="submit">
         Submit
       </button>
     </div>
