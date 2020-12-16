@@ -1,7 +1,12 @@
 <template>
   <div>
     <h1 class="header">About KronoTrakr</h1>
-    <p>About the app</p>
+    <p>Welcome to KronoTrakr! <br> This application allows managers and employees create projects and 
+      log time worked on them. This application is for tracking the amount of time spent on a project. 
+      Employees indicate when they start and stop working on a project. 
+      They can do that "live" or have the option to go back and enter past blocks of time. 
+      Employees can view reports for a given time period of how much time they've spent per project, 
+      and managers can view overall reports. </p>
     <h2 class="header">Meet the Team</h2>
 
     <div class="row mt-4">
