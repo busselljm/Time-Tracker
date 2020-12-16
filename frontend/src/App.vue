@@ -39,6 +39,7 @@ export default {
         { text: "Profile", component: "profile" },
         { text: "Projects", component: "projects" },
         { text: "Time Logs", component: "times" },
+
       ],
     };
   },

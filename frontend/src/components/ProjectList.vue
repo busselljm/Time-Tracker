@@ -2,9 +2,6 @@
   <body>
     <div class="table-wrapper">
       <div class="table-title">
-        <div class="row">
-          <div class="col-sm-6">
-            <div>
               <div id="title">Current Projects</div>
               <div class="sort-buttons">
                 <button
@@ -25,10 +22,8 @@
                 >
                   Recent
                 </button>
-              </div>
-            </div>
           </div>
-        </div>
+
       </div>
       <table class="table table-striped table-hover">
         <thead>
@@ -74,7 +69,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+              </div>
   </body>
 </template>
 
@@ -160,6 +155,9 @@ body {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
 }
 .table-title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
   border-bottom: 1px solid #a3e000;
   padding-bottom: 15px;
   background-color: #363636;
@@ -233,6 +231,14 @@ img {
 #title {
   font-size: 25px;
 }
+
+.sort-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
 </style>
 
 
