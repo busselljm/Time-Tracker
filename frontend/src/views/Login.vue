@@ -79,7 +79,7 @@ export default {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.getMyEmployees();
-            this.$router.push("/");
+            this.$router.push("/projects");
           }
         })
         .catch((error) => {
