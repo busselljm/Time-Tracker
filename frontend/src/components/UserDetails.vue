@@ -5,6 +5,7 @@
         <img v-bind:src="loggedInUser.avatar" :alt="`Profile Photo of ${loggedInUserFullName}`" />
       </div>
       <div class="col-md-9">
+        <h1 class="mb-4">Profile</h1>
         <form>
           <div class="form-group">
             <label>First Name</label><br>
@@ -29,7 +30,7 @@
             <label>Change Your Picture</label><br>
             <input v-if="isEditable" v-model="loggedInUser.avatar" class="form-control">
           </div>
-          <div v-if="isEditable">
+          <div v-if="isEditable" class="mt-3">
             <label>Select Manager</label><br>
             <select v-model="selectedManagerUserId" class="form-control">
               <option v-for="user in allOtherUsers" :key="user.id" :value="user.id">
@@ -124,7 +125,7 @@ export default {
 
 <style scoped>
   .user-profile {
-    max-width: 40rem;
+    width: 100%;
     margin: 0 auto;
   }
 
@@ -138,8 +139,11 @@ export default {
   }
 
   img {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-radius: 5px;
+    max-width: 250px;
+    margin: 0 auto 3rem auto;
+    display: block;
   }
 </style>

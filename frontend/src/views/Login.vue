@@ -1,49 +1,53 @@
 <template>
-  <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
-        Invalid username and password!
-      </div>
-      <div
-        class="alert alert-success"
-        role="alert"
-        v-if="this.$route.query.registration"
-      >
-        Thank you for registering, please sign in.
-      </div>
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping"><font-awesome-icon icon="user-secret"/> </span>
-        <input
-          type="text"
-          id="username"
-          class="form-control"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="addon-wrapping"
-          v-model="user.username"
-        required
-        autofocus
-        />
-      </div>
-      <div class="input-group flex-nowrap">
-        <span class="input-group-text" id="addon-wrapping"><font-awesome-icon icon="lock"/> </span>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          placeholder="Password"
-          aria-label="Password"
-          aria-describedby="addon-wrapping"
-          v-model="user.password"
-        required
-        />
-      </div>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <div class="button">
-      <button class="btn btn-primary btn-md" type="submit">Sign in</button>
-      </div>
-    </form>
+<div>
+  <img src="/kronos-logo.svg" alt="Kronos Logo">
+  <h1 class="text-center">KronoTrakr</h1>
+    <div id="login" class="text-center card mt-4">
+      <form class="form-signin" @submit.prevent="login">
+        <h2 class="h3 mb-3 font-weight-normal">Sign In</h2>
+        <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+          Invalid username and password!
+        </div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          v-if="this.$route.query.registration"
+        >
+          Thank you for registering, please sign in.
+        </div>
+        <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><font-awesome-icon icon="user-secret"/> </span>
+          <input
+            type="text"
+            id="username"
+            class="form-control"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            v-model="user.username"
+          required
+          autofocus
+          />
+        </div>
+        <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping"><font-awesome-icon icon="lock"/> </span>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Password"
+            aria-label="Password"
+            aria-describedby="addon-wrapping"
+            v-model="user.password"
+          required
+          />
+        </div>
+        <router-link :to="{ name: 'register' }">Need an account?</router-link>
+        <div class="button">
+        <button class="btn btn-primary btn-md btn-block" type="submit">SIGN IN</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -91,21 +95,30 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 #login {
   margin: 0 auto;
-  width: 300px;
+  min-width: 450px;
+}
+
+h1 {
+  font-weight: bold;
+  font-style: italic;
 }
 
 .input-group {
   margin-bottom: 1rem;
 }
 
-  .button{
-    display: flex;
-    justify-content: center;
-    padding: 10px 0px;
-  }
+.button{
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+}
 
+img {
+  display: block;
+  margin: 0 auto;
+
+}
 </style>

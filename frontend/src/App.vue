@@ -7,7 +7,7 @@
       <stop-watch v-if="!isLogin && $store.state.user.id != null" />
 
     </div>
-    <footer>
+    <footer v-if="!isLogin">
       <p class="copyright text-center">
         Copyright &copy; {{ year }}. All Rights Reserved.
       </p>
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     isLogin() {
-      return this.$route.name === "login";
+      return this.$route.name === "login" || this.$route.name === "register";
     },
     year() {
       return new Date().getFullYear();

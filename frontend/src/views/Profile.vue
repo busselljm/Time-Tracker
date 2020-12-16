@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card">
         <user-details />
     </div>
 </template>
