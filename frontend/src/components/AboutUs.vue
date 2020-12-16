@@ -1,7 +1,7 @@
 <template>
   <div>
     <single-card class="mb-4">
-      <h2>Welcome to KronoTrakr!</h2>
+      <h2>KronoTrakr</h2>
       This application allows managers and employees to create projects and log
       time worked on them. This application is for tracking the amount of time
       spent on a project. Employees indicate when they start and stop working on
@@ -54,6 +54,11 @@ export default {
 <style scoped>
 .card {
   height: 100%;
+}
+
+h2 {
+  font-weight: bold;
+  font-style: italic;
 }
 
 ul li {

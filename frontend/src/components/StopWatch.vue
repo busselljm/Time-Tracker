@@ -1,67 +1,79 @@
 <template>
-<div>
-  <single-card v-if="!loadingTimesheet" class="stop-watch" v-bind:class="{minimized}">
-  <h3 id="title-time" v-on:click="minimized = !minimized" class="mb-3">Time Tracker</h3>
-    <!-- ACTIVE TIME LOG DOESN'T EXIST -->
-    <div v-if="$store.state.timesheet == null">
-      <label>Choose project:</label>
-      <select
-        class="mb-3 form-control"
-        name="projects"
-        id="project name"
-        v-model="selectedProject"
-        v-if="$store.state.timesheet == null"
-      >
-        <option
-          v-bind:value="project.projectID"
-          v-for="project in this.$store.state.projects"
-          v-bind:key="project.projectName"
+  <div>
+    <single-card
+      v-if="!loadingTimesheet"
+      class="stop-watch"
+      v-bind:class="{ minimized }"
+    >
+      <h3 id="title-time" v-on:click="minimized = !minimized" class="mb-3">
+        Time Tracker
+      </h3>
+      <!-- ACTIVE TIME LOG DOESN'T EXIST -->
+      <div v-if="$store.state.timesheet == null">
+        <label>Choose project:</label>
+        <select
+          class="mb-3 form-control"
+          name="projects"
+          id="project name"
+          v-model="selectedProject"
+          v-if="$store.state.timesheet == null"
         >
-          {{ project.projectName }}
-        </option>
-      </select>
-      <div>
-      <button
-        class="btn btn-primary btn-lg btn-block"
-        :disabled="selectedProject == null"
-        v-on:click="start"
-      >
-        Start Timer
-      </button>
+          <option
+            v-bind:value="project.projectID"
+            v-for="project in this.$store.state.projects"
+            v-bind:key="project.projectName"
+          >
+            {{ project.projectName }}
+          </option>
+        </select>
+        <div>
+          <button
+            class="btn btn-primary btn-lg btn-block"
+            :disabled="selectedProject == null"
+            v-on:click="start"
+          >
+            Start Timer
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- ACTIVE TIME LOG EXISTS -->
-    <div class="footer-row" v-if="$store.state.timesheet != null">
-      <p>Project: {{$store.state.timesheet.projectName}}</p>
-      <div>
-      <label>Description</label>
-      <input class="form-control mb-3" maxlength="50" type="text" v-model="description" placeholder="A brief description of your work"/>
+      <!-- ACTIVE TIME LOG EXISTS -->
+      <div class="footer-row" v-if="$store.state.timesheet != null">
+        <p>Project: {{ $store.state.timesheet.projectName }}</p>
+        <div>
+          <label>Description</label>
+          <input
+            class="form-control mb-3"
+            maxlength="50"
+            type="text"
+            v-model="description"
+            placeholder="A brief description of your work"
+          />
+        </div>
+        <p>{{ formattedElapsedTime }}</p>
+        <div>
+          <button
+            class="btn btn-danger btn-lg btn-block"
+            v-on:click="stop"
+            v-if="$store.state.timesheet != null"
+          >
+            Stop Timer
+          </button>
+        </div>
       </div>
-      <p>{{ formattedElapsedTime }}</p>
-      <div>
-      <button
-        class="btn btn-danger btn-lg btn-block"
-        v-on:click="stop"
-        v-if="$store.state.timesheet != null"
-      >
-        Stop Timer
-      </button>
-      </div>
-    </div>
-  </single-card>
+    </single-card>
   </div>
 </template>
 
 <script>
 import timesheetService from "@/services/TimesheetService.js";
 import ProjectService from "../services/ProjectService";
-import SingleCard from '@/components/SingleCard.vue'
+import SingleCard from "@/components/SingleCard.vue";
 
 export default {
   name: "App",
   components: {
-    SingleCard
+    SingleCard,
   },
   data() {
     return {
@@ -70,7 +82,7 @@ export default {
       selectedProject: null,
       loadingTimesheet: false,
       description: "",
-      minimized: true
+      minimized: true,
     };
   },
   computed: {
@@ -169,10 +181,9 @@ export default {
 </script>
 
 <style scoped>
-
 h3 {
   margin: 0;
-  background-color:  #363636;
+  background-color: #363636;
   text-align: center;
   padding: 1rem;
   color: #d6d6d6;
@@ -184,11 +195,11 @@ h3 {
   padding: 0;
   right: 2rem;
   width: 325px;
-  box-shadow: 0 0 5px 2px rgb(221, 221, 221);;
+  box-shadow: 0 0 5px 2px rgb(221, 221, 221);
 }
 
 .stop-watch > div {
-  padding: .5rem 1.5rem 1.5rem 1.5rem;
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem;
 }
 
 p {
@@ -206,32 +217,31 @@ label {
 }
 
 .btn-success {
-  background-color: #a3e000; 
+  background-color: #a3e000;
   color: #1a2400;
   font-weight: bold;
   border: none;
 }
 
 .btn-success:hover {
-    background-color: #c1f531;
-    transition: all .25s ease;
-     color: #1a2400;
-  }
+  background-color: #c1f531;
+  transition: all 0.25s ease;
+  color: #1a2400;
+}
 
-  .btn-danger {
-    background-color: #c74513;
-  }
+.btn-danger {
+  background-color: #c74513;
+}
 
-  .btn-danger:hover {
-    background-color: rgb(252, 116, 62);
-    border: none;
-  }
-  .minimized div {
-    display: none;
-    
-  }
+.btn-danger:hover {
+  background-color: rgb(252, 116, 62);
+  border: none;
+}
+.minimized div {
+  display: none;
+}
 #title-time:hover {
-   background-color:  #6b6767;
+  background-color: #6b6767;
 }
 </style>
 

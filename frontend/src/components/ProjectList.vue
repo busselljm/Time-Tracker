@@ -50,7 +50,7 @@
                 />
                 <img
                   v-if="project.projectImg === ''"
-                  src="http://placegoat.com/200/200"
+                  src="kronos-logo.svg"
                 />
               </span>
             </td>
