@@ -178,11 +178,11 @@ h3 {
 
 .stop-watch {
   position: fixed;
-  bottom: 70px;
+  bottom: 0px;
   padding: 0;
   right: 2rem;
   width: 325px;
-  box-shadow: 0 0 10px 5px rgb(221, 221, 221);;
+  box-shadow: 0 0 5px 2px rgb(221, 221, 221);;
 }
 
 .stop-watch > div {
@@ -226,6 +226,7 @@ label {
   }
   .minimized div {
     display: none;
+    
   }
 #title-time:hover {
    background-color:  #6b6767;
