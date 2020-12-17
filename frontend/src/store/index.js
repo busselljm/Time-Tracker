@@ -40,16 +40,6 @@ export default new Vuex.Store({
     report: [],
     token: currentToken || '',
     user: currentUser || {},
-    activeUser: {
-      id: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      avatar: "",
-      managerFirstName: "",
-      managerLastName: "",
-      manager: ""
-    },
     employees : []
   },
 
@@ -80,7 +70,6 @@ export default new Vuex.Store({
       });
     },
     SORT_PROJECTS_BY_RECENT(state){
-      debugger
       state.projects.sort((project1, project2) => {
         if(project2.mostRecent == null) {
           if(project1.mostRecent == null) {

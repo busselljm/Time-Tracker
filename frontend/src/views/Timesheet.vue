@@ -48,4 +48,17 @@ export default {
 </script>
 
 <style>
+.run-btn {
+  background: #b300e0;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  height: 36px;
+  font-size: 16px;
+  padding: 6px 12px;
+  margin: 0px;
+}
+.run-btn:hover{
+  background: #c614f3;
+}
 </style>

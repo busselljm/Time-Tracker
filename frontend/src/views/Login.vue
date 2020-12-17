@@ -1,6 +1,6 @@
 <template>
 <div>
-  <img src="/kronos-logo.svg" alt="Kronos Logo">
+  <img src="img/kronos-logo.png" alt="Kronos Logo">
   <h1 class="text-center">KronoTrakr</h1>
     <single-card id="login" class="text-center mt-4">
       <form class="form-signin" @submit.prevent="login">

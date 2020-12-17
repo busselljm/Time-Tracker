@@ -137,10 +137,7 @@ export default {
     padding: 15px 30px;
     color: #fff;
 }
-.table-title h2 {
-    margin: 2px 0 0;
-    font-size: 24px;
-}
+
 table.table tr th, table.table tr td {
     border-color: #E9E9E9;
     padding: 12px 15px;

@@ -45,7 +45,7 @@
                 />
                 <img
                   v-if="project.projectImg === ''"
-                  src="kronos-logo.svg"
+                  src="img\kronos-logo.png"
                 />
               </span>
             </td>
@@ -132,12 +132,8 @@ export default {
 </script>
 
 <style scoped>
-body {
-  color: #566787;
-  background: hsl(0, 13%, 80%);
-  font-family: Arial, Helvetica, sans-serif;
-}
 .table-wrapper {
+
   background: #fff;
   padding: 20px 30px 5px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
@@ -164,10 +160,7 @@ body {
   padding: 15px 30px;
   color: #fff;
 }
-.table-title h2 {
-  margin: 2px 0 0;
-  font-size: 24px;
-}
+
 table.table tr th,
 table.table tr td {
   border-color: #e9e9e9;
@@ -227,6 +220,10 @@ img {
   margin: 4px 2px;
 }
 
+  .btn:hover {
+    color: white;
+  }
+
 #title {
   font-size: 25px;
 }
@@ -237,6 +234,8 @@ img {
   justify-content: flex-end;
   flex-grow: 1;
 }
+
+
 
 </style>
 

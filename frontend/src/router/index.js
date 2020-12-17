@@ -12,7 +12,7 @@ import EditProject from '../views/EditProject.vue'
 import Profile from '../views/Profile.vue'
 import Timesheet from '../views/Timesheet.vue'
 import AboutUs from '../views/AboutUs.vue'
-import SplashPage from '../views/Splash.vue'
+import Splash from '../views/Splash.vue'
 
 Vue.use(Router)
 
@@ -113,7 +113,7 @@ const router = new Router({
     {
       path:'/',
       name:'splash',
-      component:SplashPage,
+      component:Splash,
       meta: {
         requiresAuth: false
       }

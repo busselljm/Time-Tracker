@@ -185,4 +185,28 @@ export default {
 </script>
 
 <style>
+
+.time-title {
+    border-bottom: 1px solid #A3E000;
+    padding-bottom: 15px;
+    background-color: #363636;
+    margin: -20px -31px 10px;
+    padding: 15px 30px;
+    color: #fff;
+    border: 1px solid black;
+}
+
+.table-wrapper {
+    background: #fff;
+    padding: 20px 30px 5px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+#title {
+  font-size: 25px;
+}
+
+.option:hover{
+  background: #A3E000;
+}
 </style>

@@ -1,37 +1,33 @@
 <template>
-<div>
-<nav>
-    <div class="overlay" @mouseenter="showDropdown = false" />
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <router-link :to="{ name: 'splash' }">
-            <img class="left" src="kronos-logo.svg" alt="Kronos Logo" />
-          </router-link>
-        </div>
-
-        <div class="col-md-9 center-vertically justify-content-end">
-          <ul class="list-unstyled text-right" v-if="$store.state.token !== ''">
-            <li v-for="item in items" :key="item.component" class="d-inline" @mouseenter="showDropdown = false">
-              <router-link :to="item.component">{{ item.text }}</router-link>
-            </li>
-            <li class="d-inline" @mouseenter="showDropdown = true">
-              <img :src="$store.state.user.avatar" :alt="`${$store.state.user.firstName}'s profile picture for KronoTrackr`">
-            </li>
-          </ul>
-        </div>
-      </div>
-      <ul v-if="showDropdown" class="dropdown list-unstyled" @mouseleave="showDropdown = false">
-        <li class="h5">Hello, {{ $store.state.user.firstName }}</li>
-        <li class="mb-2"><router-link :to="{ name: 'profile' }">Profile</router-link></li>
-        <li>
-              <router-link
-                :to="{ name: 'login' }"
-                class="btn btn-primary btn-md btn-block"
-                >LOGOUT</router-link
-              >
-            </li>
+  <nav>
+    <div class="container nav-container">
+      <img
+        id="icon"
+        class="left nav-logo"
+        src="img\Kronotrakr.png"
+        alt="Kronos Logo"
+      />
+      <ul class="list-unstyled nav-item" v-if="$store.state.token !== ''">
+        <li v-for="item in items" :key="item.component" class="d-inline">
+          <router-link :to="item.component">{{ item.text }}</router-link>
+        </li>
       </ul>
+      <div
+        class="nav-item"
+        id="user"
+        v-if="
+          this.$store.state.user.id != '' && this.$store.state.user.id != null
+        "
+      >
+        Hello, {{ this.$store.state.user.firstName }}!
+      </div>
+      <div class="d-inline nav-item">
+        <router-link :to="{ name: 'logout' }" class="btn btn-primary btn-md" v-if="
+          this.$store.state.user.id != '' && this.$store.state.user.id != null
+        "
+          >LOGOUT</router-link
+        >
+      </div>
     </div>
   </nav>
 </div>
@@ -64,6 +60,7 @@ nav {
   z-index: 99999;
 }
 
+<<<<<<< Updated upstream
 .container {
   position: relative;
   z-index: 9999
@@ -83,6 +80,8 @@ nav ul {
   margin-bottom: 0;
 }
 
+=======
+>>>>>>> Stashed changes
 nav ul li {
   padding: 0 1rem;
 }
@@ -99,15 +98,44 @@ nav li a:not(.btn):hover {
   text-decoration: none;
 }
 
+<<<<<<< Updated upstream
 nav li:last-child a {
   color: #fff;
+=======
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin-right: 0px;
 }
 
-.left {
-  height: 4rem;
-  display: flex;
-  align-self: left;
-  flex-wrap: wrap;
+.nav-container {
+  height: 50px;
+  justify-content: flex-end;
+}
+
+.nav-logo {
+  position: fixed;
+  left: 16px;
+}
+
+.nav-item {
+  margin-left: 24px;
+}
+
+.list-unstyled {
+  align-self: flex-end;
+>>>>>>> Stashed changes
+}
+
+#icon {
+  height: 50px;
+  width: 300px;
+}
+#user {
+  color: white;
+  justify-items: flex-end;
 }
 
 li img {

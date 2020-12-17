@@ -27,11 +27,11 @@ a:hover {
 /* Anchor Tag Override
 ----------------------------------------- */
 a {
-    color: #466a3e;
+    color: #000000;
 }
 
 a:hover {
-    color: #466a3e;
+    color: #94cc00;
     text-decoration: none;
     font-weight: bold;
 }

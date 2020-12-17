@@ -1,6 +1,6 @@
 <template>
   <div id="register" class="text-center">
-    <img src="/kronos-logo.svg" alt="Kronos Logo">
+    <img src="img/kronos-logo.png" alt="Kronos Logo">
 
     <form class="form-register card" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
