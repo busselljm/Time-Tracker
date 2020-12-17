@@ -51,24 +51,24 @@ CREATE TABLE timesheet (
   CONSTRAINT FK_project_id FOREIGN KEY (project_id) REFERENCES projects (project_id)
 );
 
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('bross', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Bob', 'Ross', 'bob.ross@kronotrakr.com', 'https://yt3.ggpht.com/ytc/AAUvwnhkZjfj3AhZNOvbxzIzVLTKZZHGLAlIHVstuYx1=s900-c-k-c0x00ffffff-no-rj');
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('dbowie', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'David', 'Bowie', 'david.bowie@kronotrakr.com', 'https://i.pinimg.com/originals/31/70/5a/31705a0afbaee3a1673748f69481c9e1.jpg');
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('lperg', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Laura', 'Pergolizzi', 'laura.pergolizzi@kronotrakr.com', 'https://s.inyourpocket.com/img/figure/2018-06/lp3.jpg');
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('ccorn', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Chris', 'Cornell', 'chris.cornell@kronotrakr.com', 'https://media.npr.org/assets/img/2015/09/10/chriscornell_sq-e12d4f81f407d6d3cc412ed61f7d01233c2ed924-s800-c85.jpeg');
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('ddraim', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'David', 'Draiman', 'david.draiman@kronotrakr.com', 'https://i.pinimg.com/736x/7a/75/95/7a75954e65ab1be01efe83560785f3c6.jpg');
-INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
-VALUES ('abaraz', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Alina', 'Baraz', 'alina.baraz@kronotrakr.com', 'https://img.discogs.com/rjfM6x-OLtjW4-5uDB4XDddQlVI=/600x740/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-3786675-1587919159-6933.jpeg.jpg');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, is_manager)
+VALUES ('bross', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Bob', 'Ross', 'bob.ross@kronotrakr.com', 'https://yt3.ggpht.com/ytc/AAUvwnhkZjfj3AhZNOvbxzIzVLTKZZHGLAlIHVstuYx1=s900-c-k-c0x00ffffff-no-rj', 'true');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name)
+VALUES ('dbowie', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'David', 'Bowie', 'david.bowie@kronotrakr.com', 'https://i.pinimg.com/originals/31/70/5a/31705a0afbaee3a1673748f69481c9e1.jpg', '1', 'Bob', 'Ross');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name)
+VALUES ('lperg', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Laura', 'Pergolizzi', 'laura.pergolizzi@kronotrakr.com', 'https://s.inyourpocket.com/img/figure/2018-06/lp3.jpg', '1', 'Bob', 'Ross');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name)
+VALUES ('ccorn', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Chris', 'Cornell', 'chris.cornell@kronotrakr.com', 'https://media.npr.org/assets/img/2015/09/10/chriscornell_sq-e12d4f81f407d6d3cc412ed61f7d01233c2ed924-s800-c85.jpeg', '1', 'Bob', 'Ross');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name)
+VALUES ('ddraim', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'David', 'Draiman', 'david.draiman@kronotrakr.com', 'https://i.pinimg.com/736x/7a/75/95/7a75954e65ab1be01efe83560785f3c6.jpg', '1', 'Bob', 'Ross');
+INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar, manager_id, manager_first_name, manager_last_name)
+VALUES ('abaraz', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'Alina', 'Baraz', 'alina.baraz@kronotrakr.com', 'https://img.discogs.com/rjfM6x-OLtjW4-5uDB4XDddQlVI=/600x740/smart/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/A-3786675-1587919159-6933.jpeg.jpg', '1', 'Bob', 'Ross');
 INSERT INTO users (username, password_hash, role, first_name, last_name, email, avatar)
 VALUES ('bbern', '$2a$10$gVXsoYqfWm5DZukoT5hNNuxH63JdK.z5Fa0FdvjWu28Do0o0DZUc2', 'ROLE_USER', 'BMO', 'Berning', 'bmo.berning@kronotrakr.com', 'https://i.ibb.co/vJpyQPZ/IMG-1192.jpg');
 
 
-INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
-('Joy of Painting','Learn to paint with oil paints led by instructor Bob Ross','https://upload.wikimedia.org/wikipedia/en/thumb/8/86/The_Joy_of_Painting_title_screen.jpg/250px-The_Joy_of_Painting_title_screen.jpg', '2021-05-17');
+INSERT INTO projects (project_name, project_desc, project_img, end_date, shared) VALUES
+('Joy of Painting','Learn to paint with oil paints led by instructor Bob Ross','https://upload.wikimedia.org/wikipedia/en/thumb/8/86/The_Joy_of_Painting_title_screen.jpg/250px-The_Joy_of_Painting_title_screen.jpg', '2021-05-17', 'true');
 INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
 ('The Man Who Sold the World','The third album in the written by Bowie' ,'https://images-na.ssl-images-amazon.com/images/I/718coMCsbUL._SL1200_.jpg', '2021-11-04');
 INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
@@ -101,10 +101,6 @@ INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
 ('Squeaking','Squeaking all the time cuz it is fun ;)' ,'https://i.ytimg.com/vi/tFr9Z9vVcXI/maxresdefault.jpg', 'Ongoing');
 INSERT INTO projects (project_name, project_desc, project_img, end_date) VALUES
 ('Teach Paint Sessions','I teach a painting class every Wednesday at 6PM','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZXXy5ux-a__uFGRxaUrnG7seb45zsz2yN1g&usqp=CAU', 'Ongoing');
-
-
-
-
 
 INSERT INTO user_project(project_id, user_id)
 VALUES (1,1);
@@ -141,6 +137,30 @@ VALUES (16,7);
 INSERT INTO user_project(project_id, user_id)
 VALUES (17,1);
 
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 1, 'Recorded an episode of Joy of Painting', '2020-12-17 09:00:00', '2020-12-17 12:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 1, 'Recorded an episode of Joy of Painting', '2020-12-17 13:00:00', '2020-12-17 16:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(17, 1, 'Taught a class on Dec 16', '2020-12-16 18:00:00', '2020-12-16 20:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(17, 1, 'Taught a class on Dec 9', '2020-12-9 18:00:00', '2020-12-9 20:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(17, 1, 'Taught a class on Dec 2', '2020-12-2 18:00:00', '2020-12-2 20:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(2, 1, 'Did a painting following along with Bob Ross', '2020-12-14 10:00:00', '2020-12-14 11:00:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(2, 1, 'Did a painting with a lake and mountain', '2020-12-11 11:37:16', '2020-12-16 12:45:27');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(2, 2, 'Recorded vocals for The Man Who Sold the World', '2020-11-08 13:29:02', '2020-11-08 17:16:54');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(2, 2, 'Recorded vocals for The Superman', '2020-12-15 12:17:23', '2020-12-15 16:49:47');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(3, 2, 'Recorded vocals for Time', '2020-12-17 16:00:00', '2020-12-17 20:45:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(3, 2, 'Recorded vocals for The Prettiest Star', '2020-12-17 08:00:00', '2020-12-17 12:15:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(3, 2, 'Recorded vocals for Aladdin Sane', '2020-12-12 09:00:00', '2020-12-12 13:45:00');
 
 
 COMMIT TRANSACTION;
