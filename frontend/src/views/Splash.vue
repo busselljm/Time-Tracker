@@ -1,6 +1,6 @@
 <template>
   <div class="no-boot">
-    <br/>
+    <br />
     <div class="full-container">
       <img
         id="mockup"
@@ -23,15 +23,98 @@
           >Login</router-link
         >
       </div>
-      </div>
-    <br/>
+    </div>
+    <br />
 
- <blockquote><p class="quotation"> 
-  I love this software. By switching to KronoTrakr, our time reporting has never been more accurate.</p>
-<footer>- Bob Ross</footer>
-</blockquote> 
+    <blockquote>
+      <p class="quotation">
+        I love this software. By switching to KronoTrakr,
+        <u>our time reporting has never been more accurate</u>.
+      </p>
+      <footer>- Bob Ross</footer>
+    </blockquote>
+
+    <table class="features-table">
+      <tbody>
+        <tr>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/833/833593.svg"
+              alt="Calendar Pic"
+            />
+            <br />
+            <br />
+            <p>
+              Create a project and choose to specify an ending date or list as
+              'Ongoing'
+            </p>
+          </th>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/37/37663.svg"
+              alt="Clock Pic"
+            />
+            <br />
+            <br />
+            <p>
+              Log your time to a project you create or a project that has been
+              shared with you
+            </p>
+          </th>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/933/933196.svg"
+              alt="Stopwatch Pic"
+            />
+            <br />
+            <br />
+            <p>Log your time live with our live tracking tool</p>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/1828/1828960.svg"
+              alt="Sharing Pic"
+            />
+            <br />
+            <br />
+            <p>
+              As a manager, share projects with your employees with a click of a
+              button
+            </p>
+          </th>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/2680/2680927.svg"
+              alt="Stack Reports Pic"
+            />
+            <br />
+            <br />
+            <p>Run reports for just yourself or for your employees</p>
+          </th>
+          <th>
+            <img
+              src="https://www.flaticon.com/svg/static/icons/svg/747/747376.svg"
+              alt="Person Pic"
+            />
+            <br />
+            <br />
+            <p>Customize your own profile</p>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <blockquote>
+      <p class="quotation">
+        <u>Excellent and responsive support team</u> for this application.
+        Highly recommend!
+      </p>
+      <footer>- David Draiman</footer>
+    </blockquote>
   </div>
-
 </template>
 
 <script>
@@ -59,7 +142,7 @@ export default {};
   padding: 0px;
 }
 
-.quotation{
+.quotation {
   font-size: 30px;
   margin: 0 auto;
   quotes: "\201C""\201D""\2018""\2019";
@@ -90,10 +173,31 @@ export default {};
   font-size: 3em;
 }
 
-footer{
-  margin:0;
+footer {
+  margin: 0;
   text-align: right;
   font-size: 1.5em;
   font-style: italic;
 }
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.features-table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 20px;
+  border-collapse: separate;
+  background-image: linear-gradient(#eba24f, #f3f3f3);
+  border-radius: 15px;
+  table-layout: fixed;
+  width: 100%;
+}
+
+td {
+  width: 25%;
+}
+
 </style>
