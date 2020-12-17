@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button v-on:click="runReports = false" class="btn btn-primary">Create Time</button>
-    <button v-on:click="runReports = true" class="btn btn-danger">Run Reports</button>
-    <br/>
-    <br/>
-    <time-form v-bind:runReports="runReports" v-if="runReports != undefined" v-on:reset-form="runReports = undefined"/>
+    <button v-on:click="showCreateTime()" class="btn btn-primary mb-3 mr-2">Create Time</button>
+    <button v-on:click="showReports()" class="btn btn-primary mb-3">Run Reports</button>
+
+    <time-form v-bind:runReports="runReports" v-if="showForm" v-on:reset-form="runReports = undefined"/>
+    <run-reports v-if="showForm || runReports === true"/>
+
     <time-list v-if="!runReports"/>
-    <run-reports v-if="runReports === true"/>
   </div>
 </template>
 
@@ -20,10 +20,19 @@ export default {
   components: { TimeList, TimeForm, RunReports },
   data() {
     return{
-      runReports: undefined
+      runReports: undefined,
+      showForm: false
     }
   },
   methods: {
+    showCreateTime() {
+      this.runReports = false;
+      this.showForm = !this.showForm
+    },
+    showReports() {
+      this.runReports = true;
+      this.showForm = !this.showForm
+    },
     getProjects() {
       projectService.getAllProjects().then((response) => {
         this.projects = response.data;

@@ -1,54 +1,61 @@
 <template>
-  <form v-on:submit="submitForm" class="projectForm">
-    <div class="form-group">
-      <label for="name">name:</label>
-      <input
-        id="name"
-        type="text"
-        class="form-control"
-        v-model="project.projectName"
-        autocomplete="off"
-      />
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea
-        id="description"
-        class="form-control"
-        v-model="project.projectDescription"
-      ></textarea>
-    </div>
-<div class="form-group">
-      <label for="image">Image (Optional):</label>
-      <input
-        id="image"
-        type="text"
-        class="form-control"
-        v-model="project.projectImg"
-        autocomplete="off"
-      />
-    </div>
-    <div class="form-group">
-      <label for="end-date">Completion Date:</label>
-      <input
-        id="end-date"
-        type="date"
-        class="form-control"
-        v-model="project.endDate"
-      />
-    </div>
-    <div class="form-group">
-      <button class="btn btn-secondary" type="submit">
-        Submit
-      </button>
-    </div>
-  </form>
+  <div class="mb-4">
+    <single-card>
+      <form v-on:submit="submitForm" class="projectForm">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            v-model="project.projectName"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea
+            id="description"
+            class="form-control"
+            v-model="project.projectDescription"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Image (Optional):</label>
+          <input
+            id="image"
+            type="text"
+            class="form-control"
+            v-model="project.projectImg"
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group">
+          <label for="end-date">Completion Date:</label>
+          <input
+            id="end-date"
+            type="date"
+            class="form-control"
+            v-model="project.endDate"
+          />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-secondary" type="submit">Submit</button>
+        </div>
+      </form>
+    </single-card>
+  </div>
 </template>
 
 <script>
 import projectService from "../services/ProjectService";
+import SingleCard from "../components/SingleCard.vue";
+
 export default {
   name: "project-form",
+  components: {
+    SingleCard,
+  },
   data() {
     return {
       project: {
@@ -57,7 +64,7 @@ export default {
         projectImg: "",
         ongoing: false,
         endDate: null,
-        shared: false
+        shared: false,
       },
     };
   },
@@ -102,7 +109,6 @@ export default {
 </script>
 
 <style scoped>
-
 img {
   position: relative;
   width: 50px;

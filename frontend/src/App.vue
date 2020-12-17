@@ -34,12 +34,9 @@ export default {
   data() {
     return {
       navigationItems: [
-        { text: "Home", component: "/" },
-        { text: "About Us", component: "about-us" },
-        { text: "Profile", component: "profile" },
         { text: "Projects", component: "projects" },
         { text: "Time Logs", component: "times" },
-
+        { text: "About Us", component: "about-us" },
       ],
     };
   },
@@ -62,6 +59,7 @@ export default {
 footer {
   background-color: #363636;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 footer p {

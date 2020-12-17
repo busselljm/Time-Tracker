@@ -6,7 +6,8 @@
       v-bind:class="{ minimized }"
     >
       <h3 id="title-time" v-on:click="minimized = !minimized" class="mb-3">
-        Time Tracker
+        <template v-if="showElapsedTimeInHeader">Time Tracker</template>
+        <template v-else>{{ formattedElapsedTime }}</template>
       </h3>
       <!-- ACTIVE TIME LOG DOESN'T EXIST -->
       <div v-if="$store.state.timesheet == null">
@@ -71,7 +72,7 @@ import ProjectService from "../services/ProjectService";
 import SingleCard from "@/components/SingleCard.vue";
 
 export default {
-  name: "App",
+  name: "StopWatch",
   components: {
     SingleCard,
   },
@@ -104,6 +105,13 @@ export default {
     days() {
       return Math.floor(this.elapsedTime / (1000 * 60 * 60 * 24));
     },
+    showElapsedTimeInHeader() {
+      // Only show time in stop watch header if time is running and minimized
+      return (
+        (this.elapsedTime == 0 && this.minimized === true) ||
+        (this.minimized === false && this.formattedElapsedTime)
+      );
+    },
   },
   filters: {
     formatTime(value) {
@@ -133,6 +141,7 @@ export default {
       timesheetService.completeActiveTimesheet(this.description).then(
         () => {
           clearInterval(this.timer);
+          this.elapsedTime = 0;
           this.$store.commit("SET_ACTIVE_TIMESHEET", null);
           this.getTimesheets();
         },

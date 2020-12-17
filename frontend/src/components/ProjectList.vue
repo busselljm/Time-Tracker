@@ -134,11 +134,10 @@ export default {
 <style scoped>
 body {
   color: #566787;
-  background: #d3c6c6;
+  background: hsl(0, 13%, 80%);
   font-family: Arial, Helvetica, sans-serif;
 }
 .table-wrapper {
-  width: 850px;
   background: #fff;
   padding: 20px 30px 5px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);

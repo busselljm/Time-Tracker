@@ -1,6 +1,6 @@
 <template>
   <body>
-    <div class="table-wrapper " v-if="$store.state.report.length > 0">
+    <div class="table-wrapper" v-if="$store.state.report.length > 0">
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
@@ -115,7 +115,6 @@ export default {
 </script>
 <style scoped>
 .table-wrapper {
-    width: 850px;
     background: #fff;
     padding: 20px 30px 5px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.7);
