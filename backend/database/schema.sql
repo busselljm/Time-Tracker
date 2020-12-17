@@ -148,9 +148,9 @@ INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_ti
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
 (17, 1, 'Taught a class on Dec 2', '2020-12-2 18:00:00', '2020-12-2 20:00:00');
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
-(2, 1, 'Did a painting following along with Bob Ross', '2020-12-14 10:00:00', '2020-12-14 11:00:00');
+(1, 2, 'Did a painting following along with Bob Ross', '2020-12-14 10:00:00', '2020-12-14 11:00:00');
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
-(2, 1, 'Did a painting with a lake and mountain', '2020-12-11 11:37:16', '2020-12-16 12:45:27');
+(1, 2, 'Did a painting with a lake and mountain', '2020-12-11 11:37:16', '2020-12-16 12:45:27');
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
 (2, 2, 'Recorded vocals for The Man Who Sold the World', '2020-11-08 13:29:02', '2020-11-08 17:16:54');
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
