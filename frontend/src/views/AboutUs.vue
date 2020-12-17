@@ -28,7 +28,7 @@ export default {
           creative side and that’s why I switched to tech after holding several 
           retail-management positions. After my graduation at Tech Elevator, I look forward 
           to making apps and websites that add to the user experience with a company that 
-          cultivates creativity and innovation`,
+          cultivates creativity and innovation.`,
           linkedIn: "brittanyblankenship",
           image: "/img/brittany.jpg",
         },

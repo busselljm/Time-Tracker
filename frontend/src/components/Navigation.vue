@@ -1,12 +1,13 @@
 <template>
   <nav>
     <div class="container nav-container">
-      <img
+      <router-link :to="{ name: 'splash' }"><img
         id="icon"
         class="left nav-logo"
         src="img\Kronotrakr.png"
         alt="Kronos Logo"
-      />
+        
+      /></router-link>
       <ul class="list-unstyled nav-item" v-if="$store.state.token !== ''">
         <li v-for="item in items" :key="item.component" class="d-inline">
           <router-link :to="item.component">{{ item.text }}</router-link>
@@ -90,6 +91,7 @@ nav li a:not(.btn):hover {
 .nav-logo {
   position: fixed;
   left: 16px;
+  top: 16px;
 }
 
 .nav-item {
@@ -115,22 +117,4 @@ li img {
   margin-right: 1rem;
 }
 
-.dropdown {
-  position: absolute;
-  background: #363636;
-  top: 4rem;
-  z-index: 99999;
-  display: block;
-  right: -3.5rem;
-  padding: 1rem .5rem 2rem .5rem;
-  color: #fff;
-  width: 250px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.dropdown ul {
-  padding: 0;
-  margin: 0;
-}
 </style>
