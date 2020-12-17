@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-     <tr v-for="timesheet in $store.state.timesheets" v-bind:key="timesheet.id">
+     <tr v-for="timesheet in $store.state.report" v-bind:key="timesheet.id">
           <td v-if="timesheet.endingTime != null"> 
             <span>
               {{ timesheet.projectName }}
