@@ -36,6 +36,7 @@ export default {
       navigationItems: [
         { text: "Projects", component: "projects" },
         { text: "Time Logs", component: "times" },
+        { text: "Profile", component: "profile" },
         { text: "About Us", component: "about-us" },
       ],
     };

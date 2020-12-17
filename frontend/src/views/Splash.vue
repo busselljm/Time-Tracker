@@ -1,5 +1,6 @@
 <template>
   <div class="no-boot">
+    <br/>
     <div class="full-container">
       <img
         id="mockup"
