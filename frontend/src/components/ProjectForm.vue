@@ -109,14 +109,13 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
 img {
   position: relative;
   width: 50px;
   height: 50px;
   overflow: hidden;
   border-radius: 50%;
-=======
+}
 .project-title {
     border-bottom: 1px solid #A3E000;
     padding-bottom: 15px;
@@ -135,6 +134,5 @@ img {
 
 #title {
   font-size: 25px;
->>>>>>> Stashed changes
 }
 </style>

@@ -30,8 +30,6 @@
       </div>
     </div>
   </nav>
-</div>
-
 </template>
 
 <script>
@@ -60,28 +58,6 @@ nav {
   z-index: 99999;
 }
 
-<<<<<<< Updated upstream
-.container {
-  position: relative;
-  z-index: 9999
-}
-
-.overlay {
-  background: #363636;
-  height: 96px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
-
-nav ul {
-  margin-bottom: 0;
-}
-
-=======
->>>>>>> Stashed changes
 nav ul li {
   padding: 0 1rem;
 }
@@ -98,10 +74,6 @@ nav li a:not(.btn):hover {
   text-decoration: none;
 }
 
-<<<<<<< Updated upstream
-nav li:last-child a {
-  color: #fff;
-=======
 .container {
   display: flex;
   justify-content: space-between;
@@ -126,7 +98,6 @@ nav li:last-child a {
 
 .list-unstyled {
   align-self: flex-end;
->>>>>>> Stashed changes
 }
 
 #icon {
