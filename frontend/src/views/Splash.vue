@@ -23,14 +23,15 @@
           >Login</router-link
         >
       </div>
+      </div>
     <br/>
 
  <blockquote><p class="quotation"> 
-  "I love this software. By switching to KronoTrakr, our time reporting has never been more accurate."</p>
+  I love this software. By switching to KronoTrakr, our time reporting has never been more accurate.</p>
 <footer>- Bob Ross</footer>
 </blockquote> 
   </div>
-    </div>
+
 </template>
 
 <script>
