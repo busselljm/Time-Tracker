@@ -1,6 +1,6 @@
 <template>
   <div id="register" class="text-center">
-    <img src="img/kronos-logo.png" alt="Kronos Logo">
+    <router-link :to="{ name: 'splash' }"><img src="img/kronos-logo.png" alt="Kronos Logo"></router-link>
 
     <form class="form-register card" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
@@ -64,6 +64,7 @@
           placeholder="Image url"
           v-model="user.avatar"
           autofocus
+          required
         />
       </div>
       <div class="input-group flex-nowrap">

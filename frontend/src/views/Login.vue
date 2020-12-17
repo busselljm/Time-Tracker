@@ -1,6 +1,6 @@
 <template>
 <div>
-  <img src="img/kronos-logo.png" alt="Kronos Logo">
+  <router-link :to="{ name: 'splash' }"><img src="img/kronos-logo.png" alt="Kronos Logo"></router-link>
   <h1 class="text-center">KronoTrakr</h1>
     <single-card id="login" class="text-center mt-4">
       <form class="form-signin" @submit.prevent="login">
