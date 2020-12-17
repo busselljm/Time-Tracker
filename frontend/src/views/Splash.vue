@@ -23,10 +23,14 @@
           >Login</router-link
         >
       </div>
-    </div>
     <br/>
-    <div class="review"><h2>"I love this software. By switching to KronoTrakr, our time reporting has never been more accurate."</h2><h6>- Bob Ross</h6></div>
+
+ <blockquote><p class="quotation"> 
+  "I love this software. By switching to KronoTrakr, our time reporting has never been more accurate."</p>
+<footer>- Bob Ross</footer>
+</blockquote> 
   </div>
+    </div>
 </template>
 
 <script>
@@ -52,5 +56,43 @@ export default {};
   justify-items: center;
   margin: 0px;
   padding: 0px;
+}
+
+.quotation{
+  font-size: 30px;
+  margin: 0 auto;
+  quotes: "\201C""\201D""\2018""\2019";
+  padding: 10px 20px;
+  line-height: 1.4;
+}
+
+.quotation:before {
+  content: open-quote;
+  display: inline;
+  height: 0;
+  line-height: 0;
+  left: -10px;
+  position: relative;
+  top: 30px;
+  color: #ccc;
+  font-size: 3em;
+}
+.quotation::after {
+  content: close-quote;
+  display: inline;
+  height: 0;
+  line-height: 0;
+  left: 10px;
+  position: relative;
+  top: 35px;
+  color: #ccc;
+  font-size: 3em;
+}
+
+footer{
+  margin:0;
+  text-align: right;
+  font-size: 1.5em;
+  font-style: italic;
 }
 </style>

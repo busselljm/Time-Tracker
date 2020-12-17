@@ -4,7 +4,7 @@
     <button v-on:click="showReports()" class="btn btn-primary mb-3">Run Reports</button>
 
     <time-form v-bind:runReports="runReports" v-if="showForm" v-on:reset-form="runReports = undefined"/>
-    <run-reports v-if="showForm || runReports === true"/>
+    <run-reports v-if="runReports === true"/>
 
     <time-list v-if="!runReports"/>
   </div>
@@ -26,12 +26,16 @@ export default {
   },
   methods: {
     showCreateTime() {
+      if(this.runReports == false) {
+        this.showForm = !this.showForm
+      } else {
+        this.showForm = true;
+      }
       this.runReports = false;
-      this.showForm = !this.showForm
     },
     showReports() {
       this.runReports = true;
-      this.showForm = !this.showForm
+      this.showForm = true;
     },
     getProjects() {
       projectService.getAllProjects().then((response) => {
