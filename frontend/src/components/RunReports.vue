@@ -11,6 +11,7 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
+            <th>User Image</th>
             <th>Project Name</th>
             <th>Description</th>
             <th>Beginning Time</th>
@@ -20,6 +21,15 @@
         </thead>
         <tbody>
      <tr v-for="timesheet in $store.state.report" v-bind:key="timesheet.id">
+          <td v-if="timesheet.endingTime != null">
+            <img v-if="getUserImage(timesheet.userID) != ''"
+                  :src="getUserImage(timesheet.userID)"
+                />
+                <img v-if="getUserImage(timesheet.userID) === ''"
+                  src="img\kronos-logo.png"
+                />
+          </td>
+
           <td v-if="timesheet.endingTime != null"> 
             <span>
               {{ timesheet.projectName }}
@@ -100,11 +110,31 @@ export default {
       return hDisplay + mDisplay + sDisplay;
     },
     reduce() {
-      let total = this.$store.state.timesheets.reduce((a, b) => {
+      let total = this.$store.state.report.reduce((a, b) => {
         return a + this.getDifferenceInTimes(b.beginningTime, b.endingTime);
       }, 0);
       return this.secondsToHms(total);
     },
+    getUserImage(id) {
+      let users = this.$store.state.employees;
+      // users.push(this.$store.state.user);
+      let u = users.find(element => element.id == id);
+      // console.log('looking for ' + id);
+      // console.log(users);
+      // console.log('found ' + u);
+      if (u) {
+        
+        return u.avatar;
+      } else {
+        if (id == this.$store.state.user.id) {
+          return this.$store.state.user.avatar;
+        } else {
+          return '';
+        }
+        
+              }
+      
+    }
   },
   created() {
     timesheetService.getAllTimesheets().then((response) => {
@@ -157,5 +187,10 @@ table.table-striped tbody tr:nth-last-of-type(odd) {
 }
 #title {
   font-size: 25px;
+}
+
+img {
+  width: 50px;
+  border-radius: 50%;
 }
 </style>

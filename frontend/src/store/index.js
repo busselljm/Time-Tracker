@@ -100,9 +100,6 @@ export default new Vuex.Store({
     SET_ACTIVE_TIMESHEET(state, data) {
       state.timesheet = data;
     },
-    SET_ACTIVE_USER(state, data) {
-      state.activeUser = data;
-    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
