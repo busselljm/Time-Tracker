@@ -161,6 +161,14 @@ INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_ti
 (3, 2, 'Recorded vocals for The Prettiest Star', '2020-12-17 08:00:00', '2020-12-17 12:15:00');
 INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
 (3, 2, 'Recorded vocals for Aladdin Sane', '2020-12-12 09:00:00', '2020-12-12 13:45:00');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 3, 'Painted some happy trees', '2020-12-13 17:25:19', '2020-12-13 19:01:39');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 4, 'I thought it was going to be ruined', '2020-12-10 09:22:48', '2020-12-10 10:59:26');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 5, 'I finally did a painting', '2020-12-12 09:58:03', '2020-12-12 11:37:24');
+INSERT INTO timesheet (project_id, user_id, time_desc, beginning_time, ending_time) VALUES
+(1, 6, 'Bob Ross led me very well', '2020-12-09 14:00:00', '2020-12-09 15:30:00');
 
 
 COMMIT TRANSACTION;
